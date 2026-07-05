@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batuhan Gelegen · Yazılım Mühendisi Adayı | Savunma Sanayi & İHA</title>
+  <meta name="description" content="Batuhan Gelegen — Savunma sanayi, insansız hava araçları (İHA), görüntü işleme ve yapay zekâ alanlarında çalışan yazılım mühendisi adayı. Projeler, yarışmalar ve teknik yetkinlikler." />
+  <meta name="author" content="Batuhan Gelegen" />
+  <meta name="theme-color" content="#05080f" />
+
+  <!-- Favicon (tarayıcı sekmesi ikonu) -->
+  <link rel="icon" type="image/png" href="assets/bg_icon.png?v=40" />
+  <link rel="apple-touch-icon" href="assets/bg_icon.png?v=40" />
+  <link rel="shortcut icon" href="assets/bg_icon.png?v=40" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Batuhan Gelegen · Yazılım Mühendisi Adayı" />
+  <meta property="og:description" content="Savunma sanayi, İHA, görüntü işleme ve yapay zekâ odaklı projeler ve yetkinlikler." />
+  <meta property="og:locale" content="tr_TR" />
+
+  <!-- No-flash theme: TÜM cihazlarda varsayılan olarak KOYU tema ile başlar; kullanıcı manuel değiştirdiyse tercihi hatırlanır -->
+  <script>
+    (function () {
+      try {
+        // Varsayılan: dark. Kullanıcı butondan değiştirdiyse localStorage'daki değer kullanılır.
+        var t = localStorage.getItem("theme") || "dark";
+        var el = document.documentElement;
+        el.classList.toggle("dark", t === "dark");
+        el.style.colorScheme = t;
+      } catch (e) {
+        // Fallback: koyu tema
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css?v=40" />
+
+  <!-- Three.js (CDN) — inline modül ile yüklenir; internet yoksa 2D yedek devreye girer -->
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js" } }
+  </script>
+</head>
+
+<body>
+  <!-- ============ HAREKETLİ ARKA PLAN ============ -->
+  <div class="bg-aurora" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <div class="bg-noise"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- ============ SVG ICON SPRITE ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="i-radar" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12L20 7"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/><circle cx="16.5" cy="8.5" r="1" fill="currentColor" stroke="none"/></g>
+      <g id="i-drone" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 7l3 3m4 4l3 3m0-10l-3 3m-4 4l-3 3"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></g>
+      <g id="i-brain" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5A2.5 2.5 0 007 7.5 2.5 2.5 0 005 10v1.5A2.5 2.5 0 007 14v.5A2.5 2.5 0 009.5 17 2 2 0 0012 19V5a2 2 0 00-2.5 0z"/><path d="M14.5 5A2.5 2.5 0 0117 7.5 2.5 2.5 0 0119 10v1.5A2.5 2.5 0 0117 14v.5A2.5 2.5 0 0114.5 17 2 2 0 0112 19"/><path d="M12 9h2M12 13h2"/></g>
+      <g id="i-code" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></g>
+      <g id="i-cpu" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><rect x="10" y="10" width="4" height="4" rx="0.5"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></g>
+      <g id="i-target" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></g>
+      <g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g>
+      <g id="i-terminal" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></g>
+      <g id="i-design" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 100 18 2.5 2.5 0 002-4 2 2 0 011.6-3.2H18A3 3 0 0021 11 9 9 0 0012 3z"/><circle cx="7.5" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="7.5" r="1" fill="currentColor" stroke="none"/></g>
+      <g id="i-trophy" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 01-10 0V4z"/><path d="M7 6H4v1a3 3 0 003 3M17 6h3v1a3 3 0 01-3 3"/><path d="M12 13v4M9 21h6M10 21l.5-4h3l.5 4"/></g>
+      <g id="i-scholarship" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4"/><path d="M22 9v5"/></g>
+      <g id="i-community" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3.5 19a5.5 5.5 0 0111 0M15 14a4.5 4.5 0 015.5 4.5"/></g>
+      <g id="i-mentor" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0113 0"/></g>
+      <g id="i-github" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></g>
+      <g id="i-linkedin" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4"/></g>
+      <g id="i-mail" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></g>
+      <g id="i-instagram" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></g>
+      <g id="i-phone" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></g>
+      <g id="i-location" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-4 7-7.5 7-11a7 7 0 10-14 0c0 3.5 3 7 7 11z"/><circle cx="12" cy="10" r="2.5"/></g>
+      <g id="i-download" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></g>
+      <g id="i-arrow-right" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></g>
+      <g id="i-arrow-ur" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></g>
+      <g id="i-external" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h4"/></g>
+      <g id="i-globe" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></g>
+      <g id="i-menu" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></g>
+      <g id="i-close" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g>
+      <g id="i-sun" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></g>
+      <g id="i-moon" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8 8 0 1111.2 3a6.3 6.3 0 009.8 9.8z"/></g>
+      <g id="i-chevron-down" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></g>
+      <g id="i-send" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></g>
+      <g id="i-check" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></g>
+    </defs>
+  </svg>
+
+  <!-- ============ PRELOADER ============ -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__grid"></div>
+    <div class="preloader__inner">
+      <div class="radar-emblem">
+        <span class="radar-emblem__ring"></span>
+        <span class="radar-emblem__ring"></span>
+        <span class="radar-emblem__ring"></span>
+        <span class="radar-emblem__sweep"></span>
+        <span class="radar-emblem__core"></span>
+      </div>
+      <div class="preloader__title">BATUHAN GELEGEN</div>
+      <div class="preloader__status hud-chip" id="preloader-status">Sistem başlatılıyor…</div>
+      <div class="preloader__bar">
+        <div class="preloader__bar-head">
+          <span>INIT</span><span class="accent" id="preloader-pct">00%</span>
+        </div>
+        <div class="preloader__track"><div class="preloader__fill" id="preloader-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner" id="nav-inner">
+      <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
+        <span class="nav__mark nav__mark--img">
+          <img src="assets/bg_icon.png?v=40" alt="BG" width="36" height="36" />
+        </span>
+        <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Bölümler">
+        <a href="#hero" class="nav__link is-active" data-i18n="nav.home">Ana Sayfa</a>
+        <a href="#about" class="nav__link" data-i18n="nav.about">Hakkımda</a>
+        <a href="#skills" class="nav__link" data-i18n="nav.skills">Yetenekler</a>
+        <a href="#experience" class="nav__link" data-i18n="nav.experience">Deneyim</a>
+        <a href="#projects" class="nav__link" data-i18n="nav.projects">Projeler</a>
+        <a href="#achievements" class="nav__link" data-i18n="nav.achievements">Başarılar</a>
+        <a href="#contact" class="nav__link" data-i18n="nav.contact">İletişim</a>
+      </nav>
+      <div class="nav__actions">
+        <button type="button" class="btn btn--ghost nav__cv" data-cv-open>
+          <svg class="icon" viewBox="0 0 24 24"><use href="#i-external"></use></svg> <span data-i18n="nav.cv">CV</span>
+        </button>
+        <button class="icon-btn nav__lang" id="lang-toggle" type="button" aria-label="Dili değiştir" title="Dil / Language">
+          <svg class="icon" viewBox="0 0 24 24"><use href="#i-globe"></use></svg>
+          <span class="nav__lang-label mono" id="lang-toggle-label">EN</span>
+        </button>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Tema değiştir">
+          <svg class="icon icon-sun" viewBox="0 0 24 24"><use href="#i-sun"></use></svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24"><use href="#i-moon"></use></svg>
+        </button>
+        <button class="icon-btn nav__burger" id="nav-burger" type="button" aria-label="Menüyü aç">
+          <svg class="icon" viewBox="0 0 24 24"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu__overlay" id="mobile-overlay"></div>
+    <aside class="mobile-menu__panel">
+      <div class="mobile-menu__head">
+        <span data-i18n="mobile.menuLabel">Menü</span>
+        <button class="icon-btn" id="mobile-close" type="button" aria-label="Menüyü kapat">
+          <svg class="icon" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+      <a href="#hero" class="mobile-menu__link"><span class="mono">01</span><span data-i18n="nav.home">Ana Sayfa</span></a>
+      <a href="#about" class="mobile-menu__link"><span class="mono">02</span><span data-i18n="nav.about">Hakkımda</span></a>
+      <a href="#skills" class="mobile-menu__link"><span class="mono">03</span><span data-i18n="nav.skills">Yetenekler</span></a>
+      <a href="#experience" class="mobile-menu__link"><span class="mono">04</span><span data-i18n="nav.experience">Deneyim</span></a>
+      <a href="#projects" class="mobile-menu__link"><span class="mono">05</span><span data-i18n="nav.projects">Projeler</span></a>
+      <a href="#achievements" class="mobile-menu__link"><span class="mono">06</span><span data-i18n="nav.achievements">Başarılar</span></a>
+      <a href="#contact" class="mobile-menu__link"><span class="mono">07</span><span data-i18n="nav.contact">İletişim</span></a>
+      <button type="button" class="btn btn--primary mobile-menu__cv" data-cv-open><svg class="icon" viewBox="0 0 24 24"><use href="#i-external"></use></svg> <span data-i18n="hero.cta.cv">Özgeçmişi Görüntüle</span></button>
+    </aside>
+  </div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="hero">
+      <canvas id="hero-canvas" class="hero__canvas"></canvas>
+      <div class="hero__grid"></div>
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__corners" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="hero__content container">
+        <div class="hero__badge reveal">
+          <span class="pulse-dot"></span>
+          <span class="hud-chip" data-i18n="hero.badge">Staj & proje iş birliklerine açık</span>
+        </div>
+        <h1 class="hero__title reveal" data-delay="80">
+          <span class="hero__first">Batuhan</span>
+          <span class="hero__last text-gradient">Gelegen</span>
+        </h1>
+        <div class="hero__role reveal" data-delay="160">
+          <span class="hero__role-tick"></span>
+          <span id="typed" class="typed"></span><span class="caret"></span>
+        </div>
+        <p class="hero__tagline reveal" data-delay="240">
+          Savunma sanayi, insansız hava araçları ve ileri teknoloji alanlarında
+          milli ve yenilikçi çözümler geliştiriyorum.
+        </p>
+        <div class="hero__meta reveal" data-delay="300">
+          <span><svg class="icon accent" viewBox="0 0 24 24"><use href="#i-location"></use></svg> Malatya, Türkiye</span>
+        </div>
+        <div class="hero__cta reveal" data-delay="360">
+          <a href="#projects" class="btn btn--primary magnetic"><span data-i18n="hero.cta.projects">Projelerimi Keşfet</span> <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow-right"></use></svg>
+          </a>
+          <button type="button" class="btn btn--outline magnetic" data-cv-open><svg class="icon" viewBox="0 0 24 24"><use href="#i-external"></use></svg> <span data-i18n="hero.cta.cv">Özgeçmişi Görüntüle</span></button>
+        </div>
+
+        <div class="hero__socials-row reveal" data-delay="440" aria-label="Sosyal medya bağlantıları">
+          <a href="https://github.com/bgelegen" target="_blank" rel="noopener noreferrer" class="social-dot social-dot--lg" aria-label="GitHub"><svg class="icon" viewBox="0 0 24 24"><use href="#i-github"></use></svg></a>
+          <a href="https://www.linkedin.com/in/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot social-dot--lg" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><use href="#i-linkedin"></use></svg></a>
+          <a href="https://www.instagram.com/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot social-dot--lg" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><use href="#i-instagram"></use></svg></a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="about.kicker">Hakkımda</span></div>
+          <h2 class="section-head__title">Milli teknoloji için <span class="text-gradient" data-i18n="about.title.emph">mühendislik</span> tutkusu.</h2>
+        </div>
+
+        <div class="about">
+          <div class="about__bio">
+            <p class="about__lead reveal">Samsun Üniversitesi Yazılım Mühendisliği 2. sınıf öğrencisiyim. Savunma sanayi, insansız hava araçları (İHA) ve ileri teknoloji alanlarına yoğun ilgi duyuyor, bu alanlarda yenilikçi çözümler üretebilecek projeler geliştirmeyi hedefliyorum. Problem çözme ve yazılım geliştirme becerilerimi; Python, C/C++ ve C# gibi dillerin yanı sıra görüntü işleme teknolojileri, simülasyon ortamları ve kullanıcı arayüzü tasarımı alanlarındaki yetkinliklerimle destekliyorum.</p>
+            <p class="about__text reveal">Öğrenmeye açık, analitik düşünebilen ve takım çalışmasına yatkın bir mühendis adayı olarak; edindiğim proje tecrübelerini savunma sanayisinde yenilikçi, güvenilir ve milli çözümler üretmek için kullanmayı hedefliyorum.</p>
+            <div class="about__meta-row">
+              <div class="about__edu reveal">
+                <span class="hud-chip accent" data-i18n="about.edu.chip">Eğitim</span>
+                <div class="about__edu-row">
+                  <div>
+                    <h3 data-i18n="about.edu.school">Samsun Üniversitesi</h3>
+                    <p data-i18n="about.edu.detail">Yazılım Mühendisliği · Lisans · 2. Sınıf</p>
+                  </div>
+                  <span class="pill" data-i18n="about.edu.period">2024 — Devam Ediyor</span>
+                </div>
+              </div>
+
+              <div class="about-stats reveal" data-delay="80">
+                <span class="hud-chip accent" data-i18n="about.stats.chip">İstatistikler</span>
+                <dl class="about-stats__grid">
+                  <div class="stat"><dt>4</dt><dd data-i18n="about.stats.projects">Aktif Ar-Ge Projesi</dd></div>
+                  <div class="stat"><dt>3+</dt><dd data-i18n="about.stats.langs">Programlama Dili</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__card reveal" data-delay="120">
+            <div class="profile-card scanlines">
+              <div class="profile-card__photo">
+                <img src="assets/batuhan_gelegen.jpg" alt="Batuhan Gelegen" loading="lazy" />
+              </div>
+              <h3 class="profile-card__name">Batuhan Gelegen</h3>
+              <p class="profile-card__role accent" data-i18n="about.role">Yazılım Mühendisi Adayı</p>
+              <dl class="profile-card__rows mono">
+                <div><dt data-i18n="contact.label.location">KONUM</dt><dd data-i18n="hero.location">Malatya, Türkiye</dd></div>
+                <div><dt data-i18n="profile.field">ALAN</dt><dd data-i18n="profile.field.value">Savunma · İHA · YZ</dd></div>
+                <div><dt data-i18n="profile.status">DURUM</dt><dd class="accent" data-i18n="profile.status.value">Aktif Geliştirici</dd></div>
+                <div><dt data-i18n="profile.school">OKUL</dt><dd data-i18n="profile.school.value">Samsun Üni. · 2. Sınıf</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="focus-grid">
+          <article class="focus-card card reveal" data-delay="0">
+            <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-drone"></use></svg></div>
+            <h3 data-i18n="focus.uav.title">İnsansız Hava Araçları</h3>
+            <p>Otonom görev algoritmaları, yer kontrol istasyonları ve uçuş stabilizasyonu üzerine uygulamalı geliştirme.</p>
+          </article>
+          <article class="focus-card card reveal" data-delay="80">
+            <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-brain"></use></svg></div>
+            <h3>Yapay Zekâ &amp; Görüntü İşleme</h3>
+            <p>Gerçek zamanlı hedef tespiti, sınıflandırma ve makine öğrenmesi tabanlı karar destek sistemleri.</p>
+          </article>
+          <article class="focus-card card reveal" data-delay="160">
+            <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-shield"></use></svg></div>
+            <h3 data-i18n="focus.defense.title">Savunma Sanayi</h3>
+            <p>Milli ve güvenilir çözümler; tehdit değerlendirme, hava savunma ve simülasyon senaryoları.</p>
+          </article>
+          <article class="focus-card card reveal" data-delay="240">
+            <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-cpu"></use></svg></div>
+            <h3>Gömülü &amp; Otonom Sistemler</h3>
+            <p>ROS/Gazebo simülasyonları, sensör benzetimleri ve donanıma yakın kontrol mekanizmaları.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="section section--alt">
+      <div class="dot-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="skills.kicker">Teknik Yetenekler</span></div>
+          <h2 class="section-head__title">Diller, araçlar ve <span class="text-gradient" data-i18n="skills.title.emph">teknolojiler</span>.</h2>
+          <p class="section-head__desc">Yazılım geliştirmeden simülasyon ve görüntü işlemeye uzanan, projelerle pekiştirilmiş yetkinlikler.</p>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- JS ile doldurulur -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE (TIMELINE) ============ -->
+    <section id="experience" class="section">
+      <div class="dot-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="experience.kicker">Deneyim &amp; Kariyer Yolculuğu</span></div>
+          <h2 class="section-head__title">Zaman çizelgesinde <span class="text-gradient" data-i18n="experience.title.emph">deneyim</span>.</h2>
+        </div>
+        <div class="timeline" id="timeline">
+          <!-- JS ile doldurulur -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section section--alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="projects.kicker">Seçili Projeler</span></div>
+          <h2 class="section-head__title">Fikirden <span class="text-gradient" data-i18n="projects.title.emph">otonom sistemlere</span>.</h2>
+          <p class="section-head__desc">Savunma sanayi ve İHA teknolojileri odağında geliştirdiğim, uçtan uca yazılım projeleri.</p>
+        </div>
+        <div class="projects" id="projects-list">
+          <!-- JS ile doldurulur -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACHIEVEMENTS ============ -->
+    <section id="achievements" class="section">
+      <div class="section-grid-fade" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="achievements.kicker">Yarışmalar &amp; Başarılar</span></div>
+          <h2 class="section-head__title">Sahada kanıtlanmış <span class="text-gradient" data-i18n="achievements.title.emph">sonuçlar</span>.</h2>
+        </div>
+
+        <div class="featured-achievement reveal">
+          <div class="featured-achievement__inner scanlines">
+            <div class="featured-achievement__metric">
+              <span class="ic-badge featured-achievement__trophy"><svg class="icon" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg></span>
+              <span class="featured-achievement__label" data-i18n="achievements.finalist">FİNALİST</span>
+            </div>
+            <div class="featured-achievement__body">
+              <div class="featured-achievement__org">
+                <span class="mono">IKARUS AR-GE Takımı · 2024 — 2025</span>
+              </div>
+              <h3>TEKNOFEST Savaşan İHA Yarışması'nda Finalist</h3>
+              <p>Türkiye'nin en büyük teknoloji yarışmasında finalist olarak yer aldık. Takım içerisinde haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-achievement reveal" data-delay="120">
+          <div class="featured-achievement__inner scanlines">
+            <div class="featured-achievement__metric">
+              <span class="ic-badge featured-achievement__trophy"><svg class="icon" viewBox="0 0 24 24"><use href="#i-radar"></use></svg></span>
+              <span class="featured-achievement__label" data-i18n="tubitak.label">AI · HAVA SAVUNMA</span>
+            </div>
+            <div class="featured-achievement__body">
+              <div class="featured-achievement__org">
+                <span class="mono">TÜBİTAK · Kasım 2025 — Devam Ediyor</span>
+              </div>
+              <h3 data-i18n="tubitak.title">TÜBİTAK 2209-A Proje Desteği</h3>
+              <p data-i18n="tubitak.desc">Modern hava savunma sistemlerinin sahte hedefler ile gerçek tehditleri ayırt edebilmesini sağlamak amacıyla Gazebo–ROS tabanlı bir simülasyon altyapısı ve Python ile yapay zekâ tabanlı bir hedef sınıflandırma ve tehdit önceliklendirme modeli geliştirmekteyim.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section">
+      <div class="hero__glow hero__glow--1" style="opacity:.5"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-head__kicker"><span class="hud-chip" data-i18n="contact.kicker">İletişim</span></div>
+          <h2 class="section-head__title">Birlikte <span class="text-gradient" data-i18n="contact.title.emph">üretelim</span>.</h2>
+          <p class="section-head__desc">Staj, proje veya iş birliği için bana ulaşabilirsiniz. En kısa sürede dönüş yaparım.</p>
+        </div>
+
+        <div class="contact">
+          <div class="contact__info">
+            <a href="mailto:batuhangelegen44@gmail.com" class="contact__item card reveal">
+              <span class="ic-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-mail"></use></svg></span>
+              <div><span class="contact__item-label mono" data-i18n="contact.label.email">E-POSTA</span><span class="contact__item-value">batuhangelegen44@gmail.com</span></div>
+            </a>
+            <a href="tel:+905349136044" class="contact__item card reveal" data-delay="80">
+              <span class="ic-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-phone"></use></svg></span>
+              <div><span class="contact__item-label mono" data-i18n="contact.label.phone">TELEFON</span><span class="contact__item-value">+90 (534) 913 60 44</span></div>
+            </a>
+            <div class="contact__item card reveal" data-delay="160">
+              <span class="ic-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-location"></use></svg></span>
+              <div><span class="contact__item-label mono" data-i18n="contact.label.location">KONUM</span><span class="contact__item-value" data-i18n="hero.location">Malatya, Türkiye</span></div>
+            </div>
+            <div class="contact__socials reveal" data-delay="240">
+              <a href="https://github.com/bgelegen" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="GitHub"><svg class="icon" viewBox="0 0 24 24"><use href="#i-github"></use></svg></a>
+              <a href="https://www.linkedin.com/in/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><use href="#i-linkedin"></use></svg></a>
+              <a href="https://www.instagram.com/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><use href="#i-instagram"></use></svg></a>
+            </div>
+          </div>
+
+          <form class="contact__form card reveal" data-delay="120" id="contact-form" novalidate
+                action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms ayarları -->
+            <input type="hidden" name="access_key" value="2fef2906-6797-4ce5-9418-1b794b2ae97c" />
+            <input type="hidden" name="from_name" value="Portfolyo · Batuhan Gelegen" />
+            <!-- Bot tuzağı (spam koruması — boş kalmalı) -->
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+            <div class="field">
+              <label for="cf-name" data-i18n="contact.form.name">Ad Soyad</label>
+              <input type="text" id="cf-name" name="name" placeholder="Adınız" required />
+              <span class="field__error" data-i18n="contact.form.err.name">Lütfen adınızı girin.</span>
+            </div>
+            <div class="field">
+              <label for="cf-email" data-i18n="contact.form.email">E-posta</label>
+              <input type="email" id="cf-email" name="email" placeholder="ornek@mail.com" required />
+              <span class="field__error" data-i18n="contact.form.err.email">Geçerli bir e-posta girin.</span>
+            </div>
+            <div class="field">
+              <label for="cf-subject" data-i18n="contact.form.subject">Konu</label>
+              <input type="text" id="cf-subject" name="subject" placeholder="Konu başlığı" required />
+              <span class="field__error" data-i18n="contact.form.err.subject">Lütfen bir konu girin.</span>
+            </div>
+            <div class="field">
+              <label for="cf-message" data-i18n="contact.form.message">Mesaj</label>
+              <textarea id="cf-message" name="message" rows="4" placeholder="Mesajınız…" required></textarea>
+              <span class="field__error" data-i18n="contact.form.err.message">Lütfen bir mesaj yazın.</span>
+            </div>
+            <button type="submit" class="btn btn--primary contact__submit magnetic" id="contact-submit">
+              <span class="btn__label"><span data-i18n="contact.form.submit">Mesaj Gönder</span> <svg class="icon" viewBox="0 0 24 24"><use href="#i-send"></use></svg></span>
+              <span class="btn__loading" data-i18n="contact.form.sending">Gönderiliyor…</span>
+              <span class="btn__success"><svg class="icon" viewBox="0 0 24 24"><use href="#i-check"></use></svg> <span data-i18n="contact.form.success">Mesaj iletildi · Teşekkürler!</span></span>
+            </button>
+            <div class="contact__status" id="contact-status" role="status" aria-live="polite">
+              <p id="contact-status-msg">
+                <svg class="icon" id="contact-status-icon" viewBox="0 0 24 24"><use href="#i-check"></use></svg>
+                <span><span data-i18n="contact.status.success">Mesajın e-posta kutuma ulaştı. En kısa sürede dönüş yapacağım.</span></span>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ CV GÖRÜNTÜLEYİCİ MODAL ============ -->
+  <div class="cv-modal" id="cv-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+    <div class="cv-modal__overlay" data-cv-close></div>
+    <div class="cv-modal__panel">
+      <header class="cv-modal__head">
+        <div class="cv-modal__title-wrap">
+          <span class="ic-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-external"></use></svg></span>
+          <div>
+            <h3 id="cv-modal-title" data-i18n="cv.title">Batuhan Gelegen — Özgeçmiş</h3>
+          </div>
+        </div>
+        <div class="cv-modal__actions">
+          <a href="assets/Batuhan_Gelegen_CV.pdf" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
+            <svg class="icon" viewBox="0 0 24 24"><use href="#i-download"></use></svg> İndir
+          </a>
+          <button type="button" class="icon-btn cv-modal__close" data-cv-close aria-label="Kapat">
+            <svg class="icon" viewBox="0 0 24 24"><use href="#i-close"></use></svg>
+          </button>
+        </div>
+      </header>
+      <div class="cv-modal__body">
+        <iframe id="cv-modal-frame" title="Özgeçmiş PDF" src="about:blank"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="dot-bg" aria-hidden="true"></div>
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#hero" class="nav__logo">
+          <span class="nav__mark nav__mark--img">
+            <img src="assets/bg_icon.png?v=40" alt="BG" width="36" height="36" />
+          </span>
+          <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
+        </a>
+        <p data-i18n="footer.brand.desc">Savunma sanayi, insansız hava araçları ve ileri teknoloji alanlarında milli ve yenilikçi çözümler geliştiriyorum.</p>
+        <div class="footer__socials">
+          <a href="https://github.com/bgelegen" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="GitHub"><svg class="icon" viewBox="0 0 24 24"><use href="#i-github"></use></svg></a>
+          <a href="https://www.linkedin.com/in/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><use href="#i-linkedin"></use></svg></a>
+          <a href="https://www.instagram.com/batuhangelegen/" target="_blank" rel="noopener noreferrer" class="social-dot" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><use href="#i-instagram"></use></svg></a>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Menu" data-i18n-attr-aria-label="footer.nav.label">
+        <a href="#about" data-i18n="nav.about">Hakkımda</a>
+        <a href="#skills" data-i18n="nav.skills">Yetenekler</a>
+        <a href="#experience" data-i18n="nav.experience">Deneyim</a>
+        <a href="#projects" data-i18n="nav.projects">Projeler</a>
+        <a href="#achievements" data-i18n="nav.achievements">Başarılar</a>
+        <a href="#contact" data-i18n="nav.contact">İletişim</a>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year"></span> Batuhan Gelegen · Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <!-- İçerik verisi (main.js'ten önce yüklenir) -->
+  <script src="js/data.js?v=40" defer></script>
+  <script src="js/i18n.js?v=40" defer></script>
+  <script src="js/main.js?v=40" defer></script>
+  <!-- Three.js sahnesi: inline modül (file:// üzerinden de çalışır, CDN'den three çeker) -->
+  <script type="module" src="js/scene.js?v=40"></script>
+</body>
+</html>
