@@ -65,6 +65,7 @@ window.I18N = (function () {
       tr: "Modern hava savunma sistemlerinin sahte hedefler ile gerçek tehditleri ayırt edebilmesini sağlamak amacıyla Gazebo–ROS tabanlı bir simülasyon altyapısı ve Python ile yapay zekâ tabanlı bir hedef sınıflandırma ve tehdit önceliklendirme modeli geliştirmekteyim.",
       en: "I am building a Gazebo–ROS-based simulation infrastructure and a Python-based AI target classification and threat prioritization model so that modern air-defense systems can distinguish decoys from real threats."
     },
+    "tubitak.org": { tr: "TÜBİTAK · Kasım 2025 — Devam Ediyor", en: "TÜBİTAK · November 2025 — Ongoing" },
 
     // Contact info
     "contact.label.email":    { tr: "E-POSTA", en: "EMAIL" },
@@ -173,20 +174,13 @@ window.I18N = (function () {
     },
     title: {
       tr: "TEKNOFEST Savaşan İHA Yarışması'nda Finalist",
-      en: "Finalist at TEKNOFEST Combat UAV Competition",
+      en: "Finalist at TEKNOFEST Savaşan İHA Competition",
     },
     desc: {
       tr: "Türkiye'nin en büyük teknoloji yarışmasında finalist olarak yer aldık. Takım içerisinde haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
       en: "We were finalists in Türkiye's largest technology competition. Within the team, I was responsible for communication and ground control station development.",
     },
   };
-  const achievementCardEn = {
-    metricLabel: "AI-based air defense",
-    title: "TÜBİTAK 2209-A Project Support",
-    desc: "I am conducting a research project on AI-based target classification and threat prioritization for air defense systems.",
-    top: "2025",
-  };
-
   /* ----------------- PROJELER — EN ----------------- */
   // main.js data.js'ten proje verisini alıyor. Her projenin `id`'sine göre EN varyant.
   const projectsEn = {
@@ -242,7 +236,7 @@ window.I18N = (function () {
 
   /* ----------------- SERTİFİKALAR — EN ----------------- */
   const certificatesEn = [
-    { title: "TEKNOFEST Combat UAV — Finalist Certificate", issuer: "TEKNOFEST" },
+    { title: "TEKNOFEST Savaşan İHA — Finalist Certificate", issuer: "TEKNOFEST" },
     { title: "Google Developer Groups — Management Team", issuer: "GDG Turkey" },
     { title: "Sen Geleceksin Scholarship Program", issuer: "T3 Vakfı" },
   ];
@@ -253,7 +247,7 @@ window.I18N = (function () {
     {
       role: "Software Engineer", org: "IKARUS AR-GE",
       period: "September 2024 — August 2025",
-      desc: "We joined the TEKNOFEST Combat UAV Competition and were finalists among 598 teams. I was responsible for communication and ground control station development within the team.",
+      desc: "We joined the TEKNOFEST Savaşan İHA Competition and were finalists among 598 teams. I was responsible for communication and ground control station development within the team.",
       highlights: [
         "Developed the GCS interface and command infrastructure for operational control.",
         "Built and optimized the UAV–GCS data communication infrastructure.",
@@ -305,6 +299,14 @@ window.I18N = (function () {
     "Tools & Design",
   ];
 
+  /* Skill chip isimleri — TR yazılı ama İngilizce görünmesi gerekenler */
+  const skillNamesEn = {
+    "Görüntü İşleme":     "Image Processing",
+    "Makine Öğrenmesi":   "Machine Learning",
+    "Yapay Zekâ":         "Artificial Intelligence",
+    "Otonom Sistemler":   "Autonomous Systems",
+  };
+
   /* ----------------- COPYRIGHT ----------------- */
   const copyrightEn = "All rights reserved.";
   const copyrightTr = "Tüm hakları saklıdır.";
@@ -315,9 +317,9 @@ window.I18N = (function () {
     heroTypedEn, heroTaglineEn, heroTaglineTr,
     aboutTextEn, aboutTextTr,
     focusDescEn, focusDescTr,
-    achievementsFeatured, achievementCardEn,
+    achievementsFeatured,
     projectsEn, certificatesEn, experiencesEn,
-    skillGroupTitlesEn,
+    skillGroupTitlesEn, skillNamesEn,
     copyrightEn, copyrightTr,
     // Yardımcı: mevcut dili döndür
     get: () => (localStorage.getItem("lang") === "en" ? "en" : "tr"),

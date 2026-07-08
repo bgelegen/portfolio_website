@@ -10,12 +10,6 @@ window.PORTFOLIO = (function () {
     "Otonom Sistemler Meraklısı",
   ];
 
-  const techMarquee = [
-    "Python", "C / C++", "C#", "Görüntü İşleme", "OpenCV", "Makine Öğrenmesi",
-    "ROS", "Gazebo", "Qt Designer", "Mission Planner", "QGroundControl",
-    "Linux", "Figma", "Adobe Photoshop",
-  ];
-
   const skillGroups = [
     {
       title: "Programlama Dilleri", icon: "code",
@@ -56,6 +50,7 @@ window.PORTFOLIO = (function () {
   const projects = [
     {
       id: "yer-kontrol-istasyonu",
+      image: "assets/projects/gcs.png",
       title: "Yer Kontrol İstasyonu (GCS)",
       period: "Eylül 2024 — Ağustos 2025",
       status: "Tamamlandı",
@@ -77,6 +72,7 @@ window.PORTFOLIO = (function () {
     },
     {
       id: "tubitak-2209a",
+      image: "assets/projects/tubitak.png",
       title: "TÜBİTAK 2209-A · Hava Savunma için Yapay Zekâ",
       period: "Kasım 2025 — Devam Ediyor",
       status: "Devam Ediyor",
@@ -97,6 +93,7 @@ window.PORTFOLIO = (function () {
     },
     {
       id: "otonom-kamikaze",
+      image: "assets/projects/kamikaze.png",
       title: "Otonom Kamikaze Görev Algoritması",
       period: "Eylül 2025 — Devam Ediyor",
       status: "Devam Ediyor",
@@ -139,7 +136,7 @@ window.PORTFOLIO = (function () {
   const experiences = [
     {
       role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.png",
+      logo: "assets/logos/ikarus.png", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
       period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
       desc: "Teknofest Savaşan İHA Yarışması'na katılarak 598 takım arasından finalist olduk. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
       highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Mission Planner ile yer kontrol süreçlerini yönetmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
@@ -155,7 +152,7 @@ window.PORTFOLIO = (function () {
     },
     {
       role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.png",
+      logo: "assets/logos/ikarus.png", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
       period: "Eylül 2025 — Devam Ediyor", current: true, icon: "target",
       desc: "Görüntü işleme tabanlı yöntemler kullanarak kamikaze İHA senaryoları üzerine yazılım geliştiriyor, 55 kişilik ekipteki 7 kişilik yönetim kadrosunda yer alıyorum.",
       highlights: ["Görüntü işleme ve algoritma geliştirme çalışmaları.", "Kamikaze senaryolarına uygun yazılım modülleri geliştirmek.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
@@ -218,7 +215,7 @@ window.PORTFOLIO = (function () {
   ];
 
   return {
-    typedWords, techMarquee, skillGroups, projects, certificates, experiences,
+    typedWords, skillGroups, projects, certificates, experiences,
     allowedEmailDomains,
   };
 })();

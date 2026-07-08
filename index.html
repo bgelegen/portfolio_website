@@ -8,16 +8,55 @@
   <meta name="author" content="Batuhan Gelegen" />
   <meta name="theme-color" content="#05080f" />
 
-  <!-- Favicon (tarayıcı sekmesi ikonu) -->
-  <link rel="icon" type="image/png" href="assets/bg_icon.png?v=41" />
-  <link rel="apple-touch-icon" href="assets/bg_icon.png?v=41" />
-  <link rel="shortcut icon" href="assets/bg_icon.png?v=41" />
+  <!-- Favicon (tarayıcı + Google search HD) -->
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/bg_icon.png?v=43" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/bg_icon.png?v=43" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/bg_icon.png?v=43" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.png?v=43" />
+  <link rel="shortcut icon" href="assets/bg_icon.png?v=43" />
 
-  <!-- Open Graph -->
+  <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Batuhan Gelegen · Yazılım Mühendisi Adayı" />
-  <meta property="og:description" content="Savunma sanayi, İHA, görüntü işleme ve yapay zekâ odaklı projeler ve yetkinlikler." />
+  <meta property="og:site_name" content="Batuhan Gelegen · Portfolio" />
+  <meta property="og:url" content="https://batuhangelegen.com/" />
+  <meta property="og:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
+  <meta property="og:description" content="Samsun Üniversitesi Yazılım Mühendisliği öğrencisi. TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · Yapay Zekâ · Otonom Sistemler." />
   <meta property="og:locale" content="tr_TR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
+  <meta property="og:image" content="assets/og-image.png?v=43" />
+  <meta property="og:image:secure_url" content="assets/og-image.png?v=43" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
+  <!-- Square fallback (bazı platformlar bunu tercih eder) -->
+  <meta property="og:image" content="assets/bg_icon.png?v=43" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Batuhan Gelegen — BG Logo" />
+
+  <!-- ============ TWITTER CARD ============ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
+  <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · YZ · Otonom Sistemler." />
+  <meta name="twitter:image" content="assets/og-image.png?v=43" />
+  <meta name="twitter:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
+
+  <!-- Discord embed rengi — bar accent cyan olur -->
+  <meta name="theme-color" content="#22d3ee" media="only screen and (max-width: 1px)" />
+
+  <!-- Google logo için structured data (arama sonuçlarında büyük ve net) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Batuhan Gelegen",
+    "jobTitle": "Yazılım Mühendisi Adayı",
+    "image": "assets/bg_icon.png",
+    "url": "https://batuhangelegen.com"
+  }
+  </script>
 
   <!-- No-flash theme: TÜM cihazlarda varsayılan olarak KOYU tema ile başlar; kullanıcı manuel değiştirdiyse tercihi hatırlanır -->
   <script>
@@ -130,7 +169,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.png?v=41" alt="BG" width="36" height="36" />
+          <img src="assets/bg_icon.png?v=43" alt="BG" width="36" height="36" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -289,7 +328,7 @@
           </article>
           <article class="focus-card card reveal" data-delay="80">
             <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-brain"></use></svg></div>
-            <h3>Yapay Zekâ &amp; Görüntü İşleme</h3>
+            <h3 data-i18n="focus.ai.title">Yapay Zekâ &amp; Görüntü İşleme</h3>
             <p>Gerçek zamanlı hedef tespiti, sınıflandırma ve makine öğrenmesi tabanlı karar destek sistemleri.</p>
           </article>
           <article class="focus-card card reveal" data-delay="160">
@@ -299,7 +338,7 @@
           </article>
           <article class="focus-card card reveal" data-delay="240">
             <div class="focus-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-cpu"></use></svg></div>
-            <h3>Gömülü &amp; Otonom Sistemler</h3>
+            <h3 data-i18n="focus.embedded.title">Gömülü &amp; Otonom Sistemler</h3>
             <p>ROS/Gazebo simülasyonları, sensör benzetimleri ve donanıma yakın kontrol mekanizmaları.</p>
           </article>
         </div>
@@ -370,7 +409,6 @@
                 <span class="mono">IKARUS AR-GE Takımı · 2024 — 2025</span>
               </div>
               <h3>TEKNOFEST Savaşan İHA Yarışması'nda Finalist</h3>
-              <p>Türkiye'nin en büyük teknoloji yarışmasında finalist olarak yer aldık. Takım içerisinde haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.</p>
             </div>
           </div>
         </div>
@@ -378,15 +416,14 @@
         <div class="featured-achievement reveal" data-delay="120">
           <div class="featured-achievement__inner scanlines">
             <div class="featured-achievement__metric">
-              <span class="ic-badge featured-achievement__trophy"><svg class="icon" viewBox="0 0 24 24"><use href="#i-radar"></use></svg></span>
+              <span class="ic-badge featured-achievement__trophy"><svg class="icon" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg></span>
               <span class="featured-achievement__label" data-i18n="tubitak.label">AI · HAVA SAVUNMA</span>
             </div>
             <div class="featured-achievement__body">
               <div class="featured-achievement__org">
-                <span class="mono">TÜBİTAK · Kasım 2025 — Devam Ediyor</span>
+                <span class="mono" data-i18n="tubitak.org">TÜBİTAK · Kasım 2025 — Devam Ediyor</span>
               </div>
               <h3 data-i18n="tubitak.title">TÜBİTAK 2209-A Proje Desteği</h3>
-              <p data-i18n="tubitak.desc">Modern hava savunma sistemlerinin sahte hedefler ile gerçek tehditleri ayırt edebilmesini sağlamak amacıyla Gazebo–ROS tabanlı bir simülasyon altyapısı ve Python ile yapay zekâ tabanlı bir hedef sınıflandırma ve tehdit önceliklendirme modeli geliştirmekteyim.</p>
             </div>
           </div>
         </div>
@@ -501,7 +538,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.png?v=41" alt="BG" width="36" height="36" />
+            <img src="assets/bg_icon.png?v=43" alt="BG" width="36" height="36" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>

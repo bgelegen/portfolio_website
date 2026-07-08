@@ -221,16 +221,9 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
    ve mix-blend-mode kombinasyonlarında ciddi frame drop yaşar.
    Bu blok mobilde ağır efektleri kısıtlayarak sitenin akıcı çalışmasını sağlar. */
 @media (max-width: 900px), (pointer: coarse) {
-  /* Orb blur'ını yarıya indir + animasyonu durdur (statik gradient bg) */
-  .orb {
-    filter: blur(60px) !important;
-    animation: none !important;
-    opacity: 0.35 !important;
-    mix-blend-mode: normal !important;
-  }
-  .orb--3 { display: none; }         /* 3. orb'ı sil — 2 tanesi zaten atmosfer için yeterli */
-  .bg-grid { animation: none !important; }
-  .bg-noise { display: none !important; }  /* mix-blend-mode overlay çok pahalı */
+  /* Aurora arka planı komple kapat — mobil GPU'lar için en pahalı efekt */
+  .bg-aurora { display: none !important; }
+  .orb, .bg-grid, .bg-noise { display: none !important; }
 
   /* Backdrop-filter mobilde tarayıcıyı yakar — solid alternatif */
   .nav__inner.is-scrolled,
@@ -245,13 +238,13 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   .nav__inner.is-scrolled { background: var(--surface) !important; }
   .mobile-menu__overlay { background: rgba(5, 8, 15, 0.92) !important; }
 
-  /* Reveal animasyonlarını hızlandır ve transform mesafesini azalt */
+  /* Reveal animasyonlarını hızlandır — anında görünsün, gecikme hissi olmasın */
   .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger {
-    transition-duration: 0.4s !important;
+    transition-duration: 0.25s !important;
+    transition-delay: 0s !important;
   }
-  .reveal { transform: translate3d(0, 12px, 0); }
-  .reveal-left  { transform: translate3d(-12px, 0, 0); }
-  .reveal-right { transform: translate3d(12px, 0, 0);  }
+  .reveal, .reveal-left, .reveal-right { transform: translate3d(0, 8px, 0); }
+  .reveal-stagger > * { transition-delay: 0s !important; }
 
   /* Ağır scanlines desenini kaldır */
   .scanlines::after { display: none !important; }
@@ -261,6 +254,44 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
 
   /* Cursor mobilde zaten yok ama emin ol */
   .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* -------------------- BÖLÜM SİMETRİSİ / GLOBAL HİZALAMA -------------------- */
+/* Tüm section içindeki kartlar aynı max-width'te ve tam ortalı */
+.section .featured-achievement,
+.section .achievement-grid,
+.section .about-stats,
+.about__meta-row {
+  margin-inline: auto;
+}
+/* Bölüm iç boşlukları tutarlı */
+.section { padding-block: 6rem; }
+@media (max-width: 900px) {
+  .section { padding-block: 4rem; }
+}
+/* Tüm .card'lar aynı iç boşluk (küçük varyasyonlar hariç) */
+.focus-card,
+.skill-group,
+.timeline__card,
+.contact__item {
+  padding: 1.5rem;
+}
+/* Timeline node dikey merkez hizası — kart başlığıyla aynı seviye */
+.timeline__node { top: 1.65rem; }
+
+/* -------------------- UZUN METİN: İKİ TARAFA YASLI -------------------- */
+.about__lead,
+.about__text,
+.section-head__desc,
+.focus-card p,
+.timeline__desc,
+.project__desc,
+.featured-achievement__body p,
+.footer__brand p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* -------------------- HELPERS -------------------- */
@@ -637,10 +668,8 @@ html.dark .icon-moon { display: none; }
 .social-dot--lg { height: 3.25rem; width: 3.25rem; }
 .social-dot--lg .icon { width: 22px; height: 22px; }
 
-.marquee { position: relative; z-index: 10; margin-top: 3rem; width: 100%; border-block: 1px solid var(--border); background: color-mix(in srgb, var(--surface) 30%, transparent); backdrop-filter: blur(6px); padding: 0.75rem 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee__track { display: flex; width: max-content; gap: 2rem; animation: marquee 38s linear infinite; }
-.marquee__item { display: inline-flex; align-items: center; gap: 2rem; font-family: var(--font-mono); font-size: 0.875rem; color: var(--muted); white-space: nowrap; }
-.marquee__item b { color: rgba(var(--accent-rgb), 0.5); font-weight: 400; }
+/* .marquee, .hero__stats, .achievement-grid ve chip--live/--archive stilleri kaldırıldı
+   — bu elementler sitede artık kullanılmıyor (temizlik) */
 
 .hero__scroll { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 10; display: none; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--faint); }
 .bounce { animation: bounce 1.6s ease-in-out infinite; }
@@ -817,6 +846,44 @@ html.dark .icon-moon { display: none; }
 .projects { margin-top: 4rem; display: flex; flex-direction: column; gap: 5rem; }
 .project { display: grid; gap: 2rem; align-items: center; }
 .project__visual { position: relative; aspect-ratio: 16 / 11; border-radius: 1rem; border: 1px solid var(--border); overflow: hidden; background: linear-gradient(150deg, var(--surface-2), var(--surface) 60%, var(--background)); transition: transform 0.4s var(--ease); }
+/* Gerçek proje ekran görüntüsü — TAM ölçekli görünsün, kırpma yok */
+.project__image {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;                /* cover → contain: fotoğraf kırpılmadan tam görünür */
+  object-position: center;
+  display: block;
+  padding: 0.5rem;                    /* Kenarda hafif nefes payı */
+  background:
+    radial-gradient(ellipse at center, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%),
+    linear-gradient(150deg, var(--surface-2), var(--surface) 60%, var(--background));
+  transition: transform 0.6s var(--ease), filter 0.4s ease;
+}
+.project__image-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, transparent 30%, rgba(5, 8, 15, 0.55) 100%),
+    linear-gradient(115deg, rgba(var(--accent-rgb), 0.08) 0%, transparent 40%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.project__visual--photo:hover .project__image {
+  transform: scale(1.04);
+  filter: saturate(1.1);
+}
+.project__visual--photo:hover .project__image-overlay {
+  opacity: 0.55;
+}
+.project__visual--photo { border-color: rgba(var(--accent-rgb), 0.35); }
+.project__visual--photo .project__hud { z-index: 2; text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+.project__visual--photo .project__hud--b { z-index: 2; text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+.project__visual--photo .project__tick { z-index: 2; }
+/* Placeholder — resim yoksa görünen mesaj */
+.project__visual--photo .project__image[src=""] + .project__image-overlay::after {
+  content: "GÖRSEL EKLE"; position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font: 500 0.8rem/1 var(--font-mono); letter-spacing: 0.2em; color: var(--muted);
+}
 .project__visual:hover { transform: scale(1.015); }
 .project__visual-grid { position: absolute; inset: 0; opacity: 0.5; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 40px 40px; }
 .project__rings { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
@@ -836,9 +903,7 @@ html.dark .icon-moon { display: none; }
 .project__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
 .chip { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 99px; padding: 0.25rem 0.75rem; font-family: var(--font-mono); font-size: 0.7rem; border: 1px solid var(--border); }
 .chip--accent { border-color: rgba(var(--accent-rgb), 0.3); background: rgba(var(--accent-rgb), 0.1); color: var(--accent); }
-.chip--live { border-color: rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1); color: #34d399; }
-.chip--archive { background: var(--surface-2); color: var(--muted); }
-/* Yeni: Devam Ediyor → kırmızı (aktif dikkat) · Tamamlandı → yeşil (başarı) */
+/* Devam Ediyor → kırmızı (aktif dikkat) · Tamamlandı → yeşil (başarı) */
 .chip--ongoing { border-color: rgba(251, 94, 94, 0.35); background: rgba(251, 94, 94, 0.10); color: #ff6b6b; }
 .chip--done { border-color: rgba(52, 211, 153, 0.35); background: rgba(52, 211, 153, 0.10); color: #34d399; }
 .chip .icon { width: 13px; height: 13px; }
@@ -881,14 +946,7 @@ html.dark .icon-moon { display: none; }
 .featured-achievement__body h3 { font-size: clamp(1.05rem, 2.5vw, 1.3rem); line-height: 1.25; }
 .featured-achievement__body p { margin-top: 0.5rem; max-width: 42rem; font-size: 0.88rem; color: var(--muted); }
 
-.achievement-grid { margin-top: 1.25rem; margin-inline: auto; display: grid; gap: 1.25rem; max-width: 52rem; width: 100%; }
-.achievement { padding: 1.5rem; display: flex; flex-direction: column; height: 100%; }
-.achievement__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-.achievement__metric { display: flex; align-items: baseline; gap: 0.5rem; }
-.achievement__metric span:first-child { font-family: var(--font-display); font-size: 2rem; font-weight: 700; }
-.achievement__metric span:last-child { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.achievement h3 { margin-top: 0.75rem; font-size: 1.05rem; }
-.achievement p { margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted); }
+/* .achievement-grid stilleri kaldırıldı — artık iki featured-achievement kullanıyoruz */
 
 /* -------------------- CERTIFICATES -------------------- */
 .cert-grid { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
@@ -941,6 +999,11 @@ html.dark .icon-moon { display: none; }
 /* Timeline'daki logo boyutu (badge 1.75rem) */
 .timeline__org .ic-badge--logo { padding: 2px; }
 .timeline__org .ic-badge--logo .ic-badge__logo { border-radius: 0.3rem; }
+
+/* Tema-farkındalıklı logo — beyaz logo (koyu temada olduğu gibi) açık temada siyaha döner */
+html:not(.dark) .ic-badge__logo[data-invert-on-light="true"] {
+  filter: invert(1) hue-rotate(180deg);
+}
 .timeline__desc { margin-top: 0.85rem; font-size: 0.9rem; color: var(--muted); }
 .timeline__highlights { margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; list-style: none; }
 .timeline__highlights li { display: flex; gap: 0.6rem; font-size: 0.85rem; color: var(--muted); }
@@ -1070,9 +1133,7 @@ html.dark .icon-moon { display: none; }
 .cv-modal__body {
   flex: 1;
   background: #1a1a1a;
-  overflow: auto;                 /* body scroll etsin — bizim özel scrollbar'ımız çalışır */
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) transparent;
+  overflow: hidden;              /* iframe tam doldurur; scroll PDF viewer'ın kendi içinde */
 }
 /* Modal body içindeki scrollbar için premium tasarım */
 .cv-modal__body::-webkit-scrollbar { width: 10px; }
@@ -1099,10 +1160,7 @@ html.dark .icon-moon { display: none; }
 }
 .cv-modal__body iframe {
   width: 100%;
-  /* Yeterince uzun tut ki 2 sayfalık CV'nin PDF-viewer'ın kendi scrollbar'ı çıkmasın;
-     scroll bizim styled body scrollbar'ımızdan yapılır. */
-  height: 2600px;
-  min-height: 100%;
+  height: 100%;              /* Modal body'i tam doldur — alt boş gri alan yok */
   border: 0;
   background: #1a1a1a;
   display: block;
@@ -1131,7 +1189,6 @@ body.cv-modal-open { overflow: hidden; }
 @media (min-width: 640px) {
   .hero__corners, .hero__scroll { display: flex; }
   .focus-grid { grid-template-columns: repeat(2, 1fr); }
-  .achievement-grid { grid-template-columns: minmax(0, 1fr); justify-content: center; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .contact__item-value { font-size: 1rem; }
   .footer__bottom { flex-direction: row; justify-content: center; align-items: center; text-align: center; }
@@ -1177,9 +1234,6 @@ body.cv-modal-open { overflow: hidden; }
 /* Proje kartı içeriği */
 .project__title, .project__tagline, .project__desc { overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
 
-/* Başarı kartı metrikleri overflow olmasın */
-.achievement__metric { flex-wrap: wrap; row-gap: 0.25rem; }
-
 /* Featured achievement: mobilde metric bloğu düzgün ortalanır */
 .featured-achievement__inner { min-width: 0; }
 .featured-achievement__body { min-width: 0; }
@@ -1202,7 +1256,6 @@ body.cv-modal-open { overflow: hidden; }
 /* -------------------- KEYFRAMES -------------------- */
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.7; } 75%, 100% { transform: scale(2.2); opacity: 0; } }
 

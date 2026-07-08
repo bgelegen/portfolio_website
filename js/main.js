@@ -15,7 +15,6 @@
      --------------------------------------------------------- */
   const DATA = window.PORTFOLIO || {};
   const typedWords = DATA.typedWords || [];
-  const techMarquee = DATA.techMarquee || [];
   const skillGroups = DATA.skillGroups || [];
   const projects = DATA.projects || [];
   const certificates = DATA.certificates || [];
@@ -31,20 +30,13 @@
   /* ---------------------------------------------------------
      RENDER
      --------------------------------------------------------- */
-  function renderMarquee() {
-    const track = $("#marquee-track");
-    if (!track) return;
-    const block = techMarquee
-      .map((t) => `<span class="marquee__item">${esc(t)} <b>◆</b></span>`)
-      .join("");
-    track.innerHTML = block + block; // çift kopya → kesintisiz döngü
-  }
-
   function renderSkills() {
     const grid = $("#skills-grid");
     if (!grid) return;
     const lang = (window.__lang) || "tr";
     const enTitles = (window.I18N && window.I18N.skillGroupTitlesEn) || [];
+    const enNames = (window.I18N && window.I18N.skillNamesEn) || {};
+    const skillName = (name) => (lang === "en" && enNames[name]) ? enNames[name] : name;
     grid.innerHTML = skillGroups
       .map(
         (g, i) => `
@@ -54,7 +46,7 @@
           <h3>${esc(lang === "en" && enTitles[i] ? enTitles[i] : g.title)}</h3>
         </div>
         <div class="skill-chips reveal-stagger" data-delay="${i * 80 + 120}">
-          ${g.skills.map((s) => `<span class="skill-chip">${esc(s.name)}</span>`).join("")}
+          ${g.skills.map((s) => `<span class="skill-chip">${esc(skillName(s.name))}</span>`).join("")}
         </div>
       </div>`
       )
@@ -84,12 +76,18 @@
           )
           .join("");
         const flipped = i % 2 === 1;
+        // Görsel: image varsa gerçek ekran görüntüsü, yoksa dekoratif icon + rings
+        const visualContent = p.image
+          ? `<img src="${esc(p.image)}" alt="${esc(proj.title)}" class="project__image" loading="lazy" />
+             <div class="project__image-overlay"></div>`
+          : `<div class="project__visual-grid"></div>
+             <div class="project__rings">${rings}</div>
+             <div class="project__icon"><div class="project__icon-inner">${ic(p.icon)}</div></div>`;
+
         return `
       <article class="project ${flipped ? "is-flipped" : ""}">
-        <div class="project__visual scanlines ${flipped ? "reveal-right" : "reveal-left"}">
-          <div class="project__visual-grid"></div>
-          <div class="project__rings">${rings}</div>
-          <div class="project__icon"><div class="project__icon-inner">${ic(p.icon)}</div></div>
+        <div class="project__visual scanlines${p.image ? " project__visual--photo" : ""} ${flipped ? "reveal-right" : "reveal-left"}">
+          ${visualContent}
           <span class="project__hud project__hud--tl">${String(i + 1).padStart(2, "0")} / ${projLbl}</span>
           <span class="project__hud project__hud--tr">${live ? "● LIVE" : "■ ARCHIVE"}</span>
           <div class="project__hud project__hud--b"><span>SYS::${sysId}</span><span>${proj.tech.length} ${moduleLbl}</span></div>
@@ -173,7 +171,7 @@
           <div class="timeline__org">
             <span class="ic-badge${e.logo ? " ic-badge--logo" : ""}">
               ${e.logo
-                ? `<img src="${esc(e.logo)}" alt="${esc(org)}" class="ic-badge__logo" loading="lazy" />`
+                ? `<img src="${esc(e.logo)}" alt="${esc(org)}" class="ic-badge__logo"${e.invertOnLight ? ' data-invert-on-light="true"' : ""} loading="lazy" />`
                 : ic(e.icon)}
             </span>${esc(org)}
           </div>
@@ -317,26 +315,33 @@
      REVEAL ON SCROLL (+ skill bars)
      --------------------------------------------------------- */
   function initReveal() {
-    // Reveal ve tüm türevleri
     const selector = ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger";
     const els = $$(selector);
     if (reduceMotion) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
+    // MOBİL: daha erken tetikle + stagger delay'ini sıfırla → hızlı hissettirir
+    const isMobile = window.matchMedia("(max-width: 900px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    const rootMargin = isMobile ? "200px 0px 200px 0px" : "0px 0px -80px 0px";
+    const threshold = isMobile ? 0 : 0.05;
+
     const obs = new IntersectionObserver(
       (entries, o) => {
         entries.forEach((en) => {
           if (!en.isIntersecting) return;
           const el = en.target;
-          const d = parseInt(el.dataset.delay || "0", 10);
-          if (d) el.style.transitionDelay = d + "ms";
+          if (!isMobile) {
+            const d = parseInt(el.dataset.delay || "0", 10);
+            if (d) el.style.transitionDelay = d + "ms";
+          }
+          // Mobilde stagger delay yok — hepsi anında görünsün
           el.classList.add("is-visible");
           o.unobserve(el);
         });
       },
-      // Element viewport'un ~%15'ine girdiğinde tetikle
-      { rootMargin: "0px 0px -80px 0px", threshold: 0.05 }
+      { rootMargin, threshold }
     );
     els.forEach((el) => obs.observe(el));
   }
@@ -797,7 +802,6 @@
     $("#year") && ($("#year").textContent = new Date().getFullYear());
     // Dil dosyasından mevcut dili al ve içeriği ona göre üret
     window.__lang = (window.I18N && window.I18N.get) ? window.I18N.get() : "tr";
-    renderMarquee();
     renderSkills();
     renderProjects();
     renderCertificates();
@@ -959,9 +963,8 @@
       lastFocused = document.activeElement;
       // PDF'i sadece açılınca yükle (performans)
       if (frame && !frame.src.includes(CV_URL)) {
-        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=0 → PDF-viewer'ın kendi scrollbar'ını gizler
-        // scroll bizim styled modal-body scrollbar'ımızdan yapılır (mouse wheel + custom scrollbar)
-        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
+        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=1 → çok sayfalı CV için PDF'in kendi scroll'u
+        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=1&view=FitH";
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
