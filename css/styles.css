@@ -3,6 +3,33 @@
    "Tactical Futurism" · saf HTML / CSS / JS
    ============================================================ */
 
+/* Fallback font metric overrides — Inter yüklenmeden önce fallback ile aynı boyutta
+   render olsun, font-swap CLS'i sıfıra yakın kalsın */
+@font-face {
+  font-family: "InterFallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "SpaceGroteskFallback";
+  src: local("Arial");
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "JetBrainsMonoFallback";
+  src: local("Consolas"), local("Courier New");
+  size-adjust: 98%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 /* -------------------- TOKENS -------------------- */
 :root {
   --background: #f5f7fb;
@@ -23,9 +50,9 @@
   --glow: rgba(14, 155, 184, 0.32);
   --grid-line: rgba(10, 22, 41, 0.05);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Space Grotesk", var(--font-sans);
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: "Inter", "InterFallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "SpaceGroteskFallback", var(--font-sans);
+  --font-mono: "JetBrains Mono", "JetBrainsMonoFallback", ui-monospace, "SFMono-Regular", monospace;
 
   --container: 72rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -624,7 +651,7 @@ html.dark .icon-moon { display: none; }
 }
 .mobile-menu.is-open .mobile-menu__panel { transform: translateX(0); }
 .mobile-menu__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; font-family: var(--font-display); font-weight: 600; }
-.mobile-menu__link { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 0.75rem; color: var(--muted); font-size: 1.05rem; transition: background-color 0.25s ease, opacity 0.25s ease; }
+.mobile-menu__link { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 0.75rem; color: var(--muted); font-size: 1.05rem; }
 .mobile-menu__link .mono { font-size: 0.7rem; color: var(--faint); }
 .mobile-menu__link:hover, .mobile-menu__link.is-active { background: var(--surface-2); color: var(--accent); }
 .mobile-menu__cv { margin-top: 1rem; }
