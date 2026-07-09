@@ -290,14 +290,22 @@
   function initScrollProgress() {
     const bar = $("#scroll-progress");
     if (!bar) return;
+    let rafScheduled = false;
+    let cachedH = 0;
+    const recalcH = () => { cachedH = document.documentElement.scrollHeight - window.innerHeight; };
     const update = () => {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      const p = h > 0 ? window.scrollY / h : 0;
-      bar.style.transform = "scaleX(" + p + ")";
+      if (rafScheduled) return;
+      rafScheduled = true;
+      requestAnimationFrame(() => {
+        rafScheduled = false;
+        const p = cachedH > 0 ? window.scrollY / cachedH : 0;
+        bar.style.transform = "scaleX(" + p + ")";
+      });
     };
+    recalcH();
     update();
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", () => { recalcH(); update(); });
   }
 
   /* ---------------------------------------------------------
@@ -341,13 +349,11 @@
   function initTyping() {
     const el = $("#typed");
     if (!el) return;
-    // Aktif dile göre kelime kaynağı: EN modunda I18N.heroTypedEn, yoksa TR typedWords
     const getWords = () => (window.__typedWordsCurrent && window.__typedWordsCurrent.length)
       ? window.__typedWordsCurrent
       : typedWords;
     if (reduceMotion) { el.textContent = getWords()[0]; return; }
     let wi = 0, sub = 0, del = false;
-    // Dil değişince kelime listesi de değişir; wi'yi resetle
     window.addEventListener("languagechange", () => { wi = 0; sub = 0; del = false; });
     const tick = () => {
       const words = getWords();
@@ -361,7 +367,9 @@
       el.textContent = word.slice(0, sub);
       setTimeout(tick, del ? 40 : 80);
     };
-    tick();
+    // LCP tamamlanana kadar preseed metnini koru — typewriter'ı ~1.2s sonra başlat
+    // Bu, #typed elementinin sürekli boyut değiştirmesini önler
+    setTimeout(() => { sub = 0; del = false; tick(); }, 1200);
   }
 
   /* ---------------------------------------------------------

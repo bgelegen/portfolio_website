@@ -671,6 +671,8 @@ html.dark .icon-moon { display: none; }
 .hero__last { display: block; text-shadow: 0 0 26px var(--glow); }
 .hero__role { margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: clamp(1rem, 3.5vw, 1.4rem); color: var(--foreground); min-height: 1.6em; }
 .hero__role-tick { height: 1px; width: 2rem; background: var(--accent); flex: none; }
+/* LCP: #typed'in boyutu değişmesin — typewriter tick'lerken re-layout olmasın */
+.typed { display: inline-block; min-height: 1.6em; }
 .hero__tagline { margin-top: 1.5rem; max-width: 36rem; font-size: 1.05rem; color: var(--muted); }
 .hero__meta { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-size: 0.875rem; color: var(--muted); }
 .hero__meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
