@@ -214,7 +214,20 @@
      --------------------------------------------------------- */
   function initNav() {
     const inner = $("#nav-inner");
-    const onScroll = () => inner && inner.classList.toggle("is-scrolled", window.scrollY > 24);
+    let rafScheduled = false;
+    let lastScrolled = null;
+    const onScroll = () => {
+      if (rafScheduled) return;
+      rafScheduled = true;
+      requestAnimationFrame(() => {
+        rafScheduled = false;
+        const scrolled = window.scrollY > 24;
+        if (inner && scrolled !== lastScrolled) {
+          inner.classList.toggle("is-scrolled", scrolled);
+          lastScrolled = scrolled;
+        }
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
