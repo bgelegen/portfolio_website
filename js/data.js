@@ -50,7 +50,7 @@ window.PORTFOLIO = (function () {
   const projects = [
     {
       id: "yer-kontrol-istasyonu",
-      image: "assets/projects/gcs.png",
+      image: "assets/projects/gcs.avif",
       title: "Yer Kontrol İstasyonu (GCS)",
       period: "Eylül 2024 — Ağustos 2025",
       status: "Tamamlandı",
@@ -72,7 +72,7 @@ window.PORTFOLIO = (function () {
     },
     {
       id: "tubitak-2209a",
-      image: "assets/projects/tubitak.png",
+      image: "assets/projects/tubitak.avif",
       title: "TÜBİTAK 2209-A · Hava Savunma için Yapay Zekâ",
       period: "Kasım 2025 — Devam Ediyor",
       status: "Devam Ediyor",
@@ -93,7 +93,7 @@ window.PORTFOLIO = (function () {
     },
     {
       id: "otonom-kamikaze",
-      image: "assets/projects/kamikaze.png",
+      image: "assets/projects/kamikaze.avif",
       title: "Otonom Kamikaze Görev Algoritması",
       period: "Eylül 2025 — Devam Ediyor",
       status: "Devam Ediyor",
@@ -120,9 +120,9 @@ window.PORTFOLIO = (function () {
    * DENEYİM (Timeline)
    *
    * ŞİRKET LOGOSU EKLEMEK için:
-   *   1. Logo dosyanı `assets/logos/` klasörüne kopyala (örn: ikarus.png)
+   *   1. Logo dosyanı `assets/logos/` klasörüne kopyala (örn: ikarus.webp)
    *   2. İlgili deneyim satırındaki `logo:` alanına yolu yaz:
-   *        logo: "assets/logos/ikarus.png"
+   *        logo: "assets/logos/ikarus.webp"
    *   3. Kaydet — logo otomatik gelir.
    *
    * `logo:` alanı boş bırakılırsa (veya silinirse) varsayılan icon gösterilir.
@@ -130,7 +130,7 @@ window.PORTFOLIO = (function () {
   const experiences = [
     {
       role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.png", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
       period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
       desc: "Teknofest Savaşan İHA Yarışması'na katılarak 598 takım arasından finalist olduk. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
       highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Mission Planner ile yer kontrol süreçlerini yönetmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
@@ -138,7 +138,7 @@ window.PORTFOLIO = (function () {
     },
     {
       role: "Tasarımcı · Yönetim Ekip Üyesi", org: "Google Developer Groups Turkey",
-      logo: "assets/logos/gdg.png",
+      logo: "assets/logos/gdg.webp",
       period: "Eylül 2024 — Haziran 2025", current: true, icon: "design",
       desc: "Yönetim ekibi üyesi olarak topluluğun görsel iletişim süreçlerini yürütüyor, etkinlik ve sosyal medya içeriklerini tasarlıyorum.",
       highlights: ["Photoshop ile etkinlik afişleri ve sosyal medya içerikleri tasarlamak.", "Görsel iletişimle topluluk etkileşimini artırmak.", "Etkinliklerin planlama ve koordinasyonuna katkıda bulunmak."],
@@ -146,7 +146,7 @@ window.PORTFOLIO = (function () {
     },
     {
       role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.png", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
       period: "Eylül 2025 — Devam Ediyor", current: true, icon: "target",
       desc: "Görüntü işleme tabanlı yöntemler kullanarak kamikaze İHA senaryoları üzerine yazılım geliştiriyor, 55 kişilik ekipteki 7 kişilik yönetim kadrosunda yer alıyorum.",
       highlights: ["Görüntü işleme ve algoritma geliştirme çalışmaları.", "Kamikaze senaryolarına uygun yazılım modülleri geliştirmek.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
@@ -154,7 +154,7 @@ window.PORTFOLIO = (function () {
     },
     {
       role: "Sen Geleceksin Bursiyeri", org: "T3 Vakfı · Deneyap Teknoloji Atölyeleri",
-      logo: "assets/logos/t3.png",
+      logo: "assets/logos/t3.webp",
       period: "Şubat 2026 — Devam Ediyor", current: true, icon: "mentor",
       desc: "Burs programı kapsamında bursiyer olarak, Deneyap Teknoloji Atölyeleri bünyesinde öğrencilere yönelik teknik eğitim ve mentorluk faaliyetlerinde görev alıyorum.",
       highlights: ["Temel programlama ve teknoloji odaklı uygulamalı eğitimler vermek.", "Proje geliştirme süreçlerinde teknik rehberlik sağlamak.", "Atölye çalışmalarının planlanması ve yürütülmesine destek olmak."],

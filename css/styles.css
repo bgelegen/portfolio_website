@@ -570,7 +570,7 @@ html[lang="en"] .footer__brand p {
   border: 1px solid rgba(var(--accent-rgb), 0.4); background: rgba(var(--accent-rgb), 0.1);
   font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; color: var(--accent);
 }
-/* bg_icon.png ile görsel BG rozeti — kart zemini şeffaflaşır, PNG'nin kendisi ön planda */
+/* bg_icon.webp ile görsel BG rozeti — kart zemini şeffaflaşır, WebP'nin kendisi ön planda */
 .nav__mark--img {
   padding: 0;
   border: none;
