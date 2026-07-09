@@ -174,22 +174,24 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   50%      { transform: translate3d(12vw, -22vh, 0) scale(1.2); }
 }
 
-/* Yavaşça kayan grid deseni — teknolojik derinlik */
+/* Yavaşça kayan grid deseni — teknolojik derinlik
+   GPU-composited: background-position yerine transform ile animasyon */
 .bg-grid {
   position: absolute;
-  inset: -2px;
+  inset: -60px;                            /* translate ederken kenar boşluğu görünmesin */
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
   opacity: 0.35;
+  will-change: transform;
   animation: grid-pan 60s linear infinite;
   -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 30%, transparent 100%);
           mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 30%, transparent 100%);
 }
 @keyframes grid-pan {
-  0%   { background-position: 0 0; }
-  100% { background-position: 60px 60px; }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(60px, 60px, 0); }
 }
 
 /* Hafif film-grain (dokusal doygunluk) — hareketsiz ama titreşen */
@@ -454,9 +456,9 @@ html[lang="en"] .footer__brand p {
 /* -------------------- PRELOADER -------------------- */
 .preloader {
   position: fixed; inset: 0; z-index: 100; display: grid; place-items: center;
-  background: var(--background); transition: opacity 0.6s ease, visibility 0.6s;
+  background: var(--background); transition: opacity 0.6s ease;
 }
-.preloader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader.is-hidden { opacity: 0; pointer-events: none; }
 .preloader__grid {
   position: absolute; inset: 0; opacity: 0.5;
   background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);

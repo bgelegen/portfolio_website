@@ -191,6 +191,11 @@
       pre.classList.add("is-hidden");
       document.body.classList.remove("no-scroll");
       requestAnimationFrame(() => requestAnimationFrame(initReveal));
+      // Opacity fade bittikten sonra DOM'dan tamamen çıkar — non-composited
+      // visibility animasyonuna gerek kalmasın (PageSpeed uyarısı için)
+      const cleanup = () => { pre.remove(); pre.removeEventListener("transitionend", cleanup); };
+      pre.addEventListener("transitionend", cleanup);
+      setTimeout(cleanup, 1500);   // güvenlik ağı
     }, totalDuration);
   }
 
