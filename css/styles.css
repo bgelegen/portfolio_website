@@ -248,6 +248,9 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
    ve mix-blend-mode kombinasyonlarında ciddi frame drop yaşar.
    Bu blok mobilde ağır efektleri kısıtlayarak sitenin akıcı çalışmasını sağlar. */
 @media (max-width: 900px), (pointer: coarse) {
+  /* Preloader mobilde tamamen gizli — ilk paint'te LCP direkt hero'ya odaklansın */
+  .preloader { display: none !important; }
+
   /* Aurora arka planı komple kapat — mobil GPU'lar için en pahalı efekt */
   .bg-aurora { display: none !important; }
   .orb, .bg-grid, .bg-noise { display: none !important; }
