@@ -456,7 +456,7 @@ html[lang="en"] .footer__brand p {
 /* -------------------- PRELOADER -------------------- */
 .preloader {
   position: fixed; inset: 0; z-index: 100; display: grid; place-items: center;
-  background: var(--background); transition: opacity 0.6s ease;
+  background: var(--background); transition: opacity 0.3s ease;
 }
 .preloader.is-hidden { opacity: 0; pointer-events: none; }
 .preloader__grid {

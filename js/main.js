@@ -168,11 +168,11 @@
       initReveal();
       return;
     }
-    // MOBİLDE preloader süresi kısa: kullanıcı bekletilmez, kasma hissi olmaz
+    // Preloader kısa: LCP'yi geciktirmesin, kullanıcı bekletilmez
     const isMobile = window.matchMedia("(max-width: 900px)").matches
       || window.matchMedia("(pointer: coarse)").matches;
-    const totalDuration = isMobile ? 700 : 1900;   // mobilde 0.7sn, masaüstünde 1.9sn
-    const tickInterval = isMobile ? 60 : 130;
+    const totalDuration = isMobile ? 300 : 500;    // eskiden 700/1900 idi — LCP için kısaltıldı
+    const tickInterval = isMobile ? 30 : 40;
 
     document.body.classList.add("no-scroll");
     const fill = $("#preloader-fill");
@@ -195,7 +195,7 @@
       // visibility animasyonuna gerek kalmasın (PageSpeed uyarısı için)
       const cleanup = () => { pre.remove(); pre.removeEventListener("transitionend", cleanup); };
       pre.addEventListener("transitionend", cleanup);
-      setTimeout(cleanup, 1500);   // güvenlik ağı
+      setTimeout(cleanup, 800);    // güvenlik ağı (transition 0.3s)
     }, totalDuration);
   }
 
