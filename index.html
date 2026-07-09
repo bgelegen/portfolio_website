@@ -9,9 +9,9 @@
   <meta name="theme-color" content="#05080f" />
 
   <!-- Favicon (tarayıcı + Google search HD) -->
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=67" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=67" />
-  <link rel="shortcut icon" href="assets/bg_icon.webp?v=67" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=68" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=68" />
+  <link rel="shortcut icon" href="assets/bg_icon.webp?v=68" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="website" />
@@ -22,14 +22,14 @@
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:locale:alternate" content="en_US" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=67" />
-  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=67" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=68" />
+  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=68" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
   <!-- Square fallback (bazı platformlar bunu tercih eder) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=67" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=68" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:image:alt" content="Batuhan Gelegen — BG Logo" />
@@ -38,7 +38,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · YZ · Otonom Sistemler." />
-  <meta name="twitter:image" content="assets/bg_icon.webp?v=67" />
+  <meta name="twitter:image" content="assets/bg_icon.webp?v=68" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
 
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
@@ -93,12 +93,21 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/styles.min.css?v=67" />
+  <link rel="stylesheet" href="css/styles.min.css?v=68" />
 
-  <!-- Three.js (CDN, minified) — scene.js LCP sonrası lazy yüklenir -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <!-- Three.js importmap (mobilde scene.js hiç yüklenmez, preconnect JS ile masaüstü için eklenir) -->
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js" } }
+  </script>
+  <script>
+    (function () {
+      var isMobile = matchMedia("(max-width: 900px)").matches
+                  || matchMedia("(pointer: coarse)").matches;
+      if (isMobile) return;
+      var pc = document.createElement("link");
+      pc.rel = "preconnect"; pc.href = "https://cdn.jsdelivr.net"; pc.crossOrigin = "";
+      document.head.appendChild(pc);
+    })();
   </script>
 </head>
 
@@ -180,7 +189,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=67" alt="BG" width="36" height="36" />
+          <img src="assets/bg_icon.webp?v=68" alt="BG" width="36" height="36" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -543,7 +552,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=67" alt="BG" width="36" height="36" />
+            <img src="assets/bg_icon.webp?v=68" alt="BG" width="36" height="36" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
@@ -569,9 +578,9 @@
   </footer>
 
   <!-- İçerik verisi (main.js'ten önce yüklenir) -->
-  <script src="js/data.min.js?v=67" defer></script>
-  <script src="js/i18n.min.js?v=67" defer></script>
-  <script src="js/main.min.js?v=67" defer></script>
+  <script src="js/data.min.js?v=68" defer></script>
+  <script src="js/i18n.min.js?v=68" defer></script>
+  <script src="js/main.min.js?v=68" defer></script>
   <!-- Three.js sahnesi: mobilde tamamen atlanır — masaüstünde LCP sonrası lazy -->
   <script>
     (function () {
@@ -583,7 +592,7 @@
       var loadScene = function () {
         var s = document.createElement("script");
         s.type = "module";
-        s.src = "js/scene.min.js?v=67";
+        s.src = "js/scene.min.js?v=68";
         document.head.appendChild(s);
       };
       if ("requestIdleCallback" in window) {
