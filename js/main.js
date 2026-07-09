@@ -798,24 +798,32 @@
      --------------------------------------------------------- */
   function init() {
     $("#year") && ($("#year").textContent = new Date().getFullYear());
-    // Dil dosyasından mevcut dili al ve içeriği ona göre üret
     window.__lang = (window.I18N && window.I18N.get) ? window.I18N.get() : "tr";
-    renderSkills();
-    renderProjects();
-    renderTimeline();
 
+    // KRİTİK — hero için gerekli, ana thread'te hemen
+    renderProjects();
     initPreloader();
     initTheme();
     initNav();
-    initScrollProgress();
     initTyping();
-    initCursor();
-    initMagnetic();
-    initContact();
-    initCvModal();
-    initLangToggle();
-    // Sayfa yüklendikten sonra çeviriyi uygula
     applyLanguage(window.__lang);
+
+    // DEFER — ilk paint sonrasına ertele, uzun görevi parçala
+    const deferInit = () => {
+      renderSkills();
+      renderTimeline();
+      initScrollProgress();
+      initCursor();
+      initMagnetic();
+      initContact();
+      initCvModal();
+      initLangToggle();
+    };
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(deferInit, { timeout: 800 });
+    } else {
+      setTimeout(deferInit, 0);
+    }
   }
 
   /* ---------------------------------------------------------
