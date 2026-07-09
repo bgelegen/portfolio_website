@@ -17,7 +17,6 @@
   const typedWords = DATA.typedWords || [];
   const skillGroups = DATA.skillGroups || [];
   const projects = DATA.projects || [];
-  const certificates = DATA.certificates || [];
   const experiences = DATA.experiences || [];
   const allowedEmailDomains = (DATA.allowedEmailDomains || []).map((d) =>
     String(d).toLowerCase()
@@ -78,7 +77,7 @@
         const flipped = i % 2 === 1;
         // Görsel: image varsa gerçek ekran görüntüsü, yoksa dekoratif icon + rings
         const visualContent = p.image
-          ? `<img src="${esc(p.image)}" alt="${esc(proj.title)}" class="project__image" loading="lazy" />
+          ? `<img src="${esc(p.image)}" alt="${esc(proj.title)}" class="project__image" loading="eager" fetchpriority="high" decoding="async" />
              <div class="project__image-overlay"></div>`
           : `<div class="project__visual-grid"></div>
              <div class="project__rings">${rings}</div>
@@ -114,34 +113,6 @@
         </div>
       </article>`;
       })
-      .join("");
-  }
-
-  function renderCertificates() {
-    const grid = $("#cert-grid");
-    if (!grid) return;
-    const lang = (window.__lang) || "tr";
-    const enCerts = (window.I18N && window.I18N.certificatesEn) || [];
-    const verifyLabel = lang === "en" ? "Verify / View" : "Doğrula / Görüntüle";
-    grid.innerHTML = certificates
-      .map(
-        (c, i) => {
-          const en = (lang === "en" && enCerts[i]) ? enCerts[i] : null;
-          const title = en ? en.title : c.title;
-          const issuer = en ? en.issuer : c.issuer;
-          return `
-      <article class="cert card reveal" data-delay="${i * 60}">
-        <div class="cert__head">
-          <div class="cert__head-left">
-            <span class="ic-badge">${ic(c.icon)}</span>
-            <div><h3 class="cert__title">${esc(title)}</h3><p class="cert__issuer">${esc(issuer)}</p></div>
-          </div>
-          <span class="cert__date mono">${esc(c.date)}</span>
-        </div>
-        <a class="cert__verify" href="${c.verifyUrl || "#"}" target="_blank" rel="noopener noreferrer">${verifyLabel} ${ic("external")}</a>
-      </article>`;
-        }
-      )
       .join("");
   }
 
@@ -804,7 +775,6 @@
     window.__lang = (window.I18N && window.I18N.get) ? window.I18N.get() : "tr";
     renderSkills();
     renderProjects();
-    renderCertificates();
     renderTimeline();
 
     initPreloader();
@@ -839,8 +809,7 @@
       // Dinamik render'ları tazele
       renderSkills();
       renderProjects();
-      renderCertificates();
-      renderTimeline();
+        renderTimeline();
       // Reveal state'i yeni render'lara aktarıldığı için tekrar tetikle
       $$(".reveal, .reveal-left, .reveal-right, .reveal-stagger").forEach(el => el.classList.add("is-visible"));
     });
@@ -910,17 +879,11 @@
       if (p && key && focusObj[key]) p.textContent = focusObj[key];
     });
 
-    // 7) Featured achievement (TEKNOFEST)
-    const fa = document.querySelector(".featured-achievement");
-    if (fa) {
-      const org = fa.querySelector(".featured-achievement__org .mono");
-      const h3 = fa.querySelector(".featured-achievement__body h3");
-      const p = fa.querySelector(".featured-achievement__body p");
-      if (org) org.textContent = I.achievementsFeatured.org[lang];
-      if (h3) h3.textContent = I.achievementsFeatured.title[lang];
-      if (p) p.textContent = I.achievementsFeatured.desc[lang];
+    // 7) Achievement kartı: TEKNOFEST başlığı (data-i18n olmayan h3)
+    const teknofestTitle = document.querySelector(".ach-card:first-child .ach-card__title");
+    if (teknofestTitle && I.achievementsFeatured) {
+      teknofestTitle.textContent = I.achievementsFeatured.title[lang];
     }
-    // TÜBİTAK kartı artık .featured-achievement yapısında ve data-i18n ile otomatik çevriliyor
 
     // 8) Form placeholder'ları
     const placeholders = {
@@ -963,8 +926,9 @@
       lastFocused = document.activeElement;
       // PDF'i sadece açılınca yükle (performans)
       if (frame && !frame.src.includes(CV_URL)) {
-        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=1 → çok sayfalı CV için PDF'in kendi scroll'u
-        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=1&view=FitH";
+        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=0 → PDF'in kendi scroll'unu gizler
+        // Scroll bizim styled modal-body scrollbar'ımızdan yapılır
+        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");

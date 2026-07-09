@@ -227,8 +227,6 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
 
   /* Backdrop-filter mobilde tarayıcıyı yakar — solid alternatif */
   .nav__inner.is-scrolled,
-  .glass,
-  .glass-strong,
   .mobile-menu__overlay,
   .cv-modal__overlay,
   .hero__badge {
@@ -249,17 +247,13 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   /* Ağır scanlines desenini kaldır */
   .scanlines::after { display: none !important; }
 
-  /* Text-shadow glow kaldır (mobilde composite maliyet yüksek) */
-  .text-glow { text-shadow: none !important; }
-
   /* Cursor mobilde zaten yok ama emin ol */
   .cursor-dot, .cursor-ring { display: none !important; }
 }
 
 /* -------------------- BÖLÜM SİMETRİSİ / GLOBAL HİZALAMA -------------------- */
 /* Tüm section içindeki kartlar aynı max-width'te ve tam ortalı */
-.section .featured-achievement,
-.section .achievement-grid,
+.section .ach-grid,
 .section .about-stats,
 .about__meta-row {
   margin-inline: auto;
@@ -285,8 +279,10 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
 .section-head__desc,
 .focus-card p,
 .timeline__desc,
+.timeline__highlights li,
 .project__desc,
-.featured-achievement__body p,
+.project__tagline,
+.project__highlights li,
 .footer__brand p {
   text-align: justify;
   text-justify: inter-word;
@@ -294,10 +290,26 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   -webkit-hyphens: auto;
 }
 
+/* 7. Dil = English → tire ile satır bölme yok (hyphens off) */
+html[lang="en"] .about__lead,
+html[lang="en"] .about__text,
+html[lang="en"] .section-head__desc,
+html[lang="en"] .focus-card p,
+html[lang="en"] .timeline__desc,
+html[lang="en"] .timeline__highlights li,
+html[lang="en"] .project__desc,
+html[lang="en"] .project__tagline,
+html[lang="en"] .project__highlights li,
+html[lang="en"] .footer__brand p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
 /* -------------------- HELPERS -------------------- */
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 1.25rem; }
 .accent { color: var(--accent); }
-.muted { color: var(--muted); }
 .mono { font-family: var(--font-mono); }
 .icon { width: 18px; height: 18px; flex: none; }
 
@@ -558,8 +570,6 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   border: 1px solid rgba(var(--accent-rgb), 0.4); background: rgba(var(--accent-rgb), 0.1);
   font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; color: var(--accent);
 }
-.nav__mark-dot { position: absolute; top: -2px; right: -2px; height: 6px; width: 6px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 10px var(--glow); }
-
 /* bg_icon.png ile görsel BG rozeti — kart zemini şeffaflaşır, PNG'nin kendisi ön planda */
 .nav__mark--img {
   padding: 0;
@@ -668,12 +678,6 @@ html.dark .icon-moon { display: none; }
 .social-dot--lg { height: 3.25rem; width: 3.25rem; }
 .social-dot--lg .icon { width: 22px; height: 22px; }
 
-/* .marquee, .hero__stats, .achievement-grid ve chip--live/--archive stilleri kaldırıldı
-   — bu elementler sitede artık kullanılmıyor (temizlik) */
-
-.hero__scroll { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 10; display: none; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--faint); }
-.bounce { animation: bounce 1.6s ease-in-out infinite; }
-
 /* -------------------- SECTION GENERIC -------------------- */
 .section { position: relative; padding: 6rem 0; overflow-x: clip; }
 .section--alt { border-block: 1px solid var(--border); background: color-mix(in srgb, var(--surface) 30%, transparent); }
@@ -689,8 +693,10 @@ html.dark .icon-moon { display: none; }
 .section-head { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 2; }
 .section-head__kicker { display: flex; align-items: center; gap: 0.75rem; }
 .section-head__kicker .mono { font-size: 0.7rem; letter-spacing: 0.2em; }
-.section-head__title { max-width: 46rem; font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 700; }
-.section-head__desc { max-width: 40rem; font-size: 1.05rem; color: var(--muted); }
+/* text-wrap: balance → başlıkta kelime dağılımı dengelenir, "tutkusu" tek başına düşmez */
+.section-head__title { max-width: 56rem; font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 700; text-wrap: balance; }
+/* text-wrap: pretty → paragrafta orphan (tek kalan kelime) engellenir, tek satırın sonuna 1 kelime düşmez */
+.section-head__desc { max-width: 52rem; font-size: 1.05rem; color: var(--muted); text-wrap: pretty; }
 
 /* -------------------- ABOUT -------------------- */
 .about { margin-top: 3.5rem; display: grid; gap: 2rem; }
@@ -722,7 +728,6 @@ html.dark .icon-moon { display: none; }
 .about__edu .pill { align-self: flex-start; }
 
 .profile-card { border: 1px solid var(--border); border-radius: 1rem; background: linear-gradient(160deg, var(--surface), var(--surface-2)); padding: 1.75rem; }
-.profile-card__mono { margin: 0 auto; height: 8rem; width: 8rem; display: grid; place-items: center; border-radius: 1.25rem; border: 1px solid rgba(var(--accent-rgb), 0.3); background: rgba(var(--accent-rgb), 0.05); font-family: var(--font-display); font-size: 3rem; font-weight: 700; }
 
 .profile-card__photo {
   position: relative;
@@ -850,7 +855,7 @@ html.dark .icon-moon { display: none; }
 .project__image {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: contain;                /* cover → contain: fotoğraf kırpılmadan tam görünür */
+  object-fit: contain;                /* fotoğraf kırpılmadan tam görünür */
   object-position: center;
   display: block;
   padding: 0.5rem;                    /* Kenarda hafif nefes payı */
@@ -868,8 +873,7 @@ html.dark .icon-moon { display: none; }
   transition: opacity 0.4s ease;
 }
 .project__visual--photo:hover .project__image {
-  transform: scale(1.04);
-  filter: saturate(1.1);
+  filter: saturate(1.08) brightness(1.02);   /* scale kaldırıldı — fotoğraf zoom yapmaz */
 }
 .project__visual--photo:hover .project__image-overlay {
   opacity: 0.55;
@@ -908,7 +912,6 @@ html.dark .icon-moon { display: none; }
 .chip--done { border-color: rgba(52, 211, 153, 0.35); background: rgba(52, 211, 153, 0.10); color: #34d399; }
 .chip .icon { width: 13px; height: 13px; }
 .chip__dot { height: 6px; width: 6px; border-radius: 99px; background: currentColor; }
-.project__period { font-family: var(--font-mono); font-size: 0.7rem; color: var(--faint); }
 .project__title { margin-top: 1rem; font-size: clamp(1.5rem, 4vw, 1.9rem); }
 .project__tagline { margin-top: 0.75rem; color: color-mix(in srgb, var(--accent) 90%, var(--foreground)); }
 .project__desc { margin-top: 0.75rem; color: var(--muted); }
@@ -923,48 +926,85 @@ html.dark .icon-moon { display: none; }
 .link-btn .icon { width: 16px; height: 16px; }
 .link-btn--primary { background: var(--accent); color: #04121a; border-color: transparent; }
 .link-btn--primary:hover { color: #04121a; box-shadow: 0 12px 30px -12px var(--glow); }
-.link-btn--disabled { border-style: dashed; color: var(--faint); pointer-events: none; }
 
-/* -------------------- ACHIEVEMENTS -------------------- */
-.featured-achievement { margin-top: 3rem; margin-inline: auto; position: relative; border-radius: 1.25rem; padding: 1px; background: linear-gradient(120deg, rgba(var(--accent-rgb), 0.4), transparent 40%, transparent 60%, rgba(var(--accent-rgb), 0.3)); max-width: 52rem; width: 100%; }
-/* İkinci featured card daha kısa boşluk — art arda olduklarında yakın dursunlar */
-.featured-achievement + .featured-achievement { margin-top: 1.25rem; }
-.featured-achievement__inner { display: grid; gap: 1.25rem; border-radius: 1.25rem; border: 1px solid var(--border); background: linear-gradient(150deg, var(--surface), var(--surface-2)); padding: 1.25rem 1.5rem; align-items: center; }
-.featured-achievement__metric { display: grid; place-items: center; position: relative; }
-.big-number { font-family: var(--font-display); font-size: clamp(4rem, 14vw, 6rem); font-weight: 700; line-height: 1; }
-.featured-achievement__trophy {
-  height: 3.75rem; width: 3.75rem;
-  border-radius: 1rem;
-  background: rgba(var(--accent-rgb), 0.12);
-  border-color: rgba(var(--accent-rgb), 0.4);
-  box-shadow: 0 12px 32px -18px var(--glow);
+/* -------------------- ACHIEVEMENTS — kart grid -------------------- */
+.ach-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
 }
-.featured-achievement__trophy .icon { width: 26px; height: 26px; }
-.featured-achievement__label { margin-top: 0.6rem; max-width: 12rem; text-align: center; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); }
-.featured-achievement__org { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
-.featured-achievement__org .mono { font-size: 0.7rem; color: var(--muted); }
-.featured-achievement__body h3 { font-size: clamp(1.05rem, 2.5vw, 1.3rem); line-height: 1.25; }
-.featured-achievement__body p { margin-top: 0.5rem; max-width: 42rem; font-size: 0.88rem; color: var(--muted); }
-
-/* .achievement-grid stilleri kaldırıldı — artık iki featured-achievement kullanıyoruz */
-
-/* -------------------- CERTIFICATES -------------------- */
-.cert-grid { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
-.cert { padding: 1.5rem; display: flex; flex-direction: column; height: 100%; }
-.cert__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.cert__head-left { display: flex; align-items: center; gap: 0.75rem; }
-.cert__head .ic-badge { height: 3rem; width: 3rem; transition: all 0.3s; }
-.cert:hover .ic-badge { background: var(--accent); color: #04121a; }
-.cert__title { font-size: 1rem; line-height: 1.3; }
-.cert__issuer { font-size: 0.85rem; color: var(--muted); }
-.cert__date { flex: none; border-radius: 99px; border: 1px solid var(--border); background: var(--surface-2); padding: 0.2rem 0.65rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
-.cert__skills { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.cert__skills span { border-radius: 0.4rem; background: var(--surface-2); padding: 0.25rem 0.6rem; font-size: 0.72rem; color: var(--muted); }
-.cert__verify { margin-top: auto; padding-top: 1.25rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 500; color: var(--accent); width: fit-content; }
-.cert__verify .icon { width: 16px; height: 16px; transition: transform 0.3s; }
-.cert__verify:hover .icon { transform: translateX(3px); }
-.cert-note { margin-top: 2rem; text-align: center; font-size: 0.75rem; color: var(--faint); }
-.cert-note code { color: var(--accent); }
+.ach-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 1.5rem 1.4rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, var(--surface), var(--surface-2));
+  transition: transform 0.3s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ach-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  box-shadow: 0 16px 36px -20px var(--glow);
+}
+.ach-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.ach-card__icon {
+  display: grid;
+  place-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.65rem;
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  color: var(--accent);
+}
+.ach-card__icon .icon { width: 18px; height: 18px; }
+.ach-card__year {
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+}
+.ach-card__title {
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin: 0;
+}
+.ach-card__subtitle {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin: 0;
+}
+.ach-card__desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.ach-card__tag {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  padding: 0.28rem 0.7rem;
+  border-radius: 99px;
+}
 
 /* -------------------- TIMELINE -------------------- */
 .timeline { margin-top: 3.5rem; position: relative; padding-left: 2rem; }
@@ -1127,15 +1167,18 @@ html:not(.dark) .ic-badge__logo[data-invert-on-light="true"] {
 }
 .cv-modal__title-wrap { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
 .cv-modal__title-wrap h3 { font-size: 1rem; line-height: 1.2; }
-.cv-modal__subtitle { font-size: 0.7rem; color: var(--faint); margin-top: 0.15rem; letter-spacing: 0.14em; text-transform: uppercase; }
 .cv-modal__actions { display: flex; align-items: center; gap: 0.5rem; }
 .cv-modal__download { padding: 0.55rem 1rem; font-size: 0.85rem; }
 .cv-modal__body {
   flex: 1;
   background: #1a1a1a;
-  overflow: hidden;              /* iframe tam doldurur; scroll PDF viewer'ın kendi içinde */
+  overflow-y: auto;               /* dikey scroll — mavi gradient scrollbar aktif */
+  overflow-x: hidden;             /* iframe fazlalığı sağdan taşıp scrollbar'ı gizlesin */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+  position: relative;
 }
-/* Modal body içindeki scrollbar için premium tasarım */
+/* Modal body içindeki scrollbar için premium mavi/gradient tasarım */
 .cv-modal__body::-webkit-scrollbar { width: 10px; }
 .cv-modal__body::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
 .cv-modal__body::-webkit-scrollbar-track {
@@ -1159,11 +1202,13 @@ html:not(.dark) .ic-badge__logo[data-invert-on-light="true"] {
     0 0 22px rgba(var(--accent-rgb), 0.8);
 }
 .cv-modal__body iframe {
-  width: 100%;
-  height: 100%;              /* Modal body'i tam doldur — alt boş gri alan yok */
+  width: calc(100% + 20px);       /* PDF'in kendi gri scrollbar'ı sağdan taşarak kırpılır */
+  height: 2000px;                 /* 2 sayfalık CV'yi tam gösterecek yükseklik — scroll modal body'de */
+  min-height: 100%;
   border: 0;
   background: #1a1a1a;
   display: block;
+  pointer-events: none;           /* fare/wheel olayları PDF'e değil modal body'e gitsin — scroll akıcı olur */
 }
 body.cv-modal-open { overflow: hidden; }
 @media (max-width: 640px) {
@@ -1198,7 +1243,6 @@ body.cv-modal-open { overflow: hidden; }
   .nav__cv { display: inline-flex; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .about { grid-template-columns: 1.4fr 1fr; }
-  .featured-achievement__inner { grid-template-columns: auto 1fr; padding: 1.5rem 2rem; }
   .contact { grid-template-columns: 1fr 1.3fr; align-items: start; }
   .footer__inner { grid-template-columns: 1.5fr 1fr; }
 }
@@ -1234,11 +1278,6 @@ body.cv-modal-open { overflow: hidden; }
 /* Proje kartı içeriği */
 .project__title, .project__tagline, .project__desc { overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
 
-/* Featured achievement: mobilde metric bloğu düzgün ortalanır */
-.featured-achievement__inner { min-width: 0; }
-.featured-achievement__body { min-width: 0; }
-.featured-achievement__body h3, .featured-achievement__body p { overflow-wrap: anywhere; word-break: break-word; }
-
 /* İkon Sprite'ları tam boyutta gelsin (küçülmesin) */
 .icon, .ic-badge, .social-dot, .icon-btn { flex-shrink: 0; }
 
@@ -1256,7 +1295,6 @@ body.cv-modal-open { overflow: hidden; }
 /* -------------------- KEYFRAMES -------------------- */
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.7; } 75%, 100% { transform: scale(2.2); opacity: 0; } }
 
 /* -------------------- REDUCED MOTION -------------------- */

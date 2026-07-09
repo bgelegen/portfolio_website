@@ -12,7 +12,6 @@ window.I18N = (function () {
     "nav.skills":       { tr: "Yetenekler",    en: "Skills" },
     "nav.projects":     { tr: "Projeler",      en: "Projects" },
     "nav.achievements": { tr: "Başarılar",     en: "Achievements" },
-    "nav.certificates": { tr: "Sertifikalar",  en: "Certificates" },
     "nav.experience":   { tr: "Deneyim",       en: "Experience" },
     "nav.contact":      { tr: "İletişim",      en: "Contact" },
     "nav.cv":           { tr: "CV",            en: "CV" },
@@ -22,7 +21,6 @@ window.I18N = (function () {
     "hero.location":      { tr: "Malatya, Türkiye", en: "Malatya, Türkiye" },
     "hero.cta.projects":  { tr: "Projelerimi Keşfet", en: "Explore My Projects" },
     "hero.cta.cv":        { tr: "Özgeçmişi Görüntüle", en: "View CV" },
-    "hero.cta.cvDl":      { tr: "Özgeçmişi İndir", en: "Download CV" },
 
     // About
     "about.kicker":         { tr: "Hakkımda",  en: "About Me" },
@@ -49,23 +47,19 @@ window.I18N = (function () {
     "projects.title.emph":   { tr: "otonom sistemlere", en: "autonomous systems" },
     "achievements.kicker":   { tr: "Yarışmalar & Başarılar", en: "Competitions & Achievements" },
     "achievements.title.emph": { tr: "sonuçlar", en: "results" },
-    "certificates.kicker":   { tr: "Sertifikalar & Programlar", en: "Certificates & Programs" },
-    "certificates.title.emph": { tr: "program ve belgeler", en: "programs and credentials" },
     "experience.kicker":     { tr: "Deneyim & Kariyer Yolculuğu", en: "Experience & Career Journey" },
     "experience.title.emph": { tr: "deneyim", en: "experience" },
     "contact.kicker":        { tr: "İletişim", en: "Contact" },
     "contact.title.emph":    { tr: "üretelim", en: "build" },
     "achievements.finalist": { tr: "FİNALİST", en: "FINALIST" },
-    "certificates.verify":   { tr: "Doğrula / Görüntüle", en: "Verify / View" },
+    "ach.tag.competition":   { tr: "Yarışma", en: "Competition" },
+    "ach.tag.research":      { tr: "Araştırma", en: "Research" },
 
     // TÜBİTAK featured card
-    "tubitak.label": { tr: "AI · HAVA SAVUNMA", en: "AI · AIR DEFENSE" },
-    "tubitak.title": { tr: "TÜBİTAK 2209-A Proje Desteği", en: "TÜBİTAK 2209-A Project Grant" },
-    "tubitak.desc":  {
-      tr: "Modern hava savunma sistemlerinin sahte hedefler ile gerçek tehditleri ayırt edebilmesini sağlamak amacıyla Gazebo–ROS tabanlı bir simülasyon altyapısı ve Python ile yapay zekâ tabanlı bir hedef sınıflandırma ve tehdit önceliklendirme modeli geliştirmekteyim.",
-      en: "I am building a Gazebo–ROS-based simulation infrastructure and a Python-based AI target classification and threat prioritization model so that modern air-defense systems can distinguish decoys from real threats."
-    },
-    "tubitak.org": { tr: "TÜBİTAK · Kasım 2025 — Devam Ediyor", en: "TÜBİTAK · November 2025 — Ongoing" },
+    "tubitak.label": { tr: "PROJE DESTEĞİ", en: "PROJECT SUPPORT" },
+    "tubitak.title": { tr: "TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı", en: "TÜBİTAK 2209-A University Students Research Projects Support Program" },
+    "tubitak.org":   { tr: "TÜBİTAK · Kasım 2025 — Devam Ediyor", en: "TÜBİTAK · November 2025 — Ongoing" },
+    "teknofest.org": { tr: "IKARUS AR-GE Takımı · Eylül 2024 — Ağustos 2025", en: "IKARUS AR-GE Team · September 2024 — August 2025" },
 
     // Contact info
     "contact.label.email":    { tr: "E-POSTA", en: "EMAIL" },
@@ -88,18 +82,14 @@ window.I18N = (function () {
     "contact.form.sending":      { tr: "Gönderiliyor…", en: "Sending…" },
     "contact.form.success":      { tr: "Mesaj iletildi · Teşekkürler!", en: "Message sent · Thank you!" },
     "contact.status.success":    { tr: "Mesajın e-posta kutuma ulaştı. En kısa sürede dönüş yapacağım.", en: "Your message reached my inbox. I'll get back to you shortly." },
-    "contact.status.error":      { tr: "Mesaj gönderilemedi. Lütfen birkaç dakika sonra tekrar deneyin.", en: "Message could not be sent. Please try again in a few minutes." },
 
     // Mobile menu
     "mobile.menuLabel":  { tr: "Menü", en: "Menu" },
 
     // CV modal
     "cv.title":     { tr: "Batuhan Gelegen — Özgeçmiş", en: "Batuhan Gelegen — Resume" },
-    "cv.download":  { tr: "İndir", en: "Download" },
 
     // Profil kart etiketleri + değerleri
-    "profile.location":       { tr: "KONUM", en: "LOCATION" },
-    "profile.location.value": { tr: "Malatya, Türkiye", en: "Malatya, Türkiye" },
     "profile.field":          { tr: "ALAN", en: "FIELD" },
     "profile.field.value":    { tr: "Savunma · İHA · YZ", en: "Defense · UAV · AI" },
     "profile.status":         { tr: "DURUM", en: "STATUS" },
@@ -173,8 +163,8 @@ window.I18N = (function () {
       en: "IKARUS AR-GE Team · 2024 — 2025",
     },
     title: {
-      tr: "TEKNOFEST Savaşan İHA Yarışması'nda Finalist",
-      en: "Finalist at TEKNOFEST Savaşan İHA Competition",
+      tr: "TEKNOFEST Savaşan İHA Yarışması",
+      en: "TEKNOFEST Savaşan İHA Competition",
     },
     desc: {
       tr: "Türkiye'nin en büyük teknoloji yarışmasında finalist olarak yer aldık. Takım içerisinde haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
@@ -233,13 +223,6 @@ window.I18N = (function () {
       tech: ["Python", "Image Processing", "OpenCV", "Control Systems"],
     },
   };
-
-  /* ----------------- SERTİFİKALAR — EN ----------------- */
-  const certificatesEn = [
-    { title: "TEKNOFEST Savaşan İHA — Finalist Certificate", issuer: "TEKNOFEST" },
-    { title: "Google Developer Groups — Management Team", issuer: "GDG Turkey" },
-    { title: "Sen Geleceksin Scholarship Program", issuer: "T3 Vakfı" },
-  ];
 
   /* ----------------- DENEYİM — EN ----------------- */
   // Sırayla eşleşiyor (aynı index)
@@ -318,7 +301,7 @@ window.I18N = (function () {
     aboutTextEn, aboutTextTr,
     focusDescEn, focusDescTr,
     achievementsFeatured,
-    projectsEn, certificatesEn, experiencesEn,
+    projectsEn, experiencesEn,
     skillGroupTitlesEn, skillNamesEn,
     copyrightEn, copyrightTr,
     // Yardımcı: mevcut dili döndür

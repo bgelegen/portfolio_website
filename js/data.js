@@ -116,12 +116,6 @@ window.PORTFOLIO = (function () {
     },
   ];
 
-  const certificates = [
-    { title: "Teknofest Savaşan İHA — Finalist Belgesi", issuer: "TEKNOFEST", date: "2025", icon: "trophy", verifyUrl: "#", skills: ["İHA", "Haberleşme", "GCS"] },
-    { title: "Google Developer Groups — Yönetim Ekibi", issuer: "GDG Turkey", date: "2025", icon: "community", verifyUrl: "#", skills: ["Görsel Tasarım", "Topluluk Yönetimi"] },
-    { title: "Sen Geleceksin Burs Programı", issuer: "T3 Vakfı", date: "2026", icon: "scholarship", verifyUrl: "#", skills: ["Mentorluk", "Teknik Eğitim", "Liderlik"] },
-  ];
-
   /* ----------------------------------------------------------------
    * DENEYİM (Timeline)
    *
@@ -215,7 +209,7 @@ window.PORTFOLIO = (function () {
   ];
 
   return {
-    typedWords, skillGroups, projects, certificates, experiences,
+    typedWords, skillGroups, projects, experiences,
     allowedEmailDomains,
   };
 })();
