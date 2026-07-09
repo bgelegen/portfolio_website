@@ -162,17 +162,18 @@
   function initPreloader() {
     const pre = $("#preloader");
     if (!pre) return;
-    if (reduceMotion) {
-      pre.classList.add("is-hidden");
-      // Reveal'ı hemen başlat (preloader yoksa sayfa doğrudan görünür)
+    const isMobile = window.matchMedia("(max-width: 900px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    // MOBİLDE preloader tamamen atlanır — LCP direkt fire etsin (mobil hızı öncelik)
+    // reduce-motion kullanıcıları da preloader göremez
+    if (reduceMotion || isMobile) {
+      pre.remove();
+      document.body.classList.remove("no-scroll");
       initReveal();
       return;
     }
-    // Preloader kısa: LCP'yi geciktirmesin, kullanıcı bekletilmez
-    const isMobile = window.matchMedia("(max-width: 900px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
-    const totalDuration = isMobile ? 300 : 500;    // eskiden 700/1900 idi — LCP için kısaltıldı
-    const tickInterval = isMobile ? 30 : 40;
+    const totalDuration = 500;
+    const tickInterval = 40;
 
     document.body.classList.add("no-scroll");
     const fill = $("#preloader-fill");
