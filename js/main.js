@@ -183,7 +183,7 @@
     let v = 0;
     const prog = setInterval(() => {
       v = Math.min(100, v + Math.random() * 24 + 12);
-      if (fill) fill.style.width = v + "%";
+      if (fill) fill.style.transform = "scaleX(" + (v / 100) + ")";
       if (pct) pct.textContent = String(Math.floor(v)).padStart(2, "0") + "%";
       if (statusEl) statusEl.textContent = lines[Math.min(lines.length - 1, Math.floor(v / 26))] + "…";
       if (v >= 100) clearInterval(prog);

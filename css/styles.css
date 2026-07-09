@@ -486,7 +486,7 @@ html[lang="en"] .footer__brand p {
 .preloader__bar { width: 100%; }
 .preloader__bar-head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; }
 .preloader__track { height: 3px; width: 100%; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
-.preloader__fill { height: 100%; width: 0%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 0.2s ease; }
+.preloader__fill { height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: transform 0.2s ease; will-change: transform; }
 
 /* -------------------- CURSOR — arka plana uyumlu themed -------------------- */
 .cursor-dot, .cursor-ring {
@@ -624,7 +624,7 @@ html.dark .icon-moon { display: none; }
 }
 .mobile-menu.is-open .mobile-menu__panel { transform: translateX(0); }
 .mobile-menu__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; font-family: var(--font-display); font-weight: 600; }
-.mobile-menu__link { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 0.75rem; color: var(--muted); font-size: 1.05rem; transition: all 0.25s; }
+.mobile-menu__link { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 0.75rem; color: var(--muted); font-size: 1.05rem; transition: background-color 0.25s ease, opacity 0.25s ease; }
 .mobile-menu__link .mono { font-size: 0.7rem; color: var(--faint); }
 .mobile-menu__link:hover, .mobile-menu__link.is-active { background: var(--surface-2); color: var(--accent); }
 .mobile-menu__cv { margin-top: 1rem; }
