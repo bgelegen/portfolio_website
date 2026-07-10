@@ -1008,8 +1008,13 @@
   }
 
   // Three.js modülü canvas'ı talep etmediyse 2D yedeği başlat
-  // SADECE user etkileşimi sonrası — audit sırasında 60fps RAF döngüsü çalışmasın
+  // MOBİLDE TAMAMEN ATLANIR — 60fps RAF loop mobil CPU'yu tıkıyor, scroll'da siyah + gecikme
+  // Sadece masaüstünde, user etkileşimi sonrası başlar
   (function () {
+    var isMobile = matchMedia("(max-width: 900px)").matches
+                || matchMedia("(pointer: coarse)").matches
+                || (navigator.hardwareConcurrency || 4) <= 4;
+    if (isMobile) return;  // Mobilde asla çalıştırma
     var started = false;
     var startFallback = function () {
       if (started) return; started = true;
@@ -1017,7 +1022,7 @@
         window.startHeroFallback();
       }
     };
-    ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
+    ['scroll','click','keydown','wheel'].forEach(function (evt) {
       window.addEventListener(evt, startFallback, { once: true, passive: true });
     });
   })();
