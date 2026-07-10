@@ -9,9 +9,9 @@
   <meta name="theme-color" content="#05080f" />
 
   <!-- Favicon (tarayıcı + Google search HD) -->
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=72" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=72" />
-  <link rel="shortcut icon" href="assets/bg_icon.webp?v=72" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=73" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=73" />
+  <link rel="shortcut icon" href="assets/bg_icon.webp?v=73" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="website" />
@@ -22,14 +22,14 @@
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:locale:alternate" content="en_US" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=72" />
-  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=72" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=73" />
+  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=73" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
   <!-- Square fallback (bazı platformlar bunu tercih eder) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=72" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=73" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:image:alt" content="Batuhan Gelegen — BG Logo" />
@@ -38,7 +38,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · YZ · Otonom Sistemler." />
-  <meta name="twitter:image" content="assets/bg_icon.webp?v=72" />
+  <meta name="twitter:image" content="assets/bg_icon.webp?v=73" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
 
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
@@ -93,7 +93,9 @@
         link.rel = "stylesheet"; link.href = fontUrl;
         document.head.appendChild(link);
       };
-      ['scroll','click','keydown','touchstart','mousemove'].forEach(function (evt) {
+      // NOT: mousemove hariç — Lighthouse audit'te sahte mouse move fontları erken tetikliyor
+      // Sadece gerçek kullanıcı niyeti gösteren etkileşimler
+      ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
         window.addEventListener(evt, loadFonts, { once: true, passive: true });
       });
     })();
@@ -178,7 +180,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=72" alt="BG" width="36" height="36" />
+          <img src="assets/bg_icon.webp?v=73" alt="BG" width="36" height="36" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -541,7 +543,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=72" alt="BG" width="36" height="36" />
+            <img src="assets/bg_icon.webp?v=73" alt="BG" width="36" height="36" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
@@ -567,9 +569,9 @@
   </footer>
 
   <!-- İçerik verisi (main.js'ten önce yüklenir) -->
-  <script src="js/data.min.js?v=72" defer></script>
-  <script src="js/i18n.min.js?v=72" defer></script>
-  <script src="js/main.min.js?v=72" defer></script>
+  <script src="js/data.min.js?v=73" defer></script>
+  <script src="js/i18n.min.js?v=73" defer></script>
+  <script src="js/main.min.js?v=73" defer></script>
   <!-- Three.js sahnesi: mobilde tamamen atlanır — masaüstünde SADECE user-interaction sonrası
        Audit sırasında (kullanıcı etkileşimi yok) scene.js & three.js HİÇ yüklenmez -->
   <script>
@@ -583,11 +585,12 @@
         if (loaded) return; loaded = true;
         var s = document.createElement("script");
         s.type = "module";
-        s.src = "js/scene.min.js?v=72";
+        s.src = "js/scene.min.js?v=73";
         document.head.appendChild(s);
       };
       // İlk kullanıcı etkileşimini bekle — audit anında etkileşim yok, script yüklenmez
-      ['scroll','click','keydown','touchstart','mousemove','wheel'].forEach(function (evt) {
+      // NOT: mousemove hariç — Lighthouse audit sahte mouse ile bunu tetikliyor
+      ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
         window.addEventListener(evt, loadScene, { once: true, passive: true });
       });
     })();

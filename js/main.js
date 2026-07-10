@@ -334,14 +334,24 @@
             const d = parseInt(el.dataset.delay || "0", 10);
             if (d) el.style.transitionDelay = d + "ms";
           }
-          // Mobilde stagger delay yok — hepsi anında görünsün
           el.classList.add("is-visible");
           o.unobserve(el);
         });
       },
       { rootMargin, threshold }
     );
-    els.forEach((el) => obs.observe(el));
+    // Batch halinde observe — büyük listeleri parçala, ana thread'i bloklamasın
+    let i = 0;
+    const batchSize = 20;
+    const observeBatch = () => {
+      const end = Math.min(i + batchSize, els.length);
+      for (; i < end; i++) obs.observe(els[i]);
+      if (i < els.length) {
+        if ("requestIdleCallback" in window) requestIdleCallback(observeBatch, { timeout: 200 });
+        else setTimeout(observeBatch, 0);
+      }
+    };
+    observeBatch();
   }
 
   /* ---------------------------------------------------------
