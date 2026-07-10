@@ -161,11 +161,11 @@
      --------------------------------------------------------- */
   function initPreloader() {
     const pre = $("#preloader");
-    if (!pre) return;
+    // Preloader yoksa (yeni v76+ mimarisi) — reveal'ı direkt başlat, aksi halde tüm bölümler
+    // opacity:0'da kalır (BÖLÜMLER GÖRÜNMEZ!)
+    if (!pre) { initReveal(); return; }
     const isMobile = window.matchMedia("(max-width: 900px)").matches
       || window.matchMedia("(pointer: coarse)").matches;
-    // MOBİLDE preloader tamamen atlanır — LCP direkt fire etsin (mobil hızı öncelik)
-    // reduce-motion kullanıcıları da preloader göremez
     if (reduceMotion || isMobile) {
       pre.remove();
       document.body.classList.remove("no-scroll");
@@ -315,10 +315,18 @@
   function initReveal() {
     const selector = ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger";
     const els = $$(selector);
+    // JS-ready sınıfını ekle → CSS artık reveal opacity:0 uygular
+    document.documentElement.classList.add("js-ready");
     if (reduceMotion) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
+    // GÜVENLİK AĞI: 3 saniye içinde IntersectionObserver fail olursa hepsini görünür yap
+    setTimeout(() => {
+      document.querySelectorAll(selector).forEach(el => {
+        if (!el.classList.contains("is-visible")) el.classList.add("is-visible");
+      });
+    }, 3000);
     // MOBİL: daha erken tetikle + stagger delay'ini sıfırla → hızlı hissettirir
     const isMobile = window.matchMedia("(max-width: 900px)").matches
       || window.matchMedia("(pointer: coarse)").matches;

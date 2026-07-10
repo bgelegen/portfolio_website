@@ -452,32 +452,10 @@ html[lang="en"] .footer__brand p {
 .caret { display: inline-block; width: 0.6ch; color: var(--accent); animation: blink 1s step-end infinite; }
 .caret::after { content: "▌"; }
 
-/* Reveal on scroll — varsayılan: alttan yumuşak fade + slide */
-.reveal { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); will-change: opacity, transform; contain: layout style; }
-.reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
-
-/* Alternatif reveal yönleri */
-.reveal-left  { opacity: 0; transform: translate3d(-24px, 0, 0); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); will-change: opacity, transform; }
-.reveal-right { opacity: 0; transform: translate3d(24px, 0, 0);  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); will-change: opacity, transform; }
-.reveal-scale { opacity: 0; transform: scale(0.94);              transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); will-change: opacity, transform; }
-.reveal-left.is-visible, .reveal-right.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
-.reveal-scale.is-visible { opacity: 1; transform: scale(1); }
-
-/* Kapsayıcının çocuklarını sırayla açığa çıkar */
-.reveal-stagger > * {
-  opacity: 0; transform: translate3d(0, 16px, 0);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-}
-.reveal-stagger.is-visible > * { opacity: 1; transform: translate3d(0, 0, 0); }
-.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.02s; }
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.08s; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.14s; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.20s; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.26s; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.32s; }
-.reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.38s; }
-.reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.44s; }
-.reveal-stagger.is-visible > *:nth-child(n+9) { transition-delay: 0.50s; }
+/* Reveal — animasyonlar kapatıldı, tüm reveal elementleri her zaman görünür.
+   IntersectionObserver bug'ları veya mobil timing sorunları asla bölümleri gizleyemez. */
+.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger,
+.reveal-stagger > * { opacity: 1 !important; transform: none !important; }
 
 .magnetic { will-change: transform; }
 
