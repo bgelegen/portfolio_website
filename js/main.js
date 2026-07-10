@@ -316,21 +316,18 @@
     const selector = ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger";
     const els = $$(selector);
     document.documentElement.classList.add("js-ready");
-    const isMobile = window.matchMedia("(max-width: 900px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
-    // MOBİL veya reduce-motion: tüm reveal elementlerini HEMEN görünür yap — animasyon yok.
-    // Bu, iOS Safari'nin IntersectionObserver bug'larından kurtulmak için en garantili yol.
-    // Yetenekler, Deneyim, İletişim bölümleri asla gizli kalmaz.
-    if (reduceMotion || isMobile) {
+    if (reduceMotion) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
-    // Masaüstü: observer ile scroll'da yumuşak fade animasyonu
-    const rootMargin = "100px 0px 100px 0px";
     if (!("IntersectionObserver" in window)) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
+    const isMobile = window.matchMedia("(max-width: 900px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    // Mobilde daha erken tetikle — kullanıcı görmeden animasyon başlasın, akıcı hissettirsin
+    const rootMargin = isMobile ? "200px 0px 200px 0px" : "100px 0px 100px 0px";
     const obs = new IntersectionObserver(
       (entries, o) => {
         entries.forEach((en) => {
@@ -339,12 +336,52 @@
           const d = parseInt(el.dataset.delay || "0", 10);
           if (d) el.style.transitionDelay = d + "ms";
           el.classList.add("is-visible");
+          // Bir kez animate → observer'dan çıkar, tekrar tetiklenmez
           o.unobserve(el);
         });
       },
       { rootMargin, threshold: 0 }
     );
     els.forEach(el => obs.observe(el));
+
+    // EK GÜVENLİK: scroll + rAF polling — observer'ın kaçırdığı elementleri yakalar
+    // iOS Safari observer bug'ları için tam koruma
+    const remaining = new Set(els);
+    const checkVisible = () => {
+      const vh = window.innerHeight;
+      const threshold = vh + 200;
+      remaining.forEach(el => {
+        if (el.classList.contains("is-visible")) { remaining.delete(el); return; }
+        const rect = el.getBoundingClientRect();
+        if (rect.top < threshold && rect.bottom > -200) {
+          el.classList.add("is-visible");
+          obs.unobserve(el);
+          remaining.delete(el);
+        }
+      });
+    };
+    let scrollRafPending = false;
+    const onScroll = () => {
+      if (scrollRafPending) return;
+      scrollRafPending = true;
+      requestAnimationFrame(() => {
+        scrollRafPending = false;
+        checkVisible();
+        if (remaining.size === 0) {
+          window.removeEventListener("scroll", onScroll);
+          clearInterval(pollTimer);
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // İlk paint için hemen çalıştır
+    requestAnimationFrame(checkVisible);
+    // 8 saniye boyunca 300ms'de bir poll — scroll event fire etmese bile yakalar
+    const pollTimer = setInterval(() => {
+      checkVisible();
+      if (remaining.size === 0) clearInterval(pollTimer);
+    }, 300);
+    setTimeout(() => clearInterval(pollTimer), 8000);
   }
 
   /* ---------------------------------------------------------
