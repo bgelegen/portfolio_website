@@ -315,23 +315,16 @@
   function initReveal() {
     const selector = ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger";
     const els = $$(selector);
-    // JS-ready sınıfını ekle → CSS artık reveal opacity:0 uygular
     document.documentElement.classList.add("js-ready");
     if (reduceMotion) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
-    // GÜVENLİK AĞI: 3 saniye içinde IntersectionObserver fail olursa hepsini görünür yap
-    setTimeout(() => {
-      document.querySelectorAll(selector).forEach(el => {
-        if (!el.classList.contains("is-visible")) el.classList.add("is-visible");
-      });
-    }, 3000);
-    // MOBİL: daha erken tetikle + stagger delay'ini sıfırla → hızlı hissettirir
+    // rootMargin büyük → element henüz viewport'a girmeden önce animate başlar
+    // Mobilde daha büyük margin → kullanıcı scroll ederken beklemesin
     const isMobile = window.matchMedia("(max-width: 900px)").matches
       || window.matchMedia("(pointer: coarse)").matches;
-    const rootMargin = isMobile ? "200px 0px 200px 0px" : "0px 0px -80px 0px";
-    const threshold = isMobile ? 0 : 0.05;
+    const rootMargin = isMobile ? "300px 0px 300px 0px" : "100px 0px 100px 0px";
 
     const obs = new IntersectionObserver(
       (entries, o) => {
@@ -343,23 +336,14 @@
             if (d) el.style.transitionDelay = d + "ms";
           }
           el.classList.add("is-visible");
+          // Bir kez tetiklendi → observer'dan çıkar, tekrar aşağı-yukarı scroll'da re-animate olmasın
           o.unobserve(el);
         });
       },
-      { rootMargin, threshold }
+      { rootMargin, threshold: 0 }
     );
-    // Batch halinde observe — büyük listeleri parçala, ana thread'i bloklamasın
-    let i = 0;
-    const batchSize = 20;
-    const observeBatch = () => {
-      const end = Math.min(i + batchSize, els.length);
-      for (; i < end; i++) obs.observe(els[i]);
-      if (i < els.length) {
-        if ("requestIdleCallback" in window) requestIdleCallback(observeBatch, { timeout: 200 });
-        else setTimeout(observeBatch, 0);
-      }
-    };
-    observeBatch();
+    // Tüm elementleri hemen observe et — batch gecikmesi 3sn beklemeyi ortadan kaldırır
+    els.forEach(el => obs.observe(el));
   }
 
   /* ---------------------------------------------------------
