@@ -818,22 +818,26 @@
     initTyping();
     applyLanguage(window.__lang);
 
-    // DEFER — ilk paint sonrasına ertele, uzun görevi parçala
-    const deferInit = () => {
-      renderSkills();
-      renderTimeline();
-      initScrollProgress();
-      initCursor();
-      initMagnetic();
-      initContact();
-      initCvModal();
-      initLangToggle();
+    // DEFER — ilk paint sonrasına ertele, uzun görevi parçala (chunk-by-chunk)
+    const chunks = [
+      renderSkills,
+      renderTimeline,
+      initScrollProgress,
+      initCursor,
+      initMagnetic,
+      initContact,
+      initCvModal,
+      initLangToggle,
+    ];
+    let ci = 0;
+    const runNext = () => {
+      if (ci >= chunks.length) return;
+      chunks[ci++]();
+      if ("requestIdleCallback" in window) requestIdleCallback(runNext, { timeout: 500 });
+      else setTimeout(runNext, 16);
     };
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(deferInit, { timeout: 800 });
-    } else {
-      setTimeout(deferInit, 0);
-    }
+    if ("requestIdleCallback" in window) requestIdleCallback(runNext, { timeout: 800 });
+    else setTimeout(runNext, 16);
   }
 
   /* ---------------------------------------------------------
