@@ -356,26 +356,30 @@
     const getWords = () => (window.__typedWordsCurrent && window.__typedWordsCurrent.length)
       ? window.__typedWordsCurrent
       : typedWords;
-    // MOBİL / reduce-motion: typewriter animasyonu YOK — takılmaya, CPU tıkanmasına sebep
-    // Statik ilk kelime gösterilir, tüm setTimeout zinciri hiç başlamaz
+    if (reduceMotion) { el.textContent = getWords()[0]; return; }
     const isMobile = window.matchMedia("(max-width: 900px)").matches
       || window.matchMedia("(pointer: coarse)").matches;
-    if (reduceMotion || isMobile) { el.textContent = getWords()[0]; return; }
+    // Mobilde daha yavaş tick → CPU tıkanmasın, layout thrashing minimize
+    const typeSpeed = isMobile ? 130 : 80;
+    const deleteSpeed = isMobile ? 70 : 40;
+    const pauseAfterWord = isMobile ? 2000 : 1500;
+    const pauseBeforeNext = isMobile ? 300 : 200;
     let wi = 0, sub = 0, del = false;
     window.addEventListener("languagechange", () => { wi = 0; sub = 0; del = false; });
     const tick = () => {
       const words = getWords();
       const word = words[wi % words.length];
       if (!del && sub === word.length) {
-        setTimeout(() => { del = true; tick(); }, 1500);
+        setTimeout(() => { del = true; tick(); }, pauseAfterWord);
         return;
       }
-      if (del && sub === 0) { del = false; wi++; setTimeout(tick, 200); return; }
+      if (del && sub === 0) { del = false; wi++; setTimeout(tick, pauseBeforeNext); return; }
       sub += del ? -1 : 1;
       el.textContent = word.slice(0, sub);
-      setTimeout(tick, del ? 40 : 80);
+      setTimeout(tick, del ? deleteSpeed : typeSpeed);
     };
-    setTimeout(() => { sub = 0; del = false; tick(); }, 1200);
+    // Mobilde daha uzun preseed süresi → LCP tamamlansın, kullanıcı yerleşsin
+    setTimeout(() => { sub = 0; del = false; tick(); }, isMobile ? 800 : 1200);
   }
 
   /* ---------------------------------------------------------
