@@ -316,33 +316,34 @@
     const selector = ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger";
     const els = $$(selector);
     document.documentElement.classList.add("js-ready");
-    if (reduceMotion) {
+    const isMobile = window.matchMedia("(max-width: 900px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    // MOBİL veya reduce-motion: tüm reveal elementlerini HEMEN görünür yap — animasyon yok.
+    // Bu, iOS Safari'nin IntersectionObserver bug'larından kurtulmak için en garantili yol.
+    // Yetenekler, Deneyim, İletişim bölümleri asla gizli kalmaz.
+    if (reduceMotion || isMobile) {
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
-    // rootMargin büyük → element henüz viewport'a girmeden önce animate başlar
-    // Mobilde daha büyük margin → kullanıcı scroll ederken beklemesin
-    const isMobile = window.matchMedia("(max-width: 900px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
-    const rootMargin = isMobile ? "300px 0px 300px 0px" : "100px 0px 100px 0px";
-
+    // Masaüstü: observer ile scroll'da yumuşak fade animasyonu
+    const rootMargin = "100px 0px 100px 0px";
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
     const obs = new IntersectionObserver(
       (entries, o) => {
         entries.forEach((en) => {
           if (!en.isIntersecting) return;
           const el = en.target;
-          if (!isMobile) {
-            const d = parseInt(el.dataset.delay || "0", 10);
-            if (d) el.style.transitionDelay = d + "ms";
-          }
+          const d = parseInt(el.dataset.delay || "0", 10);
+          if (d) el.style.transitionDelay = d + "ms";
           el.classList.add("is-visible");
-          // Bir kez tetiklendi → observer'dan çıkar, tekrar aşağı-yukarı scroll'da re-animate olmasın
           o.unobserve(el);
         });
       },
       { rootMargin, threshold: 0 }
     );
-    // Tüm elementleri hemen observe et — batch gecikmesi 3sn beklemeyi ortadan kaldırır
     els.forEach(el => obs.observe(el));
   }
 
