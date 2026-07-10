@@ -1012,9 +1012,17 @@
   }
 
   // Three.js modülü canvas'ı talep etmediyse 2D yedeği başlat
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      if (!window.__heroClaimed && !window.__heroSceneActive) window.startHeroFallback();
-    }, 600);
-  });
+  // SADECE user etkileşimi sonrası — audit sırasında 60fps RAF döngüsü çalışmasın
+  (function () {
+    var started = false;
+    var startFallback = function () {
+      if (started) return; started = true;
+      if (!window.__heroClaimed && !window.__heroSceneActive && window.startHeroFallback) {
+        window.startHeroFallback();
+      }
+    };
+    ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
+      window.addEventListener(evt, startFallback, { once: true, passive: true });
+    });
+  })();
 })();
