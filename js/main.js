@@ -355,7 +355,11 @@
     const getWords = () => (window.__typedWordsCurrent && window.__typedWordsCurrent.length)
       ? window.__typedWordsCurrent
       : typedWords;
-    if (reduceMotion) { el.textContent = getWords()[0]; return; }
+    // MOBİL / reduce-motion: typewriter animasyonu YOK — takılmaya, CPU tıkanmasına sebep
+    // Statik ilk kelime gösterilir, tüm setTimeout zinciri hiç başlamaz
+    const isMobile = window.matchMedia("(max-width: 900px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    if (reduceMotion || isMobile) { el.textContent = getWords()[0]; return; }
     let wi = 0, sub = 0, del = false;
     window.addEventListener("languagechange", () => { wi = 0; sub = 0; del = false; });
     const tick = () => {
@@ -370,8 +374,6 @@
       el.textContent = word.slice(0, sub);
       setTimeout(tick, del ? 40 : 80);
     };
-    // LCP tamamlanana kadar preseed metnini koru — typewriter'ı ~1.2s sonra başlat
-    // Bu, #typed elementinin sürekli boyut değiştirmesini önler
     setTimeout(() => { sub = 0; del = false; tick(); }, 1200);
   }
 
@@ -802,34 +804,26 @@
     $("#year") && ($("#year").textContent = new Date().getFullYear());
     window.__lang = (window.I18N && window.I18N.get) ? window.I18N.get() : "tr";
 
-    // KRİTİK — hero için gerekli, ana thread'te hemen
+    // TÜM RENDER'LAR SYNC — mobil Safari requestIdleCallback'i çok geciktiriyor,
+    // Yetenekler & Deneyim bölümlerinin hiç render olmama sorunu buradan
     renderProjects();
-    initPreloader();
+    renderSkills();
+    renderTimeline();
+
+    // Kritik init'ler
     initTheme();
     initNav();
     initTyping();
     applyLanguage(window.__lang);
+    initPreloader();
 
-    // DEFER — ilk paint sonrasına ertele, uzun görevi parçala (chunk-by-chunk)
-    const chunks = [
-      renderSkills,
-      renderTimeline,
-      initScrollProgress,
-      initCursor,
-      initMagnetic,
-      initContact,
-      initCvModal,
-      initLangToggle,
-    ];
-    let ci = 0;
-    const runNext = () => {
-      if (ci >= chunks.length) return;
-      chunks[ci++]();
-      if ("requestIdleCallback" in window) requestIdleCallback(runNext, { timeout: 500 });
-      else setTimeout(runNext, 16);
-    };
-    if ("requestIdleCallback" in window) requestIdleCallback(runNext, { timeout: 800 });
-    else setTimeout(runNext, 16);
+    // Diğer init'ler — sync, hızlı çalışırlar
+    initScrollProgress();
+    initCursor();
+    initMagnetic();
+    initContact();
+    initCvModal();
+    initLangToggle();
   }
 
   /* ---------------------------------------------------------
