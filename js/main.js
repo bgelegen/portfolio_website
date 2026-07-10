@@ -324,10 +324,8 @@
       els.forEach((el) => el.classList.add("is-visible"));
       return;
     }
-    const isMobile = window.matchMedia("(max-width: 900px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
-    // Mobilde daha erken tetikle — kullanıcı görmeden animasyon başlasın, akıcı hissettirsin
-    const rootMargin = isMobile ? "200px 0px 200px 0px" : "100px 0px 100px 0px";
+    // Observer: element viewport'a girdiği anda animate (önce değil)
+    // rootMargin 0 → kullanıcı gerçekten göreceği anda fade-in başlar, animasyon görünür
     const obs = new IntersectionObserver(
       (entries, o) => {
         entries.forEach((en) => {
@@ -336,52 +334,39 @@
           const d = parseInt(el.dataset.delay || "0", 10);
           if (d) el.style.transitionDelay = d + "ms";
           el.classList.add("is-visible");
-          // Bir kez animate → observer'dan çıkar, tekrar tetiklenmez
           o.unobserve(el);
         });
       },
-      { rootMargin, threshold: 0 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 }
     );
     els.forEach(el => obs.observe(el));
 
-    // EK GÜVENLİK: scroll + rAF polling — observer'ın kaçırdığı elementleri yakalar
-    // iOS Safari observer bug'ları için tam koruma
+    // Scroll listener BACKUP: sadece observer fail olursa devreye girer
+    // Element viewport'a GERÇEKTEN girmişse animate — önceden değil
     const remaining = new Set(els);
-    const checkVisible = () => {
+    const checkOnScroll = () => {
       const vh = window.innerHeight;
-      const threshold = vh + 200;
       remaining.forEach(el => {
         if (el.classList.contains("is-visible")) { remaining.delete(el); return; }
         const rect = el.getBoundingClientRect();
-        if (rect.top < threshold && rect.bottom > -200) {
+        // Element'in üstü ekranın %90'ına gelmişse animate (kullanıcı gördüğünde)
+        if (rect.top < vh * 0.9 && rect.bottom > 0) {
           el.classList.add("is-visible");
           obs.unobserve(el);
           remaining.delete(el);
         }
       });
+      if (remaining.size === 0) window.removeEventListener("scroll", onScroll);
     };
     let scrollRafPending = false;
     const onScroll = () => {
       if (scrollRafPending) return;
       scrollRafPending = true;
-      requestAnimationFrame(() => {
-        scrollRafPending = false;
-        checkVisible();
-        if (remaining.size === 0) {
-          window.removeEventListener("scroll", onScroll);
-          clearInterval(pollTimer);
-        }
-      });
+      requestAnimationFrame(() => { scrollRafPending = false; checkOnScroll(); });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    // İlk paint için hemen çalıştır
-    requestAnimationFrame(checkVisible);
-    // 8 saniye boyunca 300ms'de bir poll — scroll event fire etmese bile yakalar
-    const pollTimer = setInterval(() => {
-      checkVisible();
-      if (remaining.size === 0) clearInterval(pollTimer);
-    }, 300);
-    setTimeout(() => clearInterval(pollTimer), 8000);
+    // İlk render'da viewport'ta olanları animate et
+    requestAnimationFrame(checkOnScroll);
   }
 
   /* ---------------------------------------------------------
