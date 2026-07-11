@@ -255,6 +255,14 @@ html:not(.dark) .orb { mix-blend-mode: multiply; opacity: 0.32; }
   .bg-aurora { display: none !important; }
   .orb, .bg-grid, .bg-noise { display: none !important; }
 
+  /* Mobil scrollbar tamamen gizle — iOS Safari native scroll indicator
+     üst notch bölgesine taşıyor, kullanıcı için sorun oluyor */
+  html { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+  /* Overscroll bounce kapat — mobilde üstte/altta esneme yok */
+  html, body { overscroll-behavior-y: none; }
+
   /* Backdrop-filter mobilde tarayıcıyı yakar — solid alternatif */
   .nav__inner.is-scrolled,
   .mobile-menu__overlay,
