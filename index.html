@@ -9,9 +9,9 @@
   <meta name="theme-color" content="#05080f" />
 
   <!-- Favicon (tarayıcı + Google search HD) -->
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=90" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=90" />
-  <link rel="shortcut icon" href="assets/bg_icon.webp?v=90" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=92" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=92" />
+  <link rel="shortcut icon" href="assets/bg_icon.webp?v=92" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="website" />
@@ -22,14 +22,14 @@
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:locale:alternate" content="en_US" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=90" />
-  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=90" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=92" />
+  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=92" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
   <!-- Square fallback (bazı platformlar bunu tercih eder) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=90" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=92" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:image:alt" content="Batuhan Gelegen — BG Logo" />
@@ -38,11 +38,11 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · YZ · Otonom Sistemler." />
-  <meta name="twitter:image" content="assets/bg_icon.webp?v=90" />
+  <meta name="twitter:image" content="assets/bg_icon.webp?v=92" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
 
   <!-- BG icon: nav'da hemen görünsün, en yüksek öncelik -->
-  <link rel="preload" as="image" href="assets/bg_icon.webp?v=90" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/bg_icon.webp?v=92" fetchpriority="high" />
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
   <link rel="preload" as="image" href="assets/projects/gcs.avif" />
   <link rel="preload" as="image" href="assets/projects/tubitak.avif" />
@@ -80,26 +80,19 @@
     })();
   </script>
 
-  <!-- Fonts (masaüstünde ilk user-interaction sonrası yüklenir) — audit anında yükleme yok
-       Mobil ve reduce-motion kullanıcıları için sistem fontları kullanılır -->
+  <!-- Fonts: masaüstünde HEMEN yüklenir (sistem fontlarından Inter/Space Grotesk'e swap).
+       Mobilde tamamen atlanır — sistem fontları kullanılır (mobil hızı öncelik). -->
   <script>
     (function () {
       var isMobile = matchMedia("(max-width: 900px)").matches
                   || matchMedia("(pointer: coarse)").matches;
       if (isMobile) return;
-      var loaded = false;
-      var loadFonts = function () {
-        if (loaded) return; loaded = true;
-        var fontUrl = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=optional";
-        var link = document.createElement("link");
-        link.rel = "stylesheet"; link.href = fontUrl;
-        document.head.appendChild(link);
-      };
-      // NOT: mousemove hariç — Lighthouse audit'te sahte mouse move fontları erken tetikliyor
-      // Sadece gerçek kullanıcı niyeti gösteren etkileşimler
-      ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
-        window.addEventListener(evt, loadFonts, { once: true, passive: true });
-      });
+      var pc1 = document.createElement("link"); pc1.rel = "preconnect"; pc1.href = "https://fonts.googleapis.com"; document.head.appendChild(pc1);
+      var pc2 = document.createElement("link"); pc2.rel = "preconnect"; pc2.href = "https://fonts.gstatic.com"; pc2.crossOrigin = ""; document.head.appendChild(pc2);
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap";
+      document.head.appendChild(link);
     })();
   </script>
 
@@ -155,26 +148,26 @@
     </defs>
   </svg>
 
-  <!-- Preloader + cursor tamamen kaldırıldı — CLS'e sıfır katkı; scroll-progress + cursor
-       user-interaction sonrası inject edilir (audit tetiklemez) -->
+  <!-- Scroll progress her yerde; custom cursor SADECE masaüstünde, sayfa yüklenir yüklenmez inject -->
   <script>
     (function () {
       var isMobile = matchMedia("(max-width: 900px)").matches
                   || matchMedia("(pointer: coarse)").matches;
-      var loaded = false;
       var addExtras = function () {
-        if (loaded) return; loaded = true;
         var sp = document.createElement("div");
         sp.className = "scroll-progress"; sp.id = "scroll-progress";
         sp.setAttribute("aria-hidden", "true");
         document.body.appendChild(sp);
         if (isMobile) return;
+        // Masaüstünde custom cursor — mousemove ile takip eder
         var cd = document.createElement("div"); cd.className = "cursor-dot"; cd.id = "cursor-dot"; cd.setAttribute("aria-hidden","true"); document.body.appendChild(cd);
         var cr = document.createElement("div"); cr.className = "cursor-ring"; cr.id = "cursor-ring"; cr.setAttribute("aria-hidden","true"); document.body.appendChild(cr);
       };
-      ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
-        window.addEventListener(evt, addExtras, { once: true, passive: true });
-      });
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", addExtras);
+      } else {
+        addExtras();
+      }
     })();
   </script>
 
@@ -183,7 +176,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=90" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
+          <img src="assets/bg_icon.webp?v=92" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -546,7 +539,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=90" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
+            <img src="assets/bg_icon.webp?v=92" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
@@ -572,30 +565,25 @@
   </footer>
 
   <!-- İçerik verisi (main.js'ten önce yüklenir) -->
-  <script src="js/data.min.js?v=90" defer></script>
-  <script src="js/i18n.min.js?v=90" defer></script>
-  <script src="js/main.min.js?v=90" defer></script>
-  <!-- Three.js sahnesi: mobilde tamamen atlanır — masaüstünde SADECE user-interaction sonrası
-       Audit sırasında (kullanıcı etkileşimi yok) scene.js & three.js HİÇ yüklenmez -->
+  <script src="js/data.min.js?v=92" defer></script>
+  <script src="js/i18n.min.js?v=92" defer></script>
+  <script src="js/main.min.js?v=92" defer></script>
+  <!-- Three.js sahnesi: mobilde atlanır — masaüstünde HEMEN yüklenir, 3D radar animasyonu görünsün -->
   <script>
     (function () {
       var isMobile = matchMedia("(max-width: 900px)").matches
                   || matchMedia("(pointer: coarse)").matches
                   || (navigator.hardwareConcurrency || 4) <= 4;
       if (isMobile) return;
-      var loaded = false;
+      // Masaüstünde sayfa yüklendikten hemen sonra scene.js yüklensin
       var loadScene = function () {
-        if (loaded) return; loaded = true;
         var s = document.createElement("script");
         s.type = "module";
-        s.src = "js/scene.min.js?v=90";
+        s.src = "js/scene.min.js?v=92";
         document.head.appendChild(s);
       };
-      // İlk kullanıcı etkileşimini bekle — audit anında etkileşim yok, script yüklenmez
-      // NOT: mousemove hariç — Lighthouse audit sahte mouse ile bunu tetikliyor
-      ['scroll','click','keydown','touchstart','wheel'].forEach(function (evt) {
-        window.addEventListener(evt, loadScene, { once: true, passive: true });
-      });
+      if (document.readyState === "complete") loadScene();
+      else window.addEventListener("load", loadScene, { once: true });
     })();
   </script>
 </body>

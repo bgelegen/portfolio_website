@@ -1029,22 +1029,22 @@
   }
 
   // Three.js modülü canvas'ı talep etmediyse 2D yedeği başlat
-  // MOBİLDE TAMAMEN ATLANIR — 60fps RAF loop mobil CPU'yu tıkıyor, scroll'da siyah + gecikme
-  // Sadece masaüstünde, user etkileşimi sonrası başlar
+  // MOBİLDE TAMAMEN ATLANIR — 60fps RAF loop mobil CPU'yu tıkıyor
+  // MASAÜSTÜNDE: sayfa yüklendikten kısa süre sonra hemen başlat
   (function () {
     var isMobile = matchMedia("(max-width: 900px)").matches
                 || matchMedia("(pointer: coarse)").matches
                 || (navigator.hardwareConcurrency || 4) <= 4;
     if (isMobile) return;  // Mobilde asla çalıştırma
-    var started = false;
     var startFallback = function () {
-      if (started) return; started = true;
-      if (!window.__heroClaimed && !window.__heroSceneActive && window.startHeroFallback) {
-        window.startHeroFallback();
-      }
+      // scene.js Three.js ile daha zengin sahneyi çalıştıracak — o yüklenmezse fallback devreye girer
+      setTimeout(function () {
+        if (!window.__heroClaimed && !window.__heroSceneActive && window.startHeroFallback) {
+          window.startHeroFallback();
+        }
+      }, 300);
     };
-    ['scroll','click','keydown','wheel'].forEach(function (evt) {
-      window.addEventListener(evt, startFallback, { once: true, passive: true });
-    });
+    if (document.readyState === "complete") startFallback();
+    else window.addEventListener("load", startFallback, { once: true });
   })();
 })();
