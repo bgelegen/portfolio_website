@@ -1265,12 +1265,17 @@ body.cv-modal-open { overflow: hidden; }
   .cv-modal__title-wrap h3 { font-size: 0.9rem; }
   .cv-modal__download .icon + * { display: none; }
   .cv-modal__download { padding: 0.5rem 0.7rem; }
-  /* Mobilde iframe genişlik hilesi yok — tam viewport'a sığsın, PDF içeriği kesinmesin */
+  /* Mobilde: iframe TAM ekran, PDF viewer içinde hem yatay hem dikey scroll */
+  .cv-modal__body {
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
   .cv-modal__body iframe {
     width: 100% !important;
-    pointer-events: auto !important;   /* PDF içinde pinch-zoom & scroll aktif */
+    height: 100% !important;
+    min-height: 100% !important;
+    pointer-events: auto !important;   /* PDF içinde tüm yönlerde scroll + pinch-zoom */
   }
-  .cv-modal__body { overflow: hidden !important; }
 }
 
 /* -------------------- FOOTER -------------------- */
