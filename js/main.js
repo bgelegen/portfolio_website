@@ -995,8 +995,7 @@
       if (frame && !frame.src.includes(CV_URL)) {
         // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=0 → PDF'in kendi scroll'unu gizler
         // Scroll bizim styled modal-body scrollbar'ımızdan yapılır
-        // #view=Fit → PDF açılırken TAM sayfa görünür (üst-alt komple ekranda)
-        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=Fit";
+        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
