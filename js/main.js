@@ -867,13 +867,18 @@
       const next = getLang() === "tr" ? "en" : "tr";
       try { localStorage.setItem("lang", next); } catch (e) {}
       window.__lang = next;
-      applyLanguage(next);
-      // Dinamik render'ları tazele
-      renderSkills();
-      renderProjects();
+      // Buton label'ını HEMEN güncelle → kullanıcı feedback görür
+      const langLabel = $("#lang-toggle-label");
+      if (langLabel) langLabel.textContent = next === "tr" ? "EN" : "TR";
+      document.documentElement.lang = next;
+      // Ağır işi bir frame ertele — click reaksiyonu anında hissettirsin
+      requestAnimationFrame(() => {
+        applyLanguage(next);
+        renderSkills();
+        renderProjects();
         renderTimeline();
-      // Reveal state'i yeni render'lara aktarıldığı için tekrar tetikle
-      $$(".reveal, .reveal-left, .reveal-right, .reveal-stagger").forEach(el => el.classList.add("is-visible"));
+        $$(".reveal, .reveal-left, .reveal-right, .reveal-stagger").forEach(el => el.classList.add("is-visible"));
+      });
     });
   }
 
