@@ -9,9 +9,9 @@
   <meta name="theme-color" content="#05080f" />
 
   <!-- Favicon (tarayıcı + Google search HD) -->
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=99" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=99" />
-  <link rel="shortcut icon" href="assets/bg_icon.webp?v=99" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=100" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.webp?v=100" />
+  <link rel="shortcut icon" href="assets/bg_icon.webp?v=100" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="website" />
@@ -22,14 +22,14 @@
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:locale:alternate" content="en_US" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=99" />
-  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=99" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=100" />
+  <meta property="og:image:secure_url" content="assets/bg_icon.webp?v=100" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
   <!-- Square fallback (bazı platformlar bunu tercih eder) -->
-  <meta property="og:image" content="assets/bg_icon.webp?v=99" />
+  <meta property="og:image" content="assets/bg_icon.webp?v=100" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:image:alt" content="Batuhan Gelegen — BG Logo" />
@@ -38,11 +38,11 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Batuhan Gelegen — Yazılım Mühendisi · Savunma Sanayi & İHA" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti. TÜBİTAK 2209-A bursiyeri. Python · Görüntü İşleme · YZ · Otonom Sistemler." />
-  <meta name="twitter:image" content="assets/bg_icon.webp?v=99" />
+  <meta name="twitter:image" content="assets/bg_icon.webp?v=100" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Yazılım Mühendisi Portfolio" />
 
   <!-- BG icon: nav'da hemen görünsün, en yüksek öncelik -->
-  <link rel="preload" as="image" href="assets/bg_icon.webp?v=99" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/bg_icon.webp?v=100" fetchpriority="high" />
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
   <link rel="preload" as="image" href="assets/projects/gcs.avif" />
   <link rel="preload" as="image" href="assets/projects/tubitak.avif" />
@@ -103,14 +103,14 @@
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js" } }
   </script>
   <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js" crossorigin />
-  <link rel="modulepreload" href="js/scene.min.js?v=99" />
+  <link rel="modulepreload" href="js/scene.min.js?v=100" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <!-- Scene modülünü HTML parse ile paralel yürüt — canvas dolduğunda hero hazır -->
   <script type="module">
     var isMobile = matchMedia("(max-width: 900px)").matches
                 || matchMedia("(pointer: coarse)").matches
                 || (navigator.hardwareConcurrency || 4) <= 4;
-    if (!isMobile) { import("./js/scene.min.js?v=99"); }
+    if (!isMobile) { import("./js/scene.min.js?v=100"); }
   </script>
 </head>
 
@@ -170,7 +170,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=99" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
+          <img src="assets/bg_icon.webp?v=100" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -533,7 +533,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=99" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
+            <img src="assets/bg_icon.webp?v=100" alt="BG" width="36" height="36" fetchpriority="high" decoding="async" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
@@ -559,8 +559,8 @@
   </footer>
 
   <!-- İçerik verisi (main.js'ten önce yüklenir) -->
-  <script src="js/data.min.js?v=99" defer></script>
-  <script src="js/i18n.min.js?v=99" defer></script>
-  <script src="js/main.min.js?v=99" defer></script>
+  <script src="js/data.min.js?v=100" defer></script>
+  <script src="js/i18n.min.js?v=100" defer></script>
+  <script src="js/main.min.js?v=100" defer></script>
 </body>
 </html>
