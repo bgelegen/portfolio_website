@@ -991,19 +991,11 @@
 
     function open() {
       lastFocused = document.activeElement;
-      const isMobile = window.matchMedia("(max-width: 640px)").matches
-                    || window.matchMedia("(pointer: coarse)").matches;
-      if (frame && !frame.dataset.loaded) {
-        if (isMobile) {
-          // MOBİL: Google Docs Viewer — PDF'i HTML sayfa olarak render eder
-          // Tüm sayfalar dikey scroll ile erişilir, yatay scroll + zoom native çalışır
-          const absoluteUrl = new URL(CV_URL, location.href).href;
-          frame.src = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(absoluteUrl);
-        } else {
-          // MASAÜSTÜ: native PDF viewer + custom mavi gradient scrollbar (modal body scroll'undan)
-          frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
-        }
-        frame.dataset.loaded = "1";
+      // PDF'i sadece açılınca yükle (performans)
+      if (frame && !frame.src.includes(CV_URL)) {
+        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=0 → PDF'in kendi scroll'unu gizler
+        // Scroll bizim styled modal-body scrollbar'ımızdan yapılır
+        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
       }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
@@ -1043,24 +1035,21 @@
 
   // Three.js modülü canvas'ı talep etmediyse 2D yedeği başlat
   // MOBİLDE TAMAMEN ATLANIR — 60fps RAF loop mobil CPU'yu tıkıyor
-  // MASAÜSTÜNDE: DOMContentLoaded'da HEMEN — Three.js yüklenmezse fallback zaten aktif olur
+  // MASAÜSTÜNDE: sayfa yüklendikten kısa süre sonra hemen başlat
   (function () {
     var isMobile = matchMedia("(max-width: 900px)").matches
                 || matchMedia("(pointer: coarse)").matches
                 || (navigator.hardwareConcurrency || 4) <= 4;
-    if (isMobile) return;
+    if (isMobile) return;  // Mobilde asla çalıştırma
     var startFallback = function () {
-      // Three.js sahne henüz canvas'ı talep etmediyse fallback anında başlar
-      if (!window.__heroClaimed && !window.__heroSceneActive && window.startHeroFallback) {
-        window.startHeroFallback();
-      }
+      // scene.js Three.js ile daha zengin sahneyi çalıştıracak — o yüklenmezse fallback devreye girer
+      setTimeout(function () {
+        if (!window.__heroClaimed && !window.__heroSceneActive && window.startHeroFallback) {
+          window.startHeroFallback();
+        }
+      }, 300);
     };
-    // DOMContentLoaded'da hemen dene, 200ms sonra tekrar dene (Three.js gelmediyse fallback devreye)
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", startFallback);
-    } else {
-      startFallback();
-    }
-    setTimeout(startFallback, 200);
+    if (document.readyState === "complete") startFallback();
+    else window.addEventListener("load", startFallback, { once: true });
   })();
 })();
