@@ -77,7 +77,7 @@
         const flipped = i % 2 === 1;
         // Görsel: image varsa gerçek ekran görüntüsü, yoksa dekoratif icon + rings
         const visualContent = p.image
-          ? `<img src="${esc(p.image)}" alt="${esc(proj.title)}" class="project__image" width="1200" height="675" loading="eager" fetchpriority="high" decoding="async" />
+          ? `<img src="${esc(p.image)}" alt="${esc(proj.title)} — Batuhan Gelegen projesi (${esc(proj.category || 'Savunma sanayi / İHA')})" class="project__image" width="1200" height="675" loading="eager" fetchpriority="high" decoding="async" />
              <div class="project__image-overlay"></div>`
           : `<div class="project__visual-grid"></div>
              <div class="project__rings">${rings}</div>
@@ -142,7 +142,7 @@
           <div class="timeline__org">
             <span class="ic-badge${e.logo ? " ic-badge--logo" : ""}">
               ${e.logo
-                ? `<img src="${esc(e.logo)}" alt="${esc(org)}" class="ic-badge__logo" width="48" height="48"${e.invertOnLight ? ' data-invert-on-light="true"' : ""} loading="lazy" decoding="async" />`
+                ? `<img src="${esc(e.logo)}" alt="${esc(org)} logo — Batuhan Gelegen deneyim" class="ic-badge__logo" width="48" height="48"${e.invertOnLight ? ' data-invert-on-light="true"' : ""} loading="lazy" decoding="async" />`
                 : ic(e.icon)}
             </span>${esc(org)}
           </div>

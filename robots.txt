@@ -1,4 +1,19 @@
+# Batuhan Gelegen — Portfolyo (batuhangelegen.dev)
+# Tüm arama motorlarına açık, hızlı ve doğru indeksleme için.
+
 User-agent: *
 Allow: /
 
+# Google özel — sayfa hızı için tüm asset'leri indekslesin
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+# Görsel indeksleme (Google Images)
+User-agent: Googlebot-Image
+Allow: /assets/
+
 Sitemap: https://batuhangelegen.dev/sitemap.xml
+Host: https://batuhangelegen.dev
