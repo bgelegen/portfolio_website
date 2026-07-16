@@ -1254,8 +1254,8 @@ html:not(.dark) .ic-badge__logo[data-invert-on-light="true"] {
 }
 .cv-modal__body iframe {
   width: calc(100% + 20px);
-  /* A4 aspect ratio 1.414 → panel width ~880px'de 2 sayfa = ~2500px */
-  height: 2600px;
+  /* A4 aspect 1.414, panel ~880px genişlik → tek sayfa ~1245px, iki sayfa ~2500px + 10px pad */
+  height: 2510px;
   min-height: 100%;
   border: 0;
   background: #1a1a1a;
@@ -1269,19 +1269,11 @@ body.cv-modal-open { overflow: hidden; }
   .cv-modal__title-wrap h3 { font-size: 0.9rem; }
   .cv-modal__download .icon + * { display: none; }
   .cv-modal__download { padding: 0.5rem 0.7rem; }
-  /* MOBİL CV — modal body scroll + iframe A4 boyutunda 2 sayfaya yetecek yükseklik.
-     iOS Safari PDF viewer tek sayfa gösterse bile iframe uzun olduğu için 2. sayfa altta render eder. */
-  .cv-modal__body {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch;
-  }
+  /* MOBİL CV iframe — 375px width × 1.414 A4 ratio × 2 sayfa = ~1060px + margin */
   .cv-modal__body iframe {
     width: 100% !important;
-    /* Mobil: 375px genişlik × 1.414 = ~530px per page × 2 sayfa + margin = ~1200px */
-    height: 1400px !important;
+    height: 1200px !important;
     min-height: unset !important;
-    pointer-events: none !important;   /* Scroll modal body'de olsun, PDF viewer kendi scroll'u değil */
   }
 }
 

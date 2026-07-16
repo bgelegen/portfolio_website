@@ -991,10 +991,7 @@
 
     function open() {
       lastFocused = document.activeElement;
-      // PDF'i sadece açılınca yükle (performans)
       if (frame && !frame.src.includes(CV_URL)) {
-        // toolbar=0 → PDF üst çubuğunu gizler; scrollbar=0 → PDF'in kendi scroll'unu gizler
-        // Scroll bizim styled modal-body scrollbar'ımızdan yapılır
         frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
       }
       modal.classList.add("is-open");
