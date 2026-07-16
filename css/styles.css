@@ -1252,15 +1252,29 @@ html:not(.dark) .ic-badge__logo[data-invert-on-light="true"] {
     inset 0 0 10px rgba(var(--accent-rgb), 0.7),
     0 0 22px rgba(var(--accent-rgb), 0.8);
 }
-.cv-modal__body iframe {
-  width: calc(100% + 20px);
-  /* A4 aspect 1.414, panel ~880px genişlik → tek sayfa ~1245px, iki sayfa ~2500px + 10px pad */
-  height: 2510px;
-  min-height: 100%;
-  border: 0;
+/* PDF.js ile render edilen sayfa canvas'ları — iOS Safari dahil TÜM cihazlarda 2 sayfa görünür */
+.cv-pdf-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
   background: #1a1a1a;
+  min-height: 100%;
+}
+.cv-pdf-container canvas {
   display: block;
-  pointer-events: none;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.5);
+  background: #fff;
+}
+.cv-pdf-container__loading {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 2rem;
+  text-align: center;
 }
 body.cv-modal-open { overflow: hidden; }
 @media (max-width: 640px) {
@@ -1269,12 +1283,7 @@ body.cv-modal-open { overflow: hidden; }
   .cv-modal__title-wrap h3 { font-size: 0.9rem; }
   .cv-modal__download .icon + * { display: none; }
   .cv-modal__download { padding: 0.5rem 0.7rem; }
-  /* MOBİL CV iframe — 375px width × 1.414 A4 ratio × 2 sayfa = ~1060px + margin */
-  .cv-modal__body iframe {
-    width: 100% !important;
-    height: 1200px !important;
-    min-height: unset !important;
-  }
+  .cv-pdf-container { padding: 8px 0; gap: 8px; }
 }
 
 /* -------------------- FOOTER -------------------- */

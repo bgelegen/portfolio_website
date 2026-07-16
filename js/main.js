@@ -985,15 +985,12 @@
   function initCvModal() {
     const modal = $("#cv-modal");
     if (!modal) return;
-    const frame = $("#cv-modal-frame");
-    const CV_URL = "assets/Batuhan_Gelegen_CV.pdf";
     let lastFocused = null;
 
     function open() {
       lastFocused = document.activeElement;
-      if (frame && !frame.src.includes(CV_URL)) {
-        frame.src = CV_URL + "#toolbar=0&navpanes=0&scrollbar=0&view=FitH";
-      }
+      // Global renderCvPdf → PDF.js ile 2 sayfayı da canvas'a render eder
+      if (window.renderCvPdf) window.renderCvPdf();
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("cv-modal-open");
