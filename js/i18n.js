@@ -30,7 +30,7 @@ window.I18N = (function () {
     "about.stats.projects": { tr: "Aktif Ar-Ge Projesi", en: "Active R&D Project" },
     "about.stats.langs":    { tr: "Programlama Dili", en: "Programming Languages" },
     "about.edu.school":     { tr: "Samsun Üniversitesi", en: "Samsun University" },
-    "about.edu.detail":     { tr: "Yazılım Mühendisliği · Lisans · 2. Sınıf", en: "Software Engineering · BSc · 2nd Year" },
+    "about.edu.detail":     { tr: "Yazılım Mühendisliği · Lisans · 3. Sınıf", en: "Software Engineering · BSc · 3rd Year" },
     "about.edu.period":     { tr: "2024 — Devam Ediyor", en: "2024 — Present" },
     "about.role":           { tr: "Yazılım Mühendisi Adayı", en: "Software Engineer Candidate" },
 
@@ -95,7 +95,7 @@ window.I18N = (function () {
     "profile.status":         { tr: "DURUM", en: "STATUS" },
     "profile.status.value":   { tr: "Aktif Geliştirici", en: "Active Developer" },
     "profile.school":         { tr: "OKUL", en: "SCHOOL" },
-    "profile.school.value":   { tr: "Samsun Üni. · 2. Sınıf", en: "Samsun Uni. · 2nd Year" },
+    "profile.school.value":   { tr: "Samsun Üni. · 3. Sınıf", en: "Samsun Uni. · 3rd Year" },
 
     // Footer
     "footer.brand.desc":  { tr: "Savunma sanayi, insansız hava araçları ve ileri teknoloji alanlarında milli ve yenilikçi çözümler geliştiriyorum.", en: "I develop national and innovative solutions in the defense industry, unmanned aerial vehicles, and advanced technology." },
@@ -134,11 +134,11 @@ window.I18N = (function () {
 
   /* ----------------- HAKKIMDA UZUN METİNLER ----------------- */
   const aboutTextEn = {
-    lead: "I am a second-year Software Engineering student at Samsun University. I have a strong interest in the defense industry, unmanned aerial vehicles (UAVs), and advanced technology, and I aim to develop innovative solutions in these fields. I support my problem-solving and software development skills with proficiency in languages such as Python, C/C++, and C#, as well as expertise in image processing technologies, simulation environments, and user interface design.",
+    lead: "I am a third-year Software Engineering student at Samsun University. I have a strong interest in the defense industry, unmanned aerial vehicles (UAVs), and advanced technology, and I aim to develop innovative solutions in these fields. I support my problem-solving and software development skills with proficiency in languages such as Python, C/C++, and C#, as well as expertise in image processing technologies, simulation environments, and user interface design.",
     text: "As an engineering candidate who is open to learning, thinks analytically, and values teamwork, I aim to use my project experience to produce innovative, reliable, and national solutions in the defense industry.",
   };
   const aboutTextTr = {
-    lead: "Samsun Üniversitesi Yazılım Mühendisliği 2. sınıf öğrencisiyim. Savunma sanayi, insansız hava araçları (İHA) ve ileri teknoloji alanlarına yoğun ilgi duyuyor, bu alanlarda yenilikçi çözümler üretebilecek projeler geliştirmeyi hedefliyorum. Problem çözme ve yazılım geliştirme becerilerimi; Python, C/C++ ve C# gibi dillerin yanı sıra görüntü işleme teknolojileri, simülasyon ortamları ve kullanıcı arayüzü tasarımı alanlarındaki yetkinliklerimle destekliyorum.",
+    lead: "Samsun Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisiyim. Savunma sanayi, insansız hava araçları (İHA) ve ileri teknoloji alanlarına yoğun ilgi duyuyor, bu alanlarda yenilikçi çözümler üretebilecek projeler geliştirmeyi hedefliyorum. Problem çözme ve yazılım geliştirme becerilerimi; Python, C/C++ ve C# gibi dillerin yanı sıra görüntü işleme teknolojileri, simülasyon ortamları ve kullanıcı arayüzü tasarımı alanlarındaki yetkinliklerimle destekliyorum.",
     text: "Öğrenmeye açık, analitik düşünebilen ve takım çalışmasına yatkın bir mühendis adayı olarak; edindiğim proje tecrübelerini savunma sanayisinde yenilikçi, güvenilir ve milli çözümler üretmek için kullanmayı hedefliyorum.",
   };
 

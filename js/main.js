@@ -191,7 +191,8 @@
     setTimeout(() => {
       pre.classList.add("is-hidden");
       document.body.classList.remove("no-scroll");
-      requestAnimationFrame(() => requestAnimationFrame(initReveal));
+      // setTimeout — rAF gizli sekmede duraklar, içerik hiç görünmez kalırdı
+      setTimeout(initReveal, 32);
       // Opacity fade bittikten sonra DOM'dan tamamen çıkar — non-composited
       // visibility animasyonuna gerek kalmasın (PageSpeed uyarısı için)
       const cleanup = () => { pre.remove(); pre.removeEventListener("transitionend", cleanup); };
@@ -365,8 +366,14 @@
       requestAnimationFrame(() => { scrollRafPending = false; checkOnScroll(); });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    // İlk render'da viewport'ta olanları animate et
-    requestAnimationFrame(checkOnScroll);
+    // İlk render'da viewport'ta olanları animate et.
+    // setTimeout — rAF gizli/arka plandaki sekmede duraklar; sayfa arka planda
+    // açılırsa (yeni sekmede link) içerik hiç görünmeden kalırdı.
+    setTimeout(checkOnScroll, 0);
+    // Sekme görünür hale gelince tekrar kontrol et (arka planda açılma senaryosu)
+    document.addEventListener("visibilitychange", function onVis() {
+      if (!document.hidden) { checkOnScroll(); document.removeEventListener("visibilitychange", onVis); }
+    });
   }
 
   /* ---------------------------------------------------------
@@ -871,14 +878,16 @@
       const langLabel = $("#lang-toggle-label");
       if (langLabel) langLabel.textContent = next === "tr" ? "EN" : "TR";
       document.documentElement.lang = next;
-      // Ağır işi bir frame ertele — click reaksiyonu anında hissettirsin
-      requestAnimationFrame(() => {
+      // Ağır işi bir tick ertele — click reaksiyonu anında hissettirsin.
+      // NOT: requestAnimationFrame KULLANMA — arka plandaki/gizli sekmelerde
+      // tarayıcı rAF'ı duraklatır ve dil değişimi hiç uygulanmaz.
+      setTimeout(() => {
         applyLanguage(next);
         renderSkills();
         renderProjects();
         renderTimeline();
         $$(".reveal, .reveal-left, .reveal-right, .reveal-stagger").forEach(el => el.classList.add("is-visible"));
-      });
+      }, 0);
     });
   }
 
