@@ -39,6 +39,7 @@ window.PORTFOLIO = (function () {
     {
       title: "Araçlar & Tasarım", icon: "design",
       skills: [
+        { name: "Git / GitHub", level: 85 },
         { name: "Qt Designer", level: 85 },
         { name: "Linux", level: 75 },
         { name: "Figma", level: 80 },

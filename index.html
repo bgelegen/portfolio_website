@@ -18,14 +18,14 @@
   <link rel="alternate" hreflang="x-default" href="https://batuhangelegen.dev/" />
 
   <!-- Favicon (Google search sonucunda görünmesi için PNG 512x512 + çoklu boyut) -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/bg_icon.png?v=110" />
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/bg_icon.png?v=110" />
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/bg_icon.png?v=110" />
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/bg_icon.png?v=110" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/bg_icon.png?v=110" />
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=110" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.png?v=110" />
-  <link rel="shortcut icon" href="assets/bg_icon.png?v=110" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/bg_icon.png?v=111" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/bg_icon.png?v=111" />
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/bg_icon.png?v=111" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/bg_icon.png?v=111" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/bg_icon.png?v=111" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=111" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.png?v=111" />
+  <link rel="shortcut icon" href="assets/bg_icon.png?v=111" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="profile" />
@@ -40,8 +40,8 @@
   <meta property="profile:username" content="batuhangelegen" />
   <meta property="profile:gender" content="male" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=110" />
-  <meta property="og:image:secure_url" content="https://batuhangelegen.dev/assets/bg_icon.png?v=110" />
+  <meta property="og:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=111" />
+  <meta property="og:image:secure_url" content="https://batuhangelegen.dev/assets/bg_icon.png?v=111" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
@@ -52,11 +52,11 @@
   <meta name="twitter:url" content="https://batuhangelegen.dev/" />
   <meta name="twitter:title" content="Batuhan Gelegen — Savunma Sanayi & İHA Yazılım Mühendisi" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti · TÜBİTAK 2209-A bursiyeri. İnsansız hava araçları, otonom sistemler, yapay zekâ ve görüntü işleme üzerine milli teknoloji projeleri." />
-  <meta name="twitter:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=110" />
+  <meta name="twitter:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=111" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" />
 
   <!-- BG icon: nav'da hemen görünsün, en yüksek öncelik -->
-  <link rel="preload" as="image" href="assets/bg_icon.webp?v=110" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/bg_icon.webp?v=111" fetchpriority="high" />
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
   <link rel="preload" as="image" href="assets/projects/gcs.avif" />
   <link rel="preload" as="image" href="assets/projects/tubitak.avif" />
@@ -175,11 +175,130 @@
     "@type": "ProfilePage",
     "url": "https://batuhangelegen.dev/",
     "name": "Batuhan Gelegen — Yazılım Mühendisi Adayı",
+    "dateModified": "2026-08-10",
     "mainEntity": {
       "@type": "Person",
       "name": "Batuhan Gelegen",
       "url": "https://batuhangelegen.dev/"
     }
+  }
+  </script>
+
+  <!-- FAQPage şeması — Google'ın GERÇEKTEN zengin sonuç saydığı tip.
+       Arama sonucunda açılır soru-cevap kutuları çıkarır, CTR'yi yükseltir. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Batuhan Gelegen kimdir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Batuhan Gelegen, Samsun Üniversitesi Yazılım Mühendisliği öğrencisidir. Savunma sanayi, insansız hava araçları (İHA), otonom sistemler, yapay zekâ ve görüntü işleme alanlarında projeler geliştirir. TEKNOFEST Savaşan İHA Yarışması'nda 598 takım arasından finalist olmuş, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Desteği almaya hak kazanmıştır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Batuhan Gelegen hangi teknolojileri kullanıyor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Python, C/C++ ve C# programlama dillerinde geliştirme yapar. Görüntü işleme ve yapay zekâ için OpenCV ve makine öğrenmesi kütüphanelerini; simülasyon ve robotik için Gazebo, ROS, Mission Planner ve QGroundControl araçlarını kullanır. Ayrıca Git/GitHub, Qt Designer, Linux, Figma ve Adobe Photoshop ile çalışır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "TEKNOFEST Savaşan İHA projesinde hangi görevleri üstlendi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "IKARUS AR-GE Takımı'nda yazılım mühendisi olarak Yer Kontrol İstasyonu (GCS) arayüzünü ve komut altyapısını geliştirdi. İHA ile yer istasyonu arasındaki veri haberleşme altyapısını kurup optimize etti, Mission Planner ile yer kontrol süreçlerini yönetti ve aviyonik/yapısal alanlarda takıma destek verdi. Takım 598 başvuru arasından finale kaldı."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "TÜBİTAK 2209-A projesi ne hakkında?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modern hava savunma sistemlerinin sahte hedefler ile gerçek tehditleri ayırt edebilmesi üzerine bir araştırma projesidir. Gazebo–ROS tabanlı simülasyon altyapısı ve Python ile yapay zekâ destekli hedef sınıflandırma ile tehdit önceliklendirme modeli geliştirilmektedir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Batuhan Gelegen ile nasıl iletişime geçilir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "batuhangelegen.dev adresindeki iletişim formu üzerinden, batuhangelegen44@gmail.com e-posta adresinden veya LinkedIn (linkedin.com/in/batuhangelegen) ve GitHub (github.com/bgelegen) profillerinden ulaşabilirsiniz. Staj ve proje iş birliklerine açıktır."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList — arama sonucunda site yapısını gösterir -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://batuhangelegen.dev/" },
+      { "@type": "ListItem", "position": 2, "name": "Hakkımda", "item": "https://batuhangelegen.dev/#about" },
+      { "@type": "ListItem", "position": 3, "name": "Yetenekler", "item": "https://batuhangelegen.dev/#skills" },
+      { "@type": "ListItem", "position": 4, "name": "Deneyim", "item": "https://batuhangelegen.dev/#experience" },
+      { "@type": "ListItem", "position": 5, "name": "Projeler", "item": "https://batuhangelegen.dev/#projects" },
+      { "@type": "ListItem", "position": 6, "name": "Başarılar", "item": "https://batuhangelegen.dev/#achievements" },
+      { "@type": "ListItem", "position": 7, "name": "İletişim", "item": "https://batuhangelegen.dev/#contact" }
+    ]
+  }
+  </script>
+
+  <!-- Projeler — CreativeWork listesi, konu bazlı aramalarda görünürlük sağlar -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Batuhan Gelegen — Savunma Sanayi ve İHA Projeleri",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Yer Kontrol İstasyonu (GCS)",
+          "description": "İHA operasyonlarını yöneten, gerçek zamanlı HUD ve interaktif harita içeren yer kontrol istasyonu. Python ve Qt Designer ile geliştirildi.",
+          "author": { "@type": "Person", "name": "Batuhan Gelegen" },
+          "keywords": "yer kontrol istasyonu, GCS, İHA, Mission Planner, telemetri, Python, Qt Designer",
+          "image": "https://batuhangelegen.dev/assets/projects/gcs.avif",
+          "dateCreated": "2024-09"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Yapay Zekâ Destekli Hava Savunma Simülasyonu (TÜBİTAK 2209-A)",
+          "description": "Gazebo–ROS tabanlı simülasyon altyapısı ve Python ile yapay zekâ destekli hedef sınıflandırma ve tehdit önceliklendirme modeli. Sahte hedef ile gerçek tehdit ayrımı.",
+          "author": { "@type": "Person", "name": "Batuhan Gelegen" },
+          "keywords": "TÜBİTAK 2209-A, hava savunma, yapay zekâ, Gazebo, ROS, tehdit önceliklendirme, simülasyon",
+          "image": "https://batuhangelegen.dev/assets/projects/tubitak.avif",
+          "dateCreated": "2025-11"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "Otonom Kamikaze Görev Algoritması",
+          "description": "Koordinat verisine dayalı otonom dalış, hedef tespiti ve manevra fazlarını yöneten görev algoritması. Python ve görüntü işleme teknikleriyle geliştirildi.",
+          "author": { "@type": "Person", "name": "Batuhan Gelegen" },
+          "keywords": "otonom kamikaze, İHA, görüntü işleme, OpenCV, hedef tespiti, kontrol algoritması, Python",
+          "image": "https://batuhangelegen.dev/assets/projects/kamikaze.avif",
+          "dateCreated": "2025"
+        }
+      }
+    ]
   }
   </script>
 
@@ -232,7 +351,7 @@
       if (!container || container.dataset.rendered === "1") return;
       container.dataset.rendered = "1";
       container.innerHTML = '<div class="cv-pdf-container__loading">CV yükleniyor…</div>';
-      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf";
+      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf?v=111";
       var loadScript = function (src) {
         return new Promise(function (resolve, reject) {
           if (window.pdfjsLib) return resolve();
@@ -339,7 +458,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=110" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
+          <img src="assets/bg_icon.webp?v=111" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -682,7 +801,7 @@
           </div>
         </div>
         <div class="cv-modal__actions">
-          <a href="assets/Batuhan_Gelegen_CV.pdf" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
+          <a href="assets/Batuhan_Gelegen_CV.pdf?v=111" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
             <svg class="icon" viewBox="0 0 24 24"><use href="#i-download"></use></svg> İndir
           </a>
           <button type="button" class="icon-btn cv-modal__close" data-cv-close aria-label="Kapat">
@@ -705,7 +824,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=110" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
+            <img src="assets/bg_icon.webp?v=111" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
