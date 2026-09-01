@@ -353,7 +353,7 @@
       if (!container || container.dataset.rendered === "1") return;
       container.dataset.rendered = "1";
       container.innerHTML = '<div class="cv-pdf-container__loading">CV yükleniyor…</div>';
-      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf?v=119";
+      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf?v=120";
       var loadScript = function (src) {
         return new Promise(function (resolve, reject) {
           if (window.pdfjsLib) return resolve();
@@ -815,7 +815,7 @@
           </div>
         </div>
         <div class="cv-modal__actions">
-          <a href="assets/Batuhan_Gelegen_CV.pdf?v=119" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
+          <a href="assets/Batuhan_Gelegen_CV.pdf?v=120" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
             <svg class="icon" viewBox="0 0 24 24"><use href="#i-download"></use></svg> İndir
           </a>
           <button type="button" class="icon-btn cv-modal__close" data-cv-close aria-label="Kapat">
