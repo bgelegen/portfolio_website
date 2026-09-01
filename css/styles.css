@@ -1039,6 +1039,12 @@ html.dark .icon-moon { display: none; }
   line-height: 1.35;
   margin: 0;
 }
+/* TÜBİTAK kartındaki uzun proje açıklaması — iki yana yaslı */
+.ach-card__desc--justify {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 .ach-card__desc {
   color: var(--muted);
   font-size: 0.85rem;

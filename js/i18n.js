@@ -53,7 +53,7 @@ window.I18N = (function () {
     "contact.title.emph":    { tr: "üretelim", en: "build" },
     "achievements.finalist": { tr: "FİNALİST", en: "FINALIST" },
     "ach.award.title":  { tr: "TEKNOFEST Savaşan İHA", en: "TEKNOFEST Fighting UAV" },
-    "ach.award.label":  { tr: "“EN İYİ ARAYÜZ YAZILIMI” MANSİYON ÖDÜLÜ", en: "“BEST INTERFACE SOFTWARE” HONORABLE MENTION" },
+    "ach.award.label":  { tr: "FİNALİST - “EN İYİ ARAYÜZ YAZILIMI” MANSİYON ÖDÜLÜ", en: "FINALIST - “BEST INTERFACE SOFTWARE” HONORABLE MENTION" },
     "ach.award.org":    { tr: "1.032 takım arasından finale kalan 42 takım içinde 18. sıra · IKARUS AR-GE", en: "18th place among 42 finalists out of 1,032 teams · IKARUS AR-GE" },
     "ach.finalist.title": { tr: "TEKNOFEST Savaşan İHA", en: "TEKNOFEST Fighting UAV" },
     "ach.tag.award":    { tr: "Ödül", en: "Award" },
