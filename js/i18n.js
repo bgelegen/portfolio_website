@@ -62,6 +62,7 @@ window.I18N = (function () {
 
     // TÜBİTAK featured card
     "tubitak.label": { tr: "PROJE DESTEĞİ", en: "PROJECT SUPPORT" },
+    "tubitak.desc":  { tr: "Hava Savunma Sistemlerini Aldatma Taktiklerine Karşı Simülasyon Tabanlı Yapay Zekâ ile Hedef Sınıflandırma ve Önceliklendirme konulu proje destek almaya hak kazanmıştır.", en: "Awarded project support for the study “Simulation-Based Artificial Intelligence for Target Classification and Prioritization Against Air Defense Deception Tactics”." },
     "tubitak.title": { tr: "TÜBİTAK 2209-A Proje Desteği", en: "TÜBİTAK 2209-A Project Support" },
     "teknofest.org": { tr: "693 takım arasından finale kalan 40 takım içinde 35. sıra · IKARUS AR-GE", en: "35th place among 40 finalists out of 693 teams · IKARUS AR-GE" },
 
