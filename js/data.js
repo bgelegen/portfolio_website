@@ -130,6 +130,22 @@ window.PORTFOLIO = (function () {
    * ---------------------------------------------------------------- */
   const experiences = [
     {
+      role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,
+      period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
+      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 693 takım arasından finale kalan 40 takım içinde 35. sırada yer alarak yarışmayı tamamladık. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
+      highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
+      tags: ["Yer Kontrol İstasyonu", "Haberleşme", "Python"],
+    },
+    {
+      role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,
+      period: "Eylül 2025 — Ağustos 2026", current: false, icon: "target",
+      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 1.032 takım arasından finale kalan 42 takım içinde 18. sırada yer aldık ve \"En İyi Arayüz Yazılımı\" mansiyon ödülünü kazandık. Kamikaze algoritmaları ve görüntü işleme alanlarından sorumluydum.",
+      highlights: ["Görüntü işleme ve kamikaze algoritma geliştirme çalışmaları yürütmek.", "55 kişilik ekipteki 7 kişilik yönetim kadrosunda organizasyonel süreçlere katkı sağlamak.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
+      tags: ["Görüntü İşleme", "Kamikaze Algoritmaları", "Liderlik"],
+    },
+    {
       role: "Takım Kaptanı", org: "IKARUS AR-GE",
       logo: "assets/logos/ikarus.webp", invertOnLight: true,
       period: "Eylül 2026 — Devam Ediyor", current: true, icon: "users",
@@ -144,22 +160,6 @@ window.PORTFOLIO = (function () {
       desc: "Burs programı kapsamında bursiyer olarak, Deneyap Teknoloji Atölyeleri bünyesinde öğrencilere yönelik teknik eğitim ve mentorluk faaliyetlerinde görev alıyorum.",
       highlights: ["Temel programlama ve teknoloji odaklı uygulamalı eğitimler vermek.", "Proje geliştirme süreçlerinde teknik rehberlik sağlamak.", "Atölye çalışmalarının planlanması ve yürütülmesine destek olmak."],
       tags: ["Mentorluk", "Eğitim", "Topluluk"],
-    },
-    {
-      role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.webp", invertOnLight: true,
-      period: "Eylül 2025 — Ağustos 2026", current: false, icon: "target",
-      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 1.032 takım arasından finale kalan 42 takım içinde 18. sırada yer aldık ve \"En İyi Arayüz Yazılımı\" mansiyon ödülünü kazandık. Kamikaze algoritmaları ve görüntü işleme alanlarından sorumluydum.",
-      highlights: ["Görüntü işleme ve kamikaze algoritma geliştirme çalışmaları yürütmek.", "55 kişilik ekipteki 7 kişilik yönetim kadrosunda organizasyonel süreçlere katkı sağlamak.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
-      tags: ["Görüntü İşleme", "Kamikaze Algoritmaları", "Liderlik"],
-    },
-    {
-      role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.webp", invertOnLight: true,
-      period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
-      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 693 takım arasından finale kalan 40 takım içinde 35. sırada yer alarak yarışmayı tamamladık. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
-      highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
-      tags: ["Yer Kontrol İstasyonu", "Haberleşme", "Python"],
     },
     {
       role: "Tasarımcı · Yönetim Ekip Üyesi", org: "Google Developer Groups Turkey",

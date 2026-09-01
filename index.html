@@ -18,14 +18,14 @@
   <link rel="alternate" hreflang="x-default" href="https://batuhangelegen.dev/" />
 
   <!-- Favicon (Google search sonucunda görünmesi için PNG 512x512 + çoklu boyut) -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/bg_icon.png?v=114" />
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/bg_icon.png?v=114" />
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/bg_icon.png?v=114" />
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/bg_icon.png?v=114" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/bg_icon.png?v=114" />
-  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=114" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.png?v=114" />
-  <link rel="shortcut icon" href="assets/bg_icon.png?v=114" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/bg_icon.png?v=116" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/bg_icon.png?v=116" />
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/bg_icon.png?v=116" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/bg_icon.png?v=116" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/bg_icon.png?v=116" />
+  <link rel="icon" type="image/webp" href="assets/bg_icon.webp?v=116" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg_icon.png?v=116" />
+  <link rel="shortcut icon" href="assets/bg_icon.png?v=116" />
 
   <!-- ============ OPEN GRAPH (LinkedIn, WhatsApp, Discord, Facebook) ============ -->
   <meta property="og:type" content="profile" />
@@ -40,8 +40,8 @@
   <meta property="profile:username" content="batuhangelegen" />
   <meta property="profile:gender" content="male" />
   <!-- OG preview görseli (1200×630 dikdörtgen — LinkedIn/WA/Discord ideal boyut) -->
-  <meta property="og:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=114" />
-  <meta property="og:image:secure_url" content="https://batuhangelegen.dev/assets/bg_icon.png?v=114" />
+  <meta property="og:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=116" />
+  <meta property="og:image:secure_url" content="https://batuhangelegen.dev/assets/bg_icon.png?v=116" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
@@ -52,11 +52,11 @@
   <meta name="twitter:url" content="https://batuhangelegen.dev/" />
   <meta name="twitter:title" content="Batuhan Gelegen — Savunma Sanayi & İHA Yazılım Mühendisi" />
   <meta name="twitter:description" content="TEKNOFEST Savaşan İHA finalisti · TÜBİTAK 2209-A bursiyeri. İnsansız hava araçları, otonom sistemler, yapay zekâ ve görüntü işleme üzerine milli teknoloji projeleri." />
-  <meta name="twitter:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=114" />
+  <meta name="twitter:image" content="https://batuhangelegen.dev/assets/bg_icon.png?v=116" />
   <meta name="twitter:image:alt" content="Batuhan Gelegen — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" />
 
   <!-- BG icon: nav'da hemen görünsün, en yüksek öncelik -->
-  <link rel="preload" as="image" href="assets/bg_icon.webp?v=114" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/bg_icon.webp?v=116" fetchpriority="high" />
   <!-- Proje ekran görüntülerini erken indir — text ile aynı anda görünsün -->
   <link rel="preload" as="image" href="assets/projects/gcs.avif" />
   <link rel="preload" as="image" href="assets/projects/tubitak.avif" />
@@ -344,7 +344,7 @@
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js" } }
   </script>
   <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js" crossorigin />
-  <link rel="modulepreload" href="js/scene.min.js?v=114" />
+  <link rel="modulepreload" href="js/scene.min.js?v=116" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <!-- PDF.js — CV modal için global render fonksiyonu, lazy loaded (defer) -->
   <script>
@@ -353,7 +353,7 @@
       if (!container || container.dataset.rendered === "1") return;
       container.dataset.rendered = "1";
       container.innerHTML = '<div class="cv-pdf-container__loading">CV yükleniyor…</div>';
-      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf?v=114";
+      var CV_URL = "assets/Batuhan_Gelegen_CV.pdf?v=116";
       var loadScript = function (src) {
         return new Promise(function (resolve, reject) {
           if (window.pdfjsLib) return resolve();
@@ -400,7 +400,7 @@
     var isMobile = matchMedia("(max-width: 900px)").matches
                 || matchMedia("(pointer: coarse)").matches
                 || (navigator.hardwareConcurrency || 4) <= 4;
-    if (!isMobile) { import("./js/scene.min.js?v=114"); }
+    if (!isMobile) { import("./js/scene.min.js?v=116"); }
   </script>
 </head>
 
@@ -461,7 +461,7 @@
     <div class="nav__inner" id="nav-inner">
       <a href="#hero" class="nav__logo" aria-label="Ana sayfa">
         <span class="nav__mark nav__mark--img">
-          <img src="assets/bg_icon.webp?v=114" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
+          <img src="assets/bg_icon.webp?v=116" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
         </span>
         <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
       </a>
@@ -694,13 +694,13 @@
         <div class="ach-grid">
           <article class="ach-card reveal">
             <div class="ach-card__top">
-              <span class="ach-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg></span>
-              <span class="ach-card__year mono">2026</span>
+              <span class="ach-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-radar"></use></svg></span>
+              <span class="ach-card__year mono">2025</span>
             </div>
-            <h3 class="ach-card__title" data-i18n="ach.award.title">TEKNOFEST Savaşan İHA</h3>
-            <p class="ach-card__subtitle" data-i18n="ach.award.label">&#8220;EN İYİ ARAYÜZ YAZILIMI&#8221; MANSİYON ÖDÜLÜ</p>
-            <p class="ach-card__desc" data-i18n="ach.award.org">1.032 takım arasından finale kalan 42 takım içinde 18. sıra · IKARUS AR-GE</p>
-            <span class="ach-card__tag" data-i18n="ach.tag.award">Ödül</span>
+            <h3 class="ach-card__title" data-i18n="tubitak.title">TÜBİTAK 2209-A Proje Desteği</h3>
+            <p class="ach-card__subtitle" data-i18n="tubitak.label">PROJE DESTEĞİ</p>
+            <p class="ach-card__desc" data-i18n="tubitak.org">TÜBİTAK · Kasım 2025 — Devam Ediyor</p>
+            <span class="ach-card__tag" data-i18n="ach.tag.research">Araştırma</span>
           </article>
 
           <article class="ach-card reveal" data-delay="120">
@@ -716,13 +716,13 @@
 
           <article class="ach-card reveal" data-delay="240">
             <div class="ach-card__top">
-              <span class="ach-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-radar"></use></svg></span>
-              <span class="ach-card__year mono">2025</span>
+              <span class="ach-card__icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg></span>
+              <span class="ach-card__year mono">2026</span>
             </div>
-            <h3 class="ach-card__title" data-i18n="tubitak.title">TÜBİTAK 2209-A Proje Desteği</h3>
-            <p class="ach-card__subtitle" data-i18n="tubitak.label">PROJE DESTEĞİ</p>
-            <p class="ach-card__desc" data-i18n="tubitak.org">TÜBİTAK · Kasım 2025 — Devam Ediyor</p>
-            <span class="ach-card__tag" data-i18n="ach.tag.research">Araştırma</span>
+            <h3 class="ach-card__title" data-i18n="ach.award.title">TEKNOFEST Savaşan İHA</h3>
+            <p class="ach-card__subtitle" data-i18n="ach.award.label">&#8220;EN İYİ ARAYÜZ YAZILIMI&#8221; MANSİYON ÖDÜLÜ</p>
+            <p class="ach-card__desc" data-i18n="ach.award.org">1.032 takım arasından finale kalan 42 takım içinde 18. sıra · IKARUS AR-GE</p>
+            <span class="ach-card__tag" data-i18n="ach.tag.award">Ödül</span>
           </article>
         </div>
       </div>
@@ -815,7 +815,7 @@
           </div>
         </div>
         <div class="cv-modal__actions">
-          <a href="assets/Batuhan_Gelegen_CV.pdf?v=114" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
+          <a href="assets/Batuhan_Gelegen_CV.pdf?v=116" download="Batuhan_Gelegen_CV.pdf" class="btn btn--primary cv-modal__download">
             <svg class="icon" viewBox="0 0 24 24"><use href="#i-download"></use></svg> İndir
           </a>
           <button type="button" class="icon-btn cv-modal__close" data-cv-close aria-label="Kapat">
@@ -838,7 +838,7 @@
       <div class="footer__brand">
         <a href="#hero" class="nav__logo">
           <span class="nav__mark nav__mark--img">
-            <img src="assets/bg_icon.webp?v=114" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
+            <img src="assets/bg_icon.webp?v=116" alt="Batuhan Gelegen BG logo — Savunma Sanayi & İHA Yazılım Mühendisi Portfolyosu" width="36" height="36" fetchpriority="high" decoding="async" />
           </span>
           <span class="nav__name">Batuhan<span class="nav__name-sep"> </span>Gelegen</span>
         </a>
@@ -864,8 +864,8 @@
   </footer>
 
   <!-- İçerik verisi (main.js'ten önce yüklenir) -->
-  <script src="js/data.min.js?v=114" defer></script>
-  <script src="js/i18n.min.js?v=114" defer></script>
-  <script src="js/main.min.js?v=114" defer></script>
+  <script src="js/data.min.js?v=116" defer></script>
+  <script src="js/i18n.min.js?v=116" defer></script>
+  <script src="js/main.min.js?v=116" defer></script>
 </body>
 </html>

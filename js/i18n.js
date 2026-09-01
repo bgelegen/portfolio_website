@@ -218,6 +218,28 @@ window.I18N = (function () {
   // Sırayla eşleşiyor (aynı index)
   const experiencesEn = [
     {
+      role: "Software Engineer", org: "IKARUS AR-GE",
+      period: "September 2024 — August 2025",
+      desc: "We completed the TEKNOFEST Fighting UAV Competition in 35th place among the 40 finalists selected from 693 teams. I was responsible for communication and ground control station development.",
+      highlights: [
+        "Developed the GCS interface and command infrastructure for operational control.",
+        "Built and optimized the UAV\u2013GCS data communication infrastructure.",
+        "Supported the team in avionics and structural areas.",
+      ],
+      tags: ["Ground Control Station", "Communication", "Python"],
+    },
+    {
+      role: "Software Engineer · Management Team Member", org: "IKARUS AR-GE",
+      period: "September 2025 — August 2026",
+      desc: "At the TEKNOFEST Fighting UAV Competition we placed 18th among the 42 finalists selected from 1,032 teams and won the \u201CBest Interface Software\u201D honorable mention award. I was responsible for kamikaze algorithms and image processing.",
+      highlights: [
+        "Carrying out image processing and kamikaze algorithm development work.",
+        "Contributing to organizational processes as part of the 7-person management staff within a 55-person team.",
+        "Playing an active role in technical and administrative decision-making.",
+      ],
+      tags: ["Image Processing", "Kamikaze Algorithms", "Leadership"],
+    },
+    {
       role: "Team Captain", org: "IKARUS AR-GE",
       period: "September 2026 — Present",
       desc: "As captain of the 40-person IKARUS AR-GE team, I lead the project development processes for the Fighting UAV, International UAV, and Sloshing Rocket competitions.",
@@ -238,28 +260,6 @@ window.I18N = (function () {
         "Supporting the planning and execution of workshop activities.",
       ],
       tags: ["Mentorship", "Education", "Community"],
-    },
-    {
-      role: "Software Engineer · Management Team Member", org: "IKARUS AR-GE",
-      period: "September 2025 — August 2026",
-      desc: "At the TEKNOFEST Fighting UAV Competition we placed 18th among the 42 finalists selected from 1,032 teams and won the “Best Interface Software” honorable mention award. I was responsible for kamikaze algorithms and image processing.",
-      highlights: [
-        "Carrying out image processing and kamikaze algorithm development work.",
-        "Contributing to organizational processes as part of the 7-person management staff within a 55-person team.",
-        "Playing an active role in technical and administrative decision-making.",
-      ],
-      tags: ["Image Processing", "Kamikaze Algorithms", "Leadership"],
-    },
-    {
-      role: "Software Engineer", org: "IKARUS AR-GE",
-      period: "September 2024 — August 2025",
-      desc: "We completed the TEKNOFEST Fighting UAV Competition in 35th place among the 40 finalists selected from 693 teams. I was responsible for communication and ground control station development.",
-      highlights: [
-        "Developed the GCS interface and command infrastructure for operational control.",
-        "Built and optimized the UAV–GCS data communication infrastructure.",
-        "Supported the team in avionics and structural areas.",
-      ],
-      tags: ["Ground Control Station", "Communication", "Python"],
     },
     {
       role: "Designer · Management Team Member", org: "Google Developer Groups Turkey",
