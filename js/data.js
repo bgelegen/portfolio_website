@@ -96,8 +96,8 @@ window.PORTFOLIO = (function () {
       id: "otonom-kamikaze",
       image: "assets/projects/kamikaze.avif",
       title: "Otonom Kamikaze Görev Algoritması",
-      period: "Eylül 2025 — Devam Ediyor",
-      status: "Devam Ediyor",
+      period: "Eylül 2025 — Ağustos 2026",
+      status: "Tamamlandı",
       category: "Otonom Kontrol · Görüntü İşleme",
       icon: "target",
       tagline:
@@ -130,28 +130,12 @@ window.PORTFOLIO = (function () {
    * ---------------------------------------------------------------- */
   const experiences = [
     {
-      role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.webp", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
-      period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
-      desc: "Teknofest Savaşan İHA Yarışması'na katılarak 598 takım arasından finalist olduk. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
-      highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Mission Planner ile yer kontrol süreçlerini yönetmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
-      tags: ["Yer Kontrol İstasyonu", "Mission Planner", "Haberleşme"],
-    },
-    {
-      role: "Tasarımcı · Yönetim Ekip Üyesi", org: "Google Developer Groups Turkey",
-      logo: "assets/logos/gdg.webp",
-      period: "Eylül 2024 — Haziran 2025", current: true, icon: "design",
-      desc: "Yönetim ekibi üyesi olarak topluluğun görsel iletişim süreçlerini yürütüyor, etkinlik ve sosyal medya içeriklerini tasarlıyorum.",
-      highlights: ["Photoshop ile etkinlik afişleri ve sosyal medya içerikleri tasarlamak.", "Görsel iletişimle topluluk etkileşimini artırmak.", "Etkinliklerin planlama ve koordinasyonuna katkıda bulunmak."],
-      tags: ["UI/Görsel Tasarım", "Photoshop", "Figma"],
-    },
-    {
-      role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
-      logo: "assets/logos/ikarus.webp", invertOnLight: true,   // beyaz kuş → açık temada siyah olsun
-      period: "Eylül 2025 — Devam Ediyor", current: true, icon: "target",
-      desc: "Görüntü işleme tabanlı yöntemler kullanarak kamikaze İHA senaryoları üzerine yazılım geliştiriyor, 55 kişilik ekipteki 7 kişilik yönetim kadrosunda yer alıyorum.",
-      highlights: ["Görüntü işleme ve algoritma geliştirme çalışmaları.", "Kamikaze senaryolarına uygun yazılım modülleri geliştirmek.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
-      tags: ["Görüntü İşleme", "Liderlik", "Python"],
+      role: "Takım Kaptanı", org: "IKARUS AR-GE",
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,
+      period: "Eylül 2026 — Devam Ediyor", current: true, icon: "users",
+      desc: "40 kişilik IKARUS AR-GE takımının kaptanlığını yürüterek Savaşan İHA, Uluslararası İHA ve Sloshing Roket yarışmalarına yönelik proje geliştirme süreçlerine liderlik ediyorum.",
+      highlights: ["Alt takım kaptanlarıyla düzenli toplantılarla departmanlar arası entegrasyonu sağlamak.", "40 kişilik ekibin idari ve teknik süreçlerini yöneterek organizasyonel verimliliği artırmak.", "Yarışma takvimlerine uygun stratejik proje yönetimi süreçlerini planlamak ve yürütmek."],
+      tags: ["Takım Liderliği", "Proje Yönetimi", "Strateji"],
     },
     {
       role: "Sen Geleceksin Bursiyeri", org: "T3 Vakfı · Deneyap Teknoloji Atölyeleri",
@@ -160,6 +144,30 @@ window.PORTFOLIO = (function () {
       desc: "Burs programı kapsamında bursiyer olarak, Deneyap Teknoloji Atölyeleri bünyesinde öğrencilere yönelik teknik eğitim ve mentorluk faaliyetlerinde görev alıyorum.",
       highlights: ["Temel programlama ve teknoloji odaklı uygulamalı eğitimler vermek.", "Proje geliştirme süreçlerinde teknik rehberlik sağlamak.", "Atölye çalışmalarının planlanması ve yürütülmesine destek olmak."],
       tags: ["Mentorluk", "Eğitim", "Topluluk"],
+    },
+    {
+      role: "Yazılım Mühendisi · Yönetim Ekip Üyesi", org: "IKARUS AR-GE",
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,
+      period: "Eylül 2025 — Ağustos 2026", current: false, icon: "target",
+      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 1.032 takım arasından finale kalan 42 takım içinde 18. sırada yer aldık ve \"En İyi Arayüz Yazılımı\" mansiyon ödülünü kazandık. Kamikaze algoritmaları ve görüntü işleme alanlarından sorumluydum.",
+      highlights: ["Görüntü işleme ve kamikaze algoritma geliştirme çalışmaları yürütmek.", "55 kişilik ekipteki 7 kişilik yönetim kadrosunda organizasyonel süreçlere katkı sağlamak.", "Teknik ve idari karar alma süreçlerinde aktif rol almak."],
+      tags: ["Görüntü İşleme", "Kamikaze Algoritmaları", "Liderlik"],
+    },
+    {
+      role: "Yazılım Mühendisi", org: "IKARUS AR-GE",
+      logo: "assets/logos/ikarus.webp", invertOnLight: true,
+      period: "Eylül 2024 — Ağustos 2025", current: false, icon: "drone",
+      desc: "TEKNOFEST Savaşan İHA Yarışması'nda 693 takım arasından finale kalan 40 takım içinde 35. sırada yer alarak yarışmayı tamamladık. Haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
+      highlights: ["GCS arayüz ve komut altyapısını geliştirerek operasyonel kontrol sağlamak.", "İHA–GCS veri iletişim altyapısını geliştirip optimize etmek.", "Aviyonik ve yapısal alanlarda ekibe destek sağlamak."],
+      tags: ["Yer Kontrol İstasyonu", "Haberleşme", "Python"],
+    },
+    {
+      role: "Tasarımcı · Yönetim Ekip Üyesi", org: "Google Developer Groups Turkey",
+      logo: "assets/logos/gdg.webp",
+      period: "Eylül 2024 — Haziran 2025", current: false, icon: "design",
+      desc: "Yönetim ekibi üyesi olarak topluluğun görsel iletişim süreçlerini yürüttüm, etkinlik ve sosyal medya içeriklerini tasarladım.",
+      highlights: ["Photoshop ile etkinlik afişleri ve sosyal medya içerikleri tasarlamak.", "Görsel iletişimle topluluk etkileşimini artırmak.", "Etkinliklerin planlama ve koordinasyonuna katkıda bulunmak."],
+      tags: ["UI/Görsel Tasarım", "Photoshop", "Figma"],
     },
   ];
 

@@ -955,11 +955,7 @@
       if (p && key && focusObj[key]) p.textContent = focusObj[key];
     });
 
-    // 7) Achievement kartı: TEKNOFEST başlığı (data-i18n olmayan h3)
-    const teknofestTitle = document.querySelector(".ach-card:first-child .ach-card__title");
-    if (teknofestTitle && I.achievementsFeatured) {
-      teknofestTitle.textContent = I.achievementsFeatured.title[lang];
-    }
+    // 7) Başarı kartlarının tamamı data-i18n ile çevrilir — ek override gerekmez
 
     // 8) Form placeholder'ları
     const placeholders = {

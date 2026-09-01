@@ -52,14 +52,19 @@ window.I18N = (function () {
     "contact.kicker":        { tr: "İletişim", en: "Contact" },
     "contact.title.emph":    { tr: "üretelim", en: "build" },
     "achievements.finalist": { tr: "FİNALİST", en: "FINALIST" },
+    "ach.award.title":  { tr: "TEKNOFEST Savaşan İHA", en: "TEKNOFEST Fighting UAV" },
+    "ach.award.label":  { tr: "“EN İYİ ARAYÜZ YAZILIMI” MANSİYON ÖDÜLÜ", en: "“BEST INTERFACE SOFTWARE” HONORABLE MENTION" },
+    "ach.award.org":    { tr: "1.032 takım arasından finale kalan 42 takım içinde 18. sıra · IKARUS AR-GE", en: "18th place among 42 finalists out of 1,032 teams · IKARUS AR-GE" },
+    "ach.finalist.title": { tr: "TEKNOFEST Savaşan İHA", en: "TEKNOFEST Fighting UAV" },
+    "ach.tag.award":    { tr: "Ödül", en: "Award" },
     "ach.tag.competition":   { tr: "Yarışma", en: "Competition" },
     "ach.tag.research":      { tr: "Araştırma", en: "Research" },
 
     // TÜBİTAK featured card
     "tubitak.label": { tr: "PROJE DESTEĞİ", en: "PROJECT SUPPORT" },
-    "tubitak.title": { tr: "TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı", en: "TÜBİTAK 2209-A University Students Research Projects Support Program" },
+    "tubitak.title": { tr: "TÜBİTAK 2209-A Proje Desteği", en: "TÜBİTAK 2209-A Project Support" },
     "tubitak.org":   { tr: "TÜBİTAK · Kasım 2025 — Devam Ediyor", en: "TÜBİTAK · November 2025 — Ongoing" },
-    "teknofest.org": { tr: "IKARUS AR-GE Takımı · Eylül 2024 — Ağustos 2025", en: "IKARUS AR-GE Team · September 2024 — August 2025" },
+    "teknofest.org": { tr: "693 takım arasından finale kalan 40 takım içinde 35. sıra · IKARUS AR-GE", en: "35th place among 40 finalists out of 693 teams · IKARUS AR-GE" },
 
     // Contact info
     "contact.label.email":    { tr: "E-POSTA", en: "EMAIL" },
@@ -156,21 +161,6 @@ window.I18N = (function () {
     embedded: "ROS/Gazebo simülasyonları, sensör benzetimleri ve donanıma yakın kontrol mekanizmaları.",
   };
 
-  /* ----------------- BAŞARILAR (Featured) ----------------- */
-  const achievementsFeatured = {
-    org: {
-      tr: "IKARUS AR-GE Takımı · 2024 — 2025",
-      en: "IKARUS AR-GE Team · 2024 — 2025",
-    },
-    title: {
-      tr: "TEKNOFEST Savaşan İHA Yarışması",
-      en: "TEKNOFEST Savaşan İHA Competition",
-    },
-    desc: {
-      tr: "Türkiye'nin en büyük teknoloji yarışmasında finalist olarak yer aldık. Takım içerisinde haberleşme ve yer kontrol istasyonu geliştirme görevlerinden sorumluydum.",
-      en: "We were finalists in Türkiye's largest technology competition. Within the team, I was responsible for communication and ground control station development.",
-    },
-  };
   /* ----------------- PROJELER — EN ----------------- */
   // main.js data.js'ten proje verisini alıyor. Her projenin `id`'sine göre EN varyant.
   const projectsEn = {
@@ -207,8 +197,8 @@ window.I18N = (function () {
     },
     "otonom-kamikaze": {
       title: "Autonomous Kamikaze Mission Algorithm",
-      period: "September 2025 — Ongoing",
-      status: "Ongoing",
+      period: "September 2025 — August 2026",
+      status: "Completed",
       category: "Autonomous Control · Image Processing",
       tagline: "Mission algorithm managing autonomous dive, target detection, and maneuver phases based on coordinate data.",
       description: "Using Python and image processing techniques, I developed a mission algorithm that includes autonomous dive, target detection, and maneuver phases based on coordinate data the UAV receives from the server. The system is designed around three main phases: approach, dive, and pass-through.",
@@ -228,16 +218,48 @@ window.I18N = (function () {
   // Sırayla eşleşiyor (aynı index)
   const experiencesEn = [
     {
+      role: "Team Captain", org: "IKARUS AR-GE",
+      period: "September 2026 — Present",
+      desc: "As captain of the 40-person IKARUS AR-GE team, I lead the project development processes for the Fighting UAV, International UAV, and Sloshing Rocket competitions.",
+      highlights: [
+        "Ensuring cross-department integration through regular meetings with sub-team captains.",
+        "Increasing organizational efficiency by managing the administrative and technical processes of a 40-person team.",
+        "Planning and running strategic project management processes aligned with competition timelines.",
+      ],
+      tags: ["Team Leadership", "Project Management", "Strategy"],
+    },
+    {
+      role: "Sen Geleceksin Scholar", org: "T3 Vakfı · Deneyap Technology Workshops",
+      period: "February 2026 — Present",
+      desc: "As a scholar in the program, I serve in technical education and mentoring activities for students at Deneyap Technology Workshops.",
+      highlights: [
+        "Delivering hands-on training focused on basic programming and technology.",
+        "Providing technical mentorship in project development processes.",
+        "Supporting the planning and execution of workshop activities.",
+      ],
+      tags: ["Mentorship", "Education", "Community"],
+    },
+    {
+      role: "Software Engineer · Management Team Member", org: "IKARUS AR-GE",
+      period: "September 2025 — August 2026",
+      desc: "At the TEKNOFEST Fighting UAV Competition we placed 18th among the 42 finalists selected from 1,032 teams and won the “Best Interface Software” honorable mention award. I was responsible for kamikaze algorithms and image processing.",
+      highlights: [
+        "Carrying out image processing and kamikaze algorithm development work.",
+        "Contributing to organizational processes as part of the 7-person management staff within a 55-person team.",
+        "Playing an active role in technical and administrative decision-making.",
+      ],
+      tags: ["Image Processing", "Kamikaze Algorithms", "Leadership"],
+    },
+    {
       role: "Software Engineer", org: "IKARUS AR-GE",
       period: "September 2024 — August 2025",
-      desc: "We joined the TEKNOFEST Savaşan İHA Competition and were finalists among 598 teams. I was responsible for communication and ground control station development within the team.",
+      desc: "We completed the TEKNOFEST Fighting UAV Competition in 35th place among the 40 finalists selected from 693 teams. I was responsible for communication and ground control station development.",
       highlights: [
         "Developed the GCS interface and command infrastructure for operational control.",
         "Built and optimized the UAV–GCS data communication infrastructure.",
-        "Managed ground control processes with Mission Planner.",
         "Supported the team in avionics and structural areas.",
       ],
-      tags: ["Ground Control Station", "Mission Planner", "Communication"],
+      tags: ["Ground Control Station", "Communication", "Python"],
     },
     {
       role: "Designer · Management Team Member", org: "Google Developer Groups Turkey",
@@ -249,28 +271,6 @@ window.I18N = (function () {
         "Contributed to planning and coordination of events.",
       ],
       tags: ["UI / Visual Design", "Photoshop", "Figma"],
-    },
-    {
-      role: "Software Engineer · Management Team Member", org: "IKARUS AR-GE",
-      period: "September 2025 — Ongoing",
-      desc: "Using image-processing-based methods, I am developing software for kamikaze UAV scenarios and serving on the 7-person management team within a 55-person crew.",
-      highlights: [
-        "Image processing and algorithm development work.",
-        "Developing software modules suited to kamikaze scenarios.",
-        "Playing an active role in technical and administrative decision-making.",
-      ],
-      tags: ["Image Processing", "Leadership", "Python"],
-    },
-    {
-      role: "Sen Geleceksin Scholar", org: "T3 Vakfı · Deneyap Technology Workshops",
-      period: "February 2026 — Ongoing",
-      desc: "As a scholar in the program, I serve in technical education and mentoring activities for students at Deneyap Technology Workshops.",
-      highlights: [
-        "Delivering hands-on training focused on basic programming and technology.",
-        "Providing technical mentorship in project development processes.",
-        "Supporting the planning and execution of workshop activities.",
-      ],
-      tags: ["Mentorship", "Education", "Community"],
     },
   ];
 
@@ -300,7 +300,6 @@ window.I18N = (function () {
     heroTypedEn, heroTaglineEn, heroTaglineTr,
     aboutTextEn, aboutTextTr,
     focusDescEn, focusDescTr,
-    achievementsFeatured,
     projectsEn, experiencesEn,
     skillGroupTitlesEn, skillNamesEn,
     copyrightEn, copyrightTr,
