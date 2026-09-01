@@ -63,7 +63,6 @@ window.I18N = (function () {
     // TÜBİTAK featured card
     "tubitak.label": { tr: "PROJE DESTEĞİ", en: "PROJECT SUPPORT" },
     "tubitak.title": { tr: "TÜBİTAK 2209-A Proje Desteği", en: "TÜBİTAK 2209-A Project Support" },
-    "tubitak.org":   { tr: "TÜBİTAK · Kasım 2025 — Devam Ediyor", en: "TÜBİTAK · November 2025 — Ongoing" },
     "teknofest.org": { tr: "693 takım arasından finale kalan 40 takım içinde 35. sıra · IKARUS AR-GE", en: "35th place among 40 finalists out of 693 teams · IKARUS AR-GE" },
 
     // Contact info
@@ -240,7 +239,7 @@ window.I18N = (function () {
       tags: ["Image Processing", "Kamikaze Algorithms", "Leadership"],
     },
     {
-      role: "Team Captain", org: "IKARUS AR-GE",
+      role: "Software Engineer · Team Captain", org: "IKARUS AR-GE",
       period: "September 2026 — Present",
       desc: "As captain of the 40-person IKARUS AR-GE team, I lead the project development processes for the Fighting UAV, International UAV, and Sloshing Rocket competitions.",
       highlights: [

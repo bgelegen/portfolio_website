@@ -146,7 +146,7 @@ window.PORTFOLIO = (function () {
       tags: ["Görüntü İşleme", "Kamikaze Algoritmaları", "Liderlik"],
     },
     {
-      role: "Takım Kaptanı", org: "IKARUS AR-GE",
+      role: "Yazılım Mühendisi · Takım Kaptanı", org: "IKARUS AR-GE",
       logo: "assets/logos/ikarus.webp", invertOnLight: true,
       period: "Eylül 2026 — Devam Ediyor", current: true, icon: "users",
       desc: "40 kişilik IKARUS AR-GE takımının kaptanlığını yürüterek Savaşan İHA, Uluslararası İHA ve Sloshing Roket yarışmalarına yönelik proje geliştirme süreçlerine liderlik ediyorum.",
