@@ -242,10 +242,10 @@ window.I18N = (function () {
     {
       role: "Software Engineer · Team Captain", org: "IKARUS AR-GE",
       period: "September 2026 — Present",
-      desc: "As captain of the 40-person IKARUS AR-GE team, I lead the project development processes for the Fighting UAV, International UAV, and Sloshing Rocket competitions.",
+      desc: "As captain of the 43-person IKARUS AR-GE team, I lead the project development processes for the Fighting UAV, International UAV, Interceptor Drone, and Sloshing Rocket competitions.",
       highlights: [
         "Ensuring cross-department integration through regular meetings with sub-team captains.",
-        "Increasing organizational efficiency by managing the administrative and technical processes of a 40-person team.",
+        "Increasing organizational efficiency by managing the administrative and technical processes of a 43-person team.",
         "Planning and running strategic project management processes aligned with competition timelines.",
       ],
       tags: ["Team Leadership", "Project Management", "Strategy"],
@@ -277,6 +277,8 @@ window.I18N = (function () {
   /* ----------------- SKILL GROUP başlıkları — EN ----------------- */
   const skillGroupTitlesEn = [
     "Programming Languages",
+    "Web & Mobile Development",
+    "Software Fundamentals",
     "AI & Image Processing",
     "Simulation & Robotics",
     "Tools & Design",
@@ -285,6 +287,8 @@ window.I18N = (function () {
   /* Skill chip isimleri — TR yazılı ama İngilizce görünmesi gerekenler */
   const skillNamesEn = {
     "Görüntü İşleme":     "Image Processing",
+    "Nesne Yönelimli Programlama": "Object-Oriented Programming",
+    "Veri Yapıları ve Algoritmaları": "Data Structures & Algorithms",
     "Makine Öğrenmesi":   "Machine Learning",
     "Yapay Zekâ":         "Artificial Intelligence",
     "Otonom Sistemler":   "Autonomous Systems",

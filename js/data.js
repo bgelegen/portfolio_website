@@ -17,6 +17,23 @@ window.PORTFOLIO = (function () {
         { name: "Python", level: 90 },
         { name: "C / C++", level: 75 },
         { name: "C#", level: 70 },
+        { name: "JavaScript", level: 78 },
+        { name: "TypeScript", level: 72 },
+      ],
+    },
+    {
+      title: "Web & Mobil Geliştirme", icon: "terminal",
+      skills: [
+        { name: "React", level: 75 },
+        { name: "Flutter", level: 72 },
+        { name: "HTML / CSS", level: 85 },
+      ],
+    },
+    {
+      title: "Yazılım Temelleri", icon: "target",
+      skills: [
+        { name: "Nesne Yönelimli Programlama", level: 82 },
+        { name: "Veri Yapıları ve Algoritmaları", level: 80 },
       ],
     },
     {
@@ -149,8 +166,8 @@ window.PORTFOLIO = (function () {
       role: "Yazılım Mühendisi · Takım Kaptanı", org: "IKARUS AR-GE",
       logo: "assets/logos/ikarus.webp", invertOnLight: true,
       period: "Eylül 2026 — Devam Ediyor", current: true, icon: "users",
-      desc: "40 kişilik IKARUS AR-GE takımının kaptanlığını yürüterek Savaşan İHA, Uluslararası İHA ve Sloshing Roket yarışmalarına yönelik proje geliştirme süreçlerine liderlik ediyorum.",
-      highlights: ["Alt takım kaptanlarıyla düzenli toplantılarla departmanlar arası entegrasyonu sağlamak.", "40 kişilik ekibin idari ve teknik süreçlerini yöneterek organizasyonel verimliliği artırmak.", "Yarışma takvimlerine uygun stratejik proje yönetimi süreçlerini planlamak ve yürütmek."],
+      desc: "43 kişilik IKARUS AR-GE takımının kaptanlığını yürüterek Savaşan İHA, Uluslararası İHA, Avcı Drone ve Sloshing Roket yarışmalarına yönelik proje geliştirme süreçlerine liderlik ediyorum.",
+      highlights: ["Alt takım kaptanlarıyla düzenli toplantılarla departmanlar arası entegrasyonu sağlamak.", "43 kişilik ekibin idari ve teknik süreçlerini yöneterek organizasyonel verimliliği artırmak.", "Yarışma takvimlerine uygun stratejik proje yönetimi süreçlerini planlamak ve yürütmek."],
       tags: ["Takım Liderliği", "Proje Yönetimi", "Strateji"],
     },
     {
