@@ -226,7 +226,6 @@ window.I18N = (function () {
         "Built and optimized the UAV\u2013GCS data communication infrastructure.",
         "Supported the team in avionics and structural areas.",
       ],
-      tags: ["Ground Control Station", "Communication", "Python"],
     },
     {
       role: "Software Engineer · Management Team Member", org: "IKARUS AR-GE",
@@ -237,7 +236,6 @@ window.I18N = (function () {
         "Contributing to organizational processes as part of the 7-person management staff within a 55-person team.",
         "Playing an active role in technical and administrative decision-making.",
       ],
-      tags: ["Image Processing", "Kamikaze Algorithms", "Leadership"],
     },
     {
       role: "Software Engineer · Team Captain", org: "IKARUS AR-GE",
@@ -248,7 +246,6 @@ window.I18N = (function () {
         "Increasing organizational efficiency by managing the administrative and technical processes of a 43-person team.",
         "Planning and running strategic project management processes aligned with competition timelines.",
       ],
-      tags: ["Team Leadership", "Project Management", "Strategy"],
     },
     {
       role: "Sen Geleceksin Scholar", org: "T3 Vakfı · Deneyap Technology Workshops",
@@ -259,7 +256,6 @@ window.I18N = (function () {
         "Providing technical mentorship in project development processes.",
         "Supporting the planning and execution of workshop activities.",
       ],
-      tags: ["Mentorship", "Education", "Community"],
     },
     {
       role: "Designer · Management Team Member", org: "Google Developer Groups Turkey",
@@ -270,7 +266,6 @@ window.I18N = (function () {
         "Increased community engagement through visual communication.",
         "Contributed to planning and coordination of events.",
       ],
-      tags: ["UI / Visual Design", "Photoshop", "Figma"],
     },
   ];
 

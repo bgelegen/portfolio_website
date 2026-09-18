@@ -130,7 +130,6 @@
           const period = en ? en.period : e.period;
           const desc = en ? en.desc : e.desc;
           const highlights = en ? en.highlights : e.highlights;
-          const tags = en ? en.tags : e.tags;
           return `
       <div class="timeline__item ${e.current ? "is-current" : ""} reveal" data-delay="${i * 60}">
         <span class="timeline__node"></span>
@@ -148,7 +147,6 @@
           </div>
           <p class="timeline__desc">${esc(desc)}</p>
           <ul class="timeline__highlights">${highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>
-          <div class="timeline__tags">${tags.map((t) => `<span class="tech-tag">${esc(t)}</span>`).join("")}</div>
         </div>
       </div>`;
         }
